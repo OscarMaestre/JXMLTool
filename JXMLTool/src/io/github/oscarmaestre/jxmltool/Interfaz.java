@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-public class Interfaz {
+public class Interfaz implements ActionListener{
     public JTextArea txtXML;
     private static final int X_CUADRO_XML      = 0;
     private static final int Y_CUADRO_XML      = 0;
@@ -40,12 +42,17 @@ public class Interfaz {
     private static final int ALTO_CUADRO_INFORMES   = 4;
     private static final double PESO_CUADRO_INFORMES= 0.2;
     
+    private static final String VALIDAR_DTD = "Validar DTD";
+    private static final String VALIDAR_ESQUEMA = "Validar esquema";
+    private static final String EVALUAR_XPATH = "Evaluar XPATH";
+    private static final String TRANSFORMAR_XSLT="Transformar XSLT";
+    private static final String EJECUTAR_XQUERY = "Ejecutar XQuery";
     
     public Interfaz(){
         
     }
     
-    private static void crearInterfaz(Container panel){
+    private void crearInterfaz(Container panel){
         GridBagLayout gridbag=new GridBagLayout();
         panel.setLayout(gridbag);
         
@@ -108,12 +115,14 @@ public class Interfaz {
         
     }
     
-    private static JPanel getBotoneraOperacionesXML(){
+    private JPanel getBotoneraOperacionesXML(){
         JPanel panelBotones=new JPanel();
         GridBagLayout layout=new GridBagLayout();
         panelBotones.setLayout(layout);
         
         JButton btnValidarDTD=new JButton("Validar con DTD");
+        btnValidarDTD.setActionCommand(VALIDAR_DTD);
+        btnValidarDTD.addActionListener(this);
         //btnValidarDTD.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonDTD=new GridBagConstraints();
         constraintsBotonDTD.fill=GridBagConstraints.BOTH;
@@ -126,6 +135,8 @@ public class Interfaz {
         
         
         JButton btnValidarEsquema=new JButton("Validar con esquema XML");
+        btnValidarEsquema.setActionCommand(VALIDAR_ESQUEMA);
+        btnValidarEsquema.addActionListener(this);
         //btnValidarESQUEMA.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonEsquema=new GridBagConstraints();
         constraintsBotonEsquema.fill=GridBagConstraints.BOTH;
@@ -138,6 +149,8 @@ public class Interfaz {
         
         
         JButton btnEvaluarXPath=new JButton("Evaluar XPath");
+        btnEvaluarXPath.setActionCommand(EVALUAR_XPATH);
+        btnEvaluarXPath.addActionListener(this);
         //btnValidarXPath.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXPath=new GridBagConstraints();
         constraintsBotonXPath.fill=GridBagConstraints.BOTH;
@@ -150,6 +163,8 @@ public class Interfaz {
         
         
         JButton btnTransformarXSLT=new JButton("Transformar con XSLT");
+        btnTransformarXSLT.setActionCommand(TRANSFORMAR_XSLT);
+        btnTransformarXSLT.addActionListener(this);
         //btnValidarXSLT.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXSLT=new GridBagConstraints();
         constraintsBotonXSLT.fill=GridBagConstraints.BOTH;
@@ -162,6 +177,8 @@ public class Interfaz {
         
         
         JButton btnEjecutarXQuery=new JButton("Ejecutar XQuery");
+        btnEjecutarXQuery.addActionListener(this);
+        btnEjecutarXQuery.setActionCommand(EJECUTAR_XQUERY);
         //btnValidarXQuery.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXQuery=new GridBagConstraints();
         constraintsBotonXQuery.fill=GridBagConstraints.BOTH;
@@ -180,7 +197,7 @@ public class Interfaz {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
+    private void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("JXMLTool");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,12 +210,36 @@ public class Interfaz {
         frame.setMinimumSize(new Dimension(700, 450));
     }
 
+    
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand()==Interfaz.VALIDAR_DTD){
+            System.out.println("DTD");
+        }
+        if (e.getActionCommand()==Interfaz.VALIDAR_ESQUEMA){
+            System.out.println("Esquema");
+        }
+        if (e.getActionCommand()==Interfaz.EVALUAR_XPATH){
+            System.out.println("XPath");
+        }
+        if (e.getActionCommand()==Interfaz.EJECUTAR_XQUERY){
+            System.out.println("XQuery");
+        }
+        if (e.getActionCommand()==Interfaz.TRANSFORMAR_XSLT){
+            System.out.println("XSLT");
+        }
+        
+        
+    }
+    
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                Interfaz i=new Interfaz();
+                i.createAndShowGUI();
             }
         });
     }
