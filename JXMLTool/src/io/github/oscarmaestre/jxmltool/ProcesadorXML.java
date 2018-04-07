@@ -56,6 +56,11 @@ public class ProcesadorXML {
         
         parser=fabrica.newDocumentBuilder();
         if (validar){
+            /*Java obliga a que cuando se usa un parser con
+            validacion activemos algun errorHandler. Ponemos uno vacio
+            que lo unico que hace es propagar excepciones. Ver el codigo
+            de ProcesadorErrores
+            */
             ProcesadorErrores procesadorErrores;
             procesadorErrores=new ProcesadorErrores();
             parser.setErrorHandler(procesadorErrores);
@@ -164,7 +169,7 @@ public class ProcesadorXML {
         "<!ELEMENT dia      (#PCDATA)>\n" +
         "<!ELEMENT mes      (#PCDATA)>\n" +
         "<!ELEMENT anio     (#PCDATA)>\n" +
-        "<!ELEMENT fragil   EMPTY>\n" +
+        "<!ELEMENT fragile   EMPTY>\n" +
         "<!ELEMENT nofragil EMPTY >\n" +
         "<!ELEMENT peso     (#PCDATA)>\n" +
         "<!ATTLIST peso unidad CDATA #REQUIRED>\n" +

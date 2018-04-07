@@ -12,5 +12,5 @@
 <!ELEMENT peso     (#PCDATA)>
 <!ATTLIST peso unidad CDATA #REQUIRED>
 <!ELEMENT numserie  (#PCDATA)>
-<!ELEMENT kmmaximos (#PCDATA)>
+<!ELEMENT kmmaxDimos (#PCDATA)>
 <!ATTLIST componente nombrefabricante CDATA #REQUIRED>

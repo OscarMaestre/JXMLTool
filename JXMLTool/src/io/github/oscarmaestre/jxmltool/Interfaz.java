@@ -1,22 +1,38 @@
 package io.github.oscarmaestre.jxmltool;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
-public class Interfaz implements ActionListener{
-    public JTextArea txtXML;
+
+public class Interfaz implements ActionListener, MouseListener{
+    public JTextArea txtXML, txtResto, txtInformes;
+    
     private static final int X_CUADRO_XML      = 0;
     private static final int Y_CUADRO_XML      = 0;
     private static final int ANCHO_CUADRO_XML  = 5;
@@ -48,6 +64,9 @@ public class Interfaz implements ActionListener{
     private static final String TRANSFORMAR_XSLT="Transformar XSLT";
     private static final String EJECUTAR_XQUERY = "Ejecutar XQuery";
     
+    private static int DESTACAR_LINEA_ACTUAL    = 0;
+    private static int DESTACAR_LINEA_ANTERIOR  = 1;
+    
     public Interfaz(){
         
     }
@@ -57,7 +76,9 @@ public class Interfaz implements ActionListener{
         panel.setLayout(gridbag);
         
         //Añadimos el cuadro para el XML
-        JTextArea txtXML=new JTextArea();
+        txtXML=new JTextArea();
+        txtXML.addMouseListener(this);
+        txtXML.setWrapStyleWord(true);
         GridBagConstraints constraintsCuadroXML=new GridBagConstraints();
         constraintsCuadroXML.gridx=Interfaz.X_CUADRO_XML;
         constraintsCuadroXML.gridy=Interfaz.Y_CUADRO_XML;
@@ -71,7 +92,9 @@ public class Interfaz implements ActionListener{
         panel.add(txtXML, constraintsCuadroXML);
         
         
-        JTextArea txtResto=new JTextArea();
+        txtResto=new JTextArea();
+        txtResto.addMouseListener(this);
+        txtResto.setWrapStyleWord(true);
         GridBagConstraints constraintsCuadroResto=new GridBagConstraints();
         constraintsCuadroResto.gridx=Interfaz.X_CUADRO_RESTO;
         constraintsCuadroResto.gridy=Interfaz.Y_CUADRO_RESTO;
@@ -99,7 +122,7 @@ public class Interfaz implements ActionListener{
         panel.add(botoneraXML, constraintsBotoneraXML);
         
         
-        JTextArea txtInformes=new JTextArea();
+        txtInformes=new JTextArea();
         GridBagConstraints constraintsCuadroInformes=new GridBagConstraints();
         
         constraintsCuadroInformes.gridx=Interfaz.X_CUADRO_INFORMES;
@@ -211,11 +234,88 @@ public class Interfaz implements ActionListener{
     }
 
     
-
+    
+    private void destacarError (int numLinea, JTextArea control){
+        String texto=control.getText();
+        int posInicioMarcaError=0;
+        int posFinMarcaError=0;
+        for (int i=1; i<numLinea; i++){
+            posInicioMarcaError=texto.indexOf("\n", posFinMarcaError);
+            posFinMarcaError=texto.indexOf("\n", posInicioMarcaError+1);
+        }
+        
+        System.out.println("Marcando en:"+posInicioMarcaError+" hasta " + posFinMarcaError);
+        control.requestFocusInWindow();
+        control.select(posInicioMarcaError, posFinMarcaError);
+    }
+    
+    /* Cuando estamos comprobando si un fichero esta bien formado, la SAXException
+    nos dice la linea donde esta el problema. Cuando estamos buscando errores de 
+    validacion nos iremos a la linea anterior (pasando una diferencia de 1)
+    */
+    private void procesarExcepcionParseadoSAX(SAXException ex, int diferencia){
+        if (ex instanceof SAXParseException){
+                SAXParseException e=(SAXParseException) ex;
+                int lineaError=e.getLineNumber() - diferencia;
+                int columnaError=e.getColumnNumber();
+                
+                String motivo=e.getMessage();
+                String error="Error en linea " +
+                        lineaError + ", columna "+ columnaError + 
+                        ": "+ motivo;
+                txtInformes.setText(error);
+                
+                destacarError(lineaError, txtXML);
+        }
+    }
+    private boolean esXMLBienFormado(){
+        String xml=txtXML.getText();
+        String dtd=txtResto.getText();
+        try {
+            /* Primero comprobamos si es XML bien formado*/
+            ProcesadorXML.analizarXML(xml, false);
+            return true;
+        } catch (ParserConfigurationException ex) {
+            this.txtInformes.setText("Error desconocido");
+            this.txtInformes.append(ex.toString());
+        } catch (SAXException ex) {
+            this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ACTUAL);
+        } catch (IOException ex) {
+            this.txtInformes.setText("Error desconocido");
+            this.txtInformes.append(ex.toString());
+        }
+        return false;
+    }
+    private void validarConDTD(){
+        
+        if (!esXMLBienFormado()){
+            return ;
+        } else {
+            try {
+                
+                Document doc=ProcesadorXML.analizarXML(this.txtXML.getText(), false);
+                System.out.println("Obtenido el doc");
+                ProcesadorXML.DTDValidaXML(this.txtResto.getText(), doc);
+                this.txtInformes.setText("La DTD valida correctamente el fichero");
+            } catch (ParserConfigurationException ex) {
+                this.txtInformes.setText("Error desconocido");
+                this.txtInformes.append(ex.toString());
+            } catch (SAXException ex) {
+                System.out.println("Excepcion!");
+                this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ANTERIOR);
+            } catch (IOException ex) {
+                this.txtInformes.setText("Error desconocido");
+                this.txtInformes.append(ex.toString());
+            } catch (TransformerException ex) {
+                this.txtInformes.setText("Ha habido un fallo al intentar inyectar la DTD");
+            } 
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
+        this.txtInformes.setText("");
         if (e.getActionCommand()==Interfaz.VALIDAR_DTD){
-            System.out.println("DTD");
+            this.validarConDTD();
         }
         if (e.getActionCommand()==Interfaz.VALIDAR_ESQUEMA){
             System.out.println("Esquema");
@@ -240,8 +340,59 @@ public class Interfaz implements ActionListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
+                i.txtXML.setText(ProcesadorXML.getXMLejemploDTD());
+                i.txtResto.setText(ProcesadorXML.getDTDejemplo());
             }
         });
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+         if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtResto){
+            try {
+                String data = (String) Toolkit.getDefaultToolkit() 
+                        .getSystemClipboard().getData(DataFlavor.stringFlavor);
+                txtResto.setText(data);
+            } catch (UnsupportedFlavorException ex) {
+                txtInformes.setText("Lo que hay en el portapapeles no es texto, no se puede hacer el pegado");
+            } catch (IOException ex) {
+                txtInformes.setText("No hay nada en el portapapeles, no se hizo nada");
+            }
+        }
+         if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtXML){
+            try {
+                String data = (String) Toolkit.getDefaultToolkit() 
+                        .getSystemClipboard().getData(DataFlavor.stringFlavor);
+                txtXML.setText(data);
+            } catch (UnsupportedFlavorException ex) {
+                txtInformes.setText("Lo que hay en el portapapeles no es texto, no se puede hacer el pegado");
+            } catch (IOException ex) {
+                txtInformes.setText("No hay nada en el portapapeles, no se hizo nada");
+            }
+            
+        }
+       
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 
 }
