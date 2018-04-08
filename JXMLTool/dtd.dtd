@@ -7,10 +7,10 @@
 <!ELEMENT dia      (#PCDATA)>
 <!ELEMENT mes      (#PCDATA)>
 <!ELEMENT anio     (#PCDATA)>
-<!ELEMENT fragil   EMPTY>
+<!ELEMENT fragile   EMPTY>
 <!ELEMENT nofragil EMPTY >
 <!ELEMENT peso     (#PCDATA)>
 <!ATTLIST peso unidad CDATA #REQUIRED>
 <!ELEMENT numserie  (#PCDATA)>
-<!ELEMENT kmmaxDimos (#PCDATA)>
+<!ELEMENT kmmaximos (#PCDATA)>
 <!ATTLIST componente nombrefabricante CDATA #REQUIRED>

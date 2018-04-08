@@ -1,9 +1,12 @@
 package io.github.oscarmaestre.jxmltool;
 
+import io.github.dheid.fontchooser.FontDialog;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -23,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
@@ -32,6 +36,19 @@ import org.xml.sax.SAXParseException;
 
 public class Interfaz implements ActionListener, MouseListener{
     public JTextArea txtXML, txtResto, txtInformes;
+    
+    public javax.swing.JMenuBar barraMenus;
+    
+    public javax.swing.JMenu menuArchivo;
+    public javax.swing.JMenuItem menuCambiarFuente;
+    public javax.swing.JMenuItem menuCargarDer;
+    public javax.swing.JMenuItem menuCargarIzq;
+    public javax.swing.JMenuItem menuCopiar;
+    public javax.swing.JMenuItem menuCortar;
+    public javax.swing.JMenu menuEdicion;
+    public javax.swing.JMenuItem menuPegar;
+    public javax.swing.JMenuItem menuSalir;
+    
     
     private static final int X_CUADRO_XML      = 0;
     private static final int Y_CUADRO_XML      = 0;
@@ -58,11 +75,15 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final int ALTO_CUADRO_INFORMES   = 4;
     private static final double PESO_CUADRO_INFORMES= 0.2;
     
-    private static final String VALIDAR_DTD = "Validar DTD";
-    private static final String VALIDAR_ESQUEMA = "Validar esquema";
-    private static final String EVALUAR_XPATH = "Evaluar XPATH";
-    private static final String TRANSFORMAR_XSLT="Transformar XSLT";
-    private static final String EJECUTAR_XQUERY = "Ejecutar XQuery";
+    private static final String ACCION_VALIDAR_DTD = "Validar DTD";
+    private static final String ACCION_VALIDAR_ESQUEMA = "Validar esquema";
+    private static final String ACCION_EVALUAR_XPATH = "Evaluar XPATH";
+    private static final String ACCION_TRANSFORMAR_XSLT="Transformar XSLT";
+    private static final String ACCION_EJECUTAR_XQUERY = "Ejecutar XQuery";
+    
+    
+    private static final String ACCION_CAMBIAR_FUENTE = "Cambiar fuente";
+    
     
     private static int DESTACAR_LINEA_ACTUAL    = 0;
     private static int DESTACAR_LINEA_ANTERIOR  = 1;
@@ -70,7 +91,61 @@ public class Interfaz implements ActionListener, MouseListener{
     public Interfaz(){
         
     }
-    
+    private void    crearMenus(JFrame ventana){
+        
+         
+
+        barraMenus = new javax.swing.JMenuBar();
+        menuArchivo = new javax.swing.JMenu();
+        menuCargarIzq = new javax.swing.JMenuItem();
+        menuCargarDer = new javax.swing.JMenuItem();
+        menuSalir = new javax.swing.JMenuItem();
+        menuEdicion = new javax.swing.JMenu();
+        menuCortar = new javax.swing.JMenuItem();
+        menuCopiar = new javax.swing.JMenuItem();
+        menuPegar = new javax.swing.JMenuItem();
+        menuCambiarFuente = new javax.swing.JMenuItem();
+
+
+        
+
+        barraMenus.setName(""); // NOI18N
+
+        menuArchivo.setText("Archivo");
+        menuArchivo.setName("menuArchivo"); // NOI18N
+
+        menuCargarIzq.setText("Cargar archivo (izq)");
+        menuCargarIzq.setName("menuCargarArchivoIzq"); // NOI18N
+        menuArchivo.add(menuCargarIzq);
+
+        menuCargarDer.setText("Cargar archivo (der)");
+        menuCargarDer.setName("menuCargarArchivoDer"); // NOI18N
+        menuArchivo.add(menuCargarDer);
+
+        menuSalir.setText("Salir");
+        menuArchivo.add(menuSalir);
+
+        barraMenus.add(menuArchivo);
+
+        menuEdicion.setText("Edicion");
+
+        menuCortar.setText("Cortar");
+        menuEdicion.add(menuCortar);
+
+        menuCopiar.setText("Copiar");
+        menuEdicion.add(menuCopiar);
+
+        menuPegar.setText("Pegar");
+        menuEdicion.add(menuPegar);
+
+        menuCambiarFuente.setText("Cambiar fuente");
+        menuEdicion.add(menuCambiarFuente);
+
+        barraMenus.add(menuEdicion);
+
+        ventana.setJMenuBar(barraMenus);
+        
+    }
     private void crearInterfaz(Container panel){
         GridBagLayout gridbag=new GridBagLayout();
         panel.setLayout(gridbag);
@@ -144,7 +219,7 @@ public class Interfaz implements ActionListener, MouseListener{
         panelBotones.setLayout(layout);
         
         JButton btnValidarDTD=new JButton("Validar con DTD");
-        btnValidarDTD.setActionCommand(VALIDAR_DTD);
+        btnValidarDTD.setActionCommand(ACCION_VALIDAR_DTD);
         btnValidarDTD.addActionListener(this);
         //btnValidarDTD.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonDTD=new GridBagConstraints();
@@ -158,7 +233,7 @@ public class Interfaz implements ActionListener, MouseListener{
         
         
         JButton btnValidarEsquema=new JButton("Validar con esquema XML");
-        btnValidarEsquema.setActionCommand(VALIDAR_ESQUEMA);
+        btnValidarEsquema.setActionCommand(ACCION_VALIDAR_ESQUEMA);
         btnValidarEsquema.addActionListener(this);
         //btnValidarESQUEMA.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonEsquema=new GridBagConstraints();
@@ -172,7 +247,7 @@ public class Interfaz implements ActionListener, MouseListener{
         
         
         JButton btnEvaluarXPath=new JButton("Evaluar XPath");
-        btnEvaluarXPath.setActionCommand(EVALUAR_XPATH);
+        btnEvaluarXPath.setActionCommand(ACCION_EVALUAR_XPATH);
         btnEvaluarXPath.addActionListener(this);
         //btnValidarXPath.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXPath=new GridBagConstraints();
@@ -186,7 +261,7 @@ public class Interfaz implements ActionListener, MouseListener{
         
         
         JButton btnTransformarXSLT=new JButton("Transformar con XSLT");
-        btnTransformarXSLT.setActionCommand(TRANSFORMAR_XSLT);
+        btnTransformarXSLT.setActionCommand(ACCION_TRANSFORMAR_XSLT);
         btnTransformarXSLT.addActionListener(this);
         //btnValidarXSLT.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXSLT=new GridBagConstraints();
@@ -201,7 +276,7 @@ public class Interfaz implements ActionListener, MouseListener{
         
         JButton btnEjecutarXQuery=new JButton("Ejecutar XQuery");
         btnEjecutarXQuery.addActionListener(this);
-        btnEjecutarXQuery.setActionCommand(EJECUTAR_XQUERY);
+        btnEjecutarXQuery.setActionCommand(ACCION_EJECUTAR_XQUERY);
         //btnValidarXQuery.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonXQuery=new GridBagConstraints();
         constraintsBotonXQuery.fill=GridBagConstraints.BOTH;
@@ -215,6 +290,12 @@ public class Interfaz implements ActionListener, MouseListener{
         return panelBotones;
         
     }
+    
+    
+    public void vincularEventosMenus(){
+        this.menuCambiarFuente.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE);
+        this.menuCambiarFuente.addActionListener(this);
+    }
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
@@ -226,7 +307,8 @@ public class Interfaz implements ActionListener, MouseListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         crearInterfaz(frame.getContentPane());
-
+        crearMenus(frame);
+        vincularEventosMenus();
         //Display the window.
         frame.pack();
         frame.setVisible(true);
@@ -314,23 +396,24 @@ public class Interfaz implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         this.txtInformes.setText("");
-        if (e.getActionCommand()==Interfaz.VALIDAR_DTD){
+        if (e.getActionCommand()==Interfaz.ACCION_VALIDAR_DTD){
             this.validarConDTD();
         }
-        if (e.getActionCommand()==Interfaz.VALIDAR_ESQUEMA){
+        if (e.getActionCommand()==Interfaz.ACCION_VALIDAR_ESQUEMA){
             System.out.println("Esquema");
         }
-        if (e.getActionCommand()==Interfaz.EVALUAR_XPATH){
+        if (e.getActionCommand()==Interfaz.ACCION_EVALUAR_XPATH){
             System.out.println("XPath");
         }
-        if (e.getActionCommand()==Interfaz.EJECUTAR_XQUERY){
+        if (e.getActionCommand()==Interfaz.ACCION_EJECUTAR_XQUERY){
             System.out.println("XQuery");
         }
-        if (e.getActionCommand()==Interfaz.TRANSFORMAR_XSLT){
+        if (e.getActionCommand()==Interfaz.ACCION_TRANSFORMAR_XSLT){
             System.out.println("XSLT");
+        }        
+        if (e.getActionCommand()==Interfaz.ACCION_CAMBIAR_FUENTE){
+            this.cambiarFuenteCuadrosTexto();
         }
-        
-        
     }
     
     public static void main(String[] args) {
@@ -348,6 +431,7 @@ public class Interfaz implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println("Raton pulsado");
          if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtResto){
             try {
                 String data = (String) Toolkit.getDefaultToolkit() 
@@ -359,7 +443,7 @@ public class Interfaz implements ActionListener, MouseListener{
                 txtInformes.setText("No hay nada en el portapapeles, no se hizo nada");
             }
         }
-         if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtXML){
+        if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtXML){
             try {
                 String data = (String) Toolkit.getDefaultToolkit() 
                         .getSystemClipboard().getData(DataFlavor.stringFlavor);
@@ -371,8 +455,6 @@ public class Interfaz implements ActionListener, MouseListener{
             }
             
         }
-       
-        
     }
 
     @Override
@@ -393,6 +475,17 @@ public class Interfaz implements ActionListener, MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
         
+    }
+    private void cambiarFuenteCuadrosTexto(){
+        FontDialog dialog = new FontDialog((Frame) null, 
+                "Elige una fuente para los cuadros de texto", true);
+        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        dialog.setVisible(true);
+        if (!dialog.isCancelSelected()) {
+          Font fuenteElegida=dialog.getSelectedFont();
+          txtXML.setFont(fuenteElegida);
+          txtResto.setFont(fuenteElegida);
+        }       
     }
 
 }

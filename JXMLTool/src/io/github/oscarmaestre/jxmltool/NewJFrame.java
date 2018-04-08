@@ -29,40 +29,61 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        barraMenus = new javax.swing.JMenuBar();
+        menuArchivo = new javax.swing.JMenu();
+        menuCargarIzq = new javax.swing.JMenuItem();
+        menuCargarDer = new javax.swing.JMenuItem();
+        menuSalir = new javax.swing.JMenuItem();
+        menuEdicion = new javax.swing.JMenu();
+        menuCortar = new javax.swing.JMenuItem();
+        menuCopiar = new javax.swing.JMenuItem();
+        menuPegar = new javax.swing.JMenuItem();
+        menuCambiarFuente = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
 
+        jMenuItem7.setText("jMenuItem7");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Archivo");
-        jMenu1.setName("menuArchivo"); // NOI18N
+        barraMenus.setName(""); // NOI18N
 
-        jMenuItem3.setText("Cargar archivo (izq)");
-        jMenuItem3.setName("menuCargarArchivoIzq"); // NOI18N
-        jMenu1.add(jMenuItem3);
+        menuArchivo.setText("Archivo");
+        menuArchivo.setName("menuArchivo"); // NOI18N
 
-        jMenuItem4.setText("Cargar archivo (der)");
-        jMenuItem4.setName("menuCargarArchivoDer"); // NOI18N
-        jMenu1.add(jMenuItem4);
+        menuCargarIzq.setText("Cargar archivo (izq)");
+        menuCargarIzq.setName("menuCargarArchivoIzq"); // NOI18N
+        menuArchivo.add(menuCargarIzq);
 
-        jMenuBar1.add(jMenu1);
+        menuCargarDer.setText("Cargar archivo (der)");
+        menuCargarDer.setName("menuCargarArchivoDer"); // NOI18N
+        menuArchivo.add(menuCargarDer);
 
-        jMenu2.setText("Edicion");
+        menuSalir.setText("Salir");
+        menuArchivo.add(menuSalir);
 
-        jMenuItem5.setText("Cambiar fuente");
-        jMenu2.add(jMenuItem5);
+        barraMenus.add(menuArchivo);
 
-        jMenuBar1.add(jMenu2);
+        menuEdicion.setText("Edicion");
 
-        setJMenuBar(jMenuBar1);
+        menuCortar.setText("Cortar");
+        menuEdicion.add(menuCortar);
+
+        menuCopiar.setText("Copiar");
+        menuEdicion.add(menuCopiar);
+
+        menuPegar.setText("Pegar");
+        menuEdicion.add(menuPegar);
+
+        menuCambiarFuente.setText("Cambiar fuente");
+        menuEdicion.add(menuCambiarFuente);
+
+        barraMenus.add(menuEdicion);
+
+        setJMenuBar(barraMenus);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,13 +135,18 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuBar barraMenus;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem7;
+    public javax.swing.JMenu menuArchivo;
+    public javax.swing.JMenuItem menuCambiarFuente;
+    public javax.swing.JMenuItem menuCargarDer;
+    public javax.swing.JMenuItem menuCargarIzq;
+    public javax.swing.JMenuItem menuCopiar;
+    public javax.swing.JMenuItem menuCortar;
+    public javax.swing.JMenu menuEdicion;
+    public javax.swing.JMenuItem menuPegar;
+    public javax.swing.JMenuItem menuSalir;
     // End of variables declaration//GEN-END:variables
 }
