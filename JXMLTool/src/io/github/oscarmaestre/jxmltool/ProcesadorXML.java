@@ -1,28 +1,41 @@
 package io.github.oscarmaestre.jxmltool;
 
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -108,8 +121,18 @@ public class ProcesadorXML {
         Document docValido=analizarXML(contenidoFichero, true);
         return esValido;
     }
-    public static boolean XMLSchemaValidaXML(String schema, String xml){
-        boolean esValido=false;
+    
+    public static boolean XMLSchemaValidaXML(String schema, String xml) throws SAXException, IOException {
+        //Se asume que todo va bien, si hay un error de validación
+        //ya saltará una excepcion
+        boolean esValido=true;
+        SchemaFactory fabrica   =       SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Source esquemaSource    = new   StreamSource(new StringReader(schema));
+        Source xmlSource        = new   StreamSource(new StringReader(xml));
+        Schema objetoEsquema    =       fabrica.newSchema(esquemaSource);
+        Validator validador     =       objetoEsquema.newValidator();
+        
+        validador.validate(xmlSource);
         return esValido;
     }
     
@@ -118,8 +141,27 @@ public class ProcesadorXML {
         return resultado;
     }
     
-    public static String evaluarXPath(String xpath, String xml){
+    
+    public static String tabularXML(String xmlOriginal) throws TransformerException{
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        //initialize StreamResult with File object to save to file
+        StreamResult result = new StreamResult(new StringWriter());
+        Source source = new StreamSource(new StringReader(xmlOriginal));
+        transformer.transform(source, result);
+        String xmlString = result.getWriter().toString();
+        return xmlString;
+    }
+    public static String nodeListToString(NodeList nodos){
         String resultado="";
+        return resultado;
+    }
+    public static NodeList evaluarXPath(String xpath, String xml) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException{
+        NodeList resultado=null;
+        Document doc=ProcesadorXML.analizarXML(xml, false);
+        XPath objetoXPath = XPathFactory.newInstance().newXPath();
+        resultado = (NodeList) objetoXPath.evaluate(xpath, doc.getDocumentElement(), XPathConstants.NODESET);
         return resultado;
     }
     
@@ -169,13 +211,74 @@ public class ProcesadorXML {
         "<!ELEMENT dia      (#PCDATA)>\n" +
         "<!ELEMENT mes      (#PCDATA)>\n" +
         "<!ELEMENT anio     (#PCDATA)>\n" +
-        "<!ELEMENT fragile   EMPTY>\n" +
+        "<!ELEMENT fragil   EMPTY>\n" +
         "<!ELEMENT nofragil EMPTY >\n" +
         "<!ELEMENT peso     (#PCDATA)>\n" +
         "<!ATTLIST peso unidad CDATA #REQUIRED>\n" +
         "<!ELEMENT numserie  (#PCDATA)>\n" +
         "<!ELEMENT kmmaximos (#PCDATA)>\n" +
         "<!ATTLIST componente nombrefabricante CDATA #REQUIRED>";
+        return ejemplo;
+    }
+    public static String getXMLEjemploSchema(){
+        String ejemplo="<listaproductos>\n" +
+            "    <articulo>\n" +
+            "        <!--Estructura 2 letras,2 cifras-->\n" +
+            "        <codigo>CD12</codigo>\n" +
+            "        <!--Descripcion es optativo y su atributo autor tb-->\n" +
+            "        <descripcion autor=\"Pepe\">Monitor</descripcion>\n" +
+            "    </articulo>\n" +
+            "    <articulo>\n" +
+            "        <codigo>CA12</codigo>\n" +
+            "    </articulo>\n" +
+            "    <articulo>\n" +
+            "        <codigo>AA99</codigo>\n" +
+            "        <descripcion>Teclado</descripcion>\n" +
+            "    </articulo>\n" +
+            "</listaproductos>";
+        return ejemplo;
+    }
+    public static String getSchemaEjemplo(){
+        String ejemplo="<xsd:schema xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n" +
+            "    <xsd:element name=\"listaproductos\" type=\"tipoListaProductos\"/>\n" +
+            "    <xsd:complexType name=\"tipoListaProductos\">\n" +
+            "        <xsd:complexContent>\n" +
+            "            <xsd:restriction base=\"xsd:anyType\">\n" +
+            "                <xsd:sequence>\n" +
+            "                    <xsd:element name=\"articulo\"\n" +
+            "                                 type=\"tipoArticulo\"\n" +
+            "                                 maxOccurs=\"unbounded\"/>\n" +
+            "                </xsd:sequence>\n" +
+            "            </xsd:restriction>\n" +
+            "        </xsd:complexContent>\n" +
+            "    </xsd:complexType> <!--Fin de listaarticulos-->\n" +
+            "    <xsd:complexType name=\"tipoArticulo\">\n" +
+            "        <xsd:complexContent>\n" +
+            "            <xsd:restriction base=\"xsd:anyType\">\n" +
+            "                <xsd:sequence>\n" +
+            "                    <xsd:element name=\"codigo\" type=\"tipoCodigo\"/>\n" +
+            "                    <xsd:element name=\"descripcion\"\n" +
+            "                                 type=\"tipoDescripcion\"\n" +
+            "                                 minOccurs=\"0\" maxOccurs=\"1\"/>\n" +
+            "                </xsd:sequence>\n" +
+            "            </xsd:restriction>\n" +
+            "        </xsd:complexContent>\n" +
+            "    </xsd:complexType> <!--Fin de  articulo-->\n" +
+            "\n" +
+            "    <xsd:simpleType name=\"tipoCodigo\">\n" +
+            "        <xsd:restriction base=\"xsd:string\">\n" +
+            "            <xsd:pattern value=\"[A-Z]{2}[0-9]{2}\"/>\n" +
+            "        </xsd:restriction>\n" +
+            "    </xsd:simpleType> <!--Fin de codigo-->\n" +
+            "\n" +
+            "    <xsd:complexType name=\"tipoDescripcion\">\n" +
+            "        <xsd:simpleContent>\n" +
+            "            <xsd:extension base=\"xsd:string\">\n" +
+            "                <xsd:attribute name=\"autor\" type=\"xsd:string\"/>\n" +
+            "            </xsd:extension>\n" +
+            "        </xsd:simpleContent>\n" +
+            "    </xsd:complexType>\n" +
+            "</xsd:schema>";
         return ejemplo;
     }
 }

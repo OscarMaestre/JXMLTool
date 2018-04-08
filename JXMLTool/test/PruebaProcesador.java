@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -65,5 +68,21 @@ public class PruebaProcesador {
         Document doc=ProcesadorXML.analizarXML(xml, false);
         ProcesadorXML.DTDValidaXML(dtd, doc);
         
+    }
+    
+    @Test
+    public void pruebaEsquemaSimple() throws SAXException, IOException{
+        String xml=ProcesadorXML.getXMLEjemploSchema();
+        String esquema=ProcesadorXML.getSchemaEjemplo();
+        boolean esValido=ProcesadorXML.XMLSchemaValidaXML(esquema, xml);
+        Assert.assertEquals(esValido, true);
+    }
+    @Test
+    public void pruebaXPathSimple() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException{
+        String xml=ProcesadorXML.getXMLEjemploSchema();
+        String expresion="//codigo";
+        NodeList resultado=ProcesadorXML.evaluarXPath(expresion, xml);
+        String xmlTabulado=ProcesadorXML.tabularXML(resultado);
+        System.out.println(resultado);
     }
 }

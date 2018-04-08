@@ -325,8 +325,6 @@ public class Interfaz implements ActionListener, MouseListener{
             posInicioMarcaError=texto.indexOf("\n", posFinMarcaError);
             posFinMarcaError=texto.indexOf("\n", posInicioMarcaError+1);
         }
-        
-        System.out.println("Marcando en:"+posInicioMarcaError+" hasta " + posFinMarcaError);
         control.requestFocusInWindow();
         control.select(posInicioMarcaError, posFinMarcaError);
     }
@@ -335,7 +333,7 @@ public class Interfaz implements ActionListener, MouseListener{
     nos dice la linea donde esta el problema. Cuando estamos buscando errores de 
     validacion nos iremos a la linea anterior (pasando una diferencia de 1)
     */
-    private void procesarExcepcionParseadoSAX(SAXException ex, int diferencia){
+    private void procesarExcepcionParseadoSAX(SAXException ex, int diferencia, JTextArea control){
         if (ex instanceof SAXParseException){
                 SAXParseException e=(SAXParseException) ex;
                 int lineaError=e.getLineNumber() - diferencia;
@@ -345,14 +343,13 @@ public class Interfaz implements ActionListener, MouseListener{
                 String error="Error en linea " +
                         lineaError + ", columna "+ columnaError + 
                         ": "+ motivo;
-                txtInformes.setText(error);
-                
-                destacarError(lineaError, txtXML);
+                txtInformes.setText(error);       
+                destacarError(lineaError, control);
         }
     }
-    private boolean esXMLBienFormado(){
-        String xml=txtXML.getText();
-        String dtd=txtResto.getText();
+    private boolean esXMLBienFormado(JTextArea controlTexto){
+        
+        String xml=controlTexto.getText();
         try {
             /* Primero comprobamos si es XML bien formado*/
             ProcesadorXML.analizarXML(xml, false);
@@ -361,7 +358,7 @@ public class Interfaz implements ActionListener, MouseListener{
             this.txtInformes.setText("Error desconocido");
             this.txtInformes.append(ex.toString());
         } catch (SAXException ex) {
-            this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ACTUAL);
+            this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ACTUAL, controlTexto);
         } catch (IOException ex) {
             this.txtInformes.setText("Error desconocido");
             this.txtInformes.append(ex.toString());
@@ -370,21 +367,19 @@ public class Interfaz implements ActionListener, MouseListener{
     }
     private void validarConDTD(){
         
-        if (!esXMLBienFormado()){
+        if (!esXMLBienFormado(txtXML)){
             return ;
         } else {
             try {
                 
                 Document doc=ProcesadorXML.analizarXML(this.txtXML.getText(), false);
-                System.out.println("Obtenido el doc");
                 ProcesadorXML.DTDValidaXML(this.txtResto.getText(), doc);
                 this.txtInformes.setText("La DTD valida correctamente el fichero");
             } catch (ParserConfigurationException ex) {
                 this.txtInformes.setText("Error desconocido");
                 this.txtInformes.append(ex.toString());
             } catch (SAXException ex) {
-                System.out.println("Excepcion!");
-                this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ANTERIOR);
+                this.procesarExcepcionParseadoSAX(ex, DESTACAR_LINEA_ANTERIOR, txtXML);
             } catch (IOException ex) {
                 this.txtInformes.setText("Error desconocido");
                 this.txtInformes.append(ex.toString());
@@ -393,6 +388,29 @@ public class Interfaz implements ActionListener, MouseListener{
             } 
         }
     }
+    
+    private void validarConEsquema(){
+        String xml=txtXML.getText();
+        if (!esXMLBienFormado(txtXML)){
+            return ;
+        }
+        
+        String xmlSchema=txtResto.getText();
+        if (!esXMLBienFormado(txtResto)){
+            return ;
+        }
+        
+        try {
+            ProcesadorXML.XMLSchemaValidaXML(xmlSchema, xml);
+        } catch (SAXException ex) {
+            this.procesarExcepcionParseadoSAX(ex, Interfaz.DESTACAR_LINEA_ANTERIOR, txtXML);
+            return ;
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /* Si llegamos aqui todo ha ido bien*/
+        txtInformes.setText("El esquema valida correctamente el XML");
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         this.txtInformes.setText("");
@@ -400,7 +418,7 @@ public class Interfaz implements ActionListener, MouseListener{
             this.validarConDTD();
         }
         if (e.getActionCommand()==Interfaz.ACCION_VALIDAR_ESQUEMA){
-            System.out.println("Esquema");
+            this.validarConEsquema();
         }
         if (e.getActionCommand()==Interfaz.ACCION_EVALUAR_XPATH){
             System.out.println("XPath");
@@ -423,8 +441,8 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                i.txtXML.setText(ProcesadorXML.getXMLejemploDTD());
-                i.txtResto.setText(ProcesadorXML.getDTDejemplo());
+                i.txtXML.setText(ProcesadorXML.getXMLEjemploSchema());
+                i.txtResto.setText(ProcesadorXML.getSchemaEjemplo());
             }
         });
     }

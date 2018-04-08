@@ -7,7 +7,7 @@
 <!ELEMENT dia      (#PCDATA)>
 <!ELEMENT mes      (#PCDATA)>
 <!ELEMENT anio     (#PCDATA)>
-<!ELEMENT fragile   EMPTY>
+<!ELEMENT fragil   EMPTY>
 <!ELEMENT nofragil EMPTY >
 <!ELEMENT peso     (#PCDATA)>
 <!ATTLIST peso unidad CDATA #REQUIRED>
