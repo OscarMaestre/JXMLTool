@@ -1,0 +1,35 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="http://xmlns.oracle.com/xdk/xquery/serialization"
+      xmlns:output="http://www.w3.org/2010/xslt-xquery-serialization"
+      xmlns:ora-out="http://xmlns.oracle.com/xdk/xquery/serialization"
+      elementFormDefault="qualified">
+
+  <xs:import namespace="http://www.w3.org/2010/xslt-xquery-serialization"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This is a schema for Oracle's extended serialization parameters for
+      XSLT and XQuery Serialization 3.1.
+    </xs:documentation>
+  </xs:annotation>
+
+<!--
+
+  Declarations removed until this bug is resolved:
+  https://www.w3.org/Bugs/Public/show_bug.cgi?id=26862
+
+  <xs:complexType name="buffer-size-type">
+    <xs:complexContent>
+      <xs:extension base="output:base-param-type">
+        <xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="buffer-size" type="ora-out:buffer-size-type"
+        substitutionGroup="output:serialization-parameter-element"/>
+
+  <xs:element name="map-order-by-key" type="output:yes-no-param-type"
+        substitutionGroup="output:serialization-parameter-element"/>
+-->
+</xs:schema>

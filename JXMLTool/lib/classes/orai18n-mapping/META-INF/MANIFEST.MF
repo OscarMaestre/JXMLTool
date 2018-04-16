@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Oracle Corporation
+Implementation-Title: orai18n.jar archives
+Implementation-Version: 12.1.0.2.0-Production__Build-12
+Specification-Vendor: Oracle Corporation
+Class-Path: gdk_custom.jar
+Name: oracle/i18n
+Created-By: 1.6.0_75 (Sun Microsystems Inc.)
+Specification-Title: Oracle Globalization Development Kit
+Specification-Version: 12.1.0.2.0
+Main-Class: oracle.i18n.util.GDKOracleMetaData
+

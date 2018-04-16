@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <xsd:simpleType name='yearMonthDuration'>
+        <xsd:restriction base='xsd:duration'>
+            <xsd:pattern value="[^DT]*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name='dayTimeDuration'>
+        <xsd:restriction base='xsd:duration'>
+            <xsd:pattern value="[^YM]*[DT].*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

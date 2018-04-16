@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xquery.XQException;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -82,7 +83,18 @@ public class PruebaProcesador {
         String xml=ProcesadorXML.getXMLEjemploSchema();
         String expresion="//codigo";
         NodeList resultado=ProcesadorXML.evaluarXPath(expresion, xml);
-        String xmlTabulado=ProcesadorXML.tabularXML(resultado);
+        //String xmlTabulado=ProcesadorXML.tabularXML(resultado);
+        System.out.println(resultado);
+    }
+    
+    @Test
+    public void pruebaXQuerySimple() throws XQException, IOException{
+        String xmlEjemplo=ProcesadorXML.getXMLAlumnosParaXQuery();
+        String ejemploXQuery="for $a in doc(\"datos.xml\")//alumnos/alumno\n" +
+            "where $a/@cod union $a/../../notas/nota/@alum\n" +
+            "return\n" +
+            "<alumno>{ data($a/apenom) }</alumno>";
+        String resultado=ProcesadorXML.ejecutarXQuery(ejemploXQuery, xmlEjemplo);
         System.out.println(resultado);
     }
 }

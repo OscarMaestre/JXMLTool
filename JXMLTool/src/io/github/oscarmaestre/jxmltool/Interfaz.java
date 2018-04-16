@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xquery.XQException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -424,7 +425,16 @@ public class Interfaz implements ActionListener, MouseListener{
             System.out.println("XPath");
         }
         if (e.getActionCommand()==Interfaz.ACCION_EJECUTAR_XQUERY){
-            System.out.println("XQuery");
+            String xquery=txtResto.getText();
+            String xml=txtXML.getText();
+            try {
+                String resultado=ProcesadorXML.ejecutarXQuery(xquery, xml);
+                txtInformes.setText(resultado);
+            } catch (XQException ex) {
+                txtInformes.setText(ex.toString());
+            } catch (IOException ex) {
+                txtInformes.setText(ex.toString());
+            }
         }
         if (e.getActionCommand()==Interfaz.ACCION_TRANSFORMAR_XSLT){
             System.out.println("XSLT");
@@ -441,8 +451,9 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                i.txtXML.setText(ProcesadorXML.getXMLEjemploSchema());
-                i.txtResto.setText(ProcesadorXML.getSchemaEjemplo());
+                //i.txtXML.setText(ProcesadorXML.getXMLEjemploSchema());
+                i.txtXML.setText(ProcesadorXML.getXMLAlumnosParaXQuery());
+                i.txtResto.setText("");
             }
         });
     }

@@ -2,8 +2,8 @@ package io.github.oscarmaestre.jxmltool;
 
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
@@ -11,8 +11,6 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,7 +20,6 @@ import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -33,6 +30,14 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
+import javax.xml.xquery.XQPreparedExpression;
+import javax.xml.xquery.XQSequence;
+import javax.xml.xquery.XQStaticContext;
+import oracle.xml.xquery.OXQConnection;
+import oracle.xml.xquery.OXQDataSource;
+import oracle.xml.xquery.OXQView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -46,6 +51,8 @@ public class ProcesadorXML {
                     NOMBRE_ARCHIVO_DTD+"."+SUFIJO_ARCHIVO_DTD;
     private static final String FICHERO_XML_CON_DTD=
             "fichero_resultado_con.dtd.xml";
+    private static final String FICHERO_DATOS_PARA_XQUERY="clase.xml";
+    private static final String FICHERO_CONSULTA_XQUERY="consulta.xq";
     /**
      * Analiza una cadena XML para ver si es un documento
      * XML válido
@@ -110,12 +117,18 @@ public class ProcesadorXML {
         
         return analizarXML(xmlConDTD, false);
     }
-    public static boolean DTDValidaXML(String dtd, Document doc) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        boolean esValido=false;
-        FileWriter ficheroTemporal=new FileWriter(ProcesadorXML.dtd);
-        ficheroTemporal.write(dtd);
+    
+    public static void volcarCadenaEnFichero(String rutaFichero, String cadena) throws IOException{
+        FileWriter ficheroTemporal=new FileWriter(rutaFichero);
+        ficheroTemporal.write(cadena);
         ficheroTemporal.flush();
         ficheroTemporal.close();
+    }
+    public static boolean DTDValidaXML(String dtd, Document doc) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        boolean esValido=false;
+        
+        volcarCadenaEnFichero(ProcesadorXML.dtd, dtd);
+        
         Document documentoConDTD=anadirDTD(doc, ProcesadorXML.dtd);
         String contenidoFichero=leerFichero(ProcesadorXML.FICHERO_XML_CON_DTD);
         Document docValido=analizarXML(contenidoFichero, true);
@@ -165,10 +178,39 @@ public class ProcesadorXML {
         return resultado;
     }
     
-    public static String ejecutarXQuery(String xquery, String xml){
+    public static String ejecutarXQuery(String xquery, String xml) throws XQException, IOException{
         String resultado="";
+        
+        volcarCadenaEnFichero(ProcesadorXML.FICHERO_DATOS_PARA_XQUERY, xml);
+        volcarCadenaEnFichero(ProcesadorXML.FICHERO_CONSULTA_XQUERY, xquery);
+        
+        OXQDataSource ds = new OXQDataSource();
+        XQConnection con = ds.getConnection();
+        OXQConnection ocon = OXQView.getConnection(con);
+        ocon.setEntityResolver(new ResolutorEntidades());
+        
+        File query = new File(ProcesadorXML.FICHERO_CONSULTA_XQUERY);
+        
+        XQStaticContext ctx = con.getStaticContext();
+        ctx.setBaseURI(query.toURI().toString());
+ 
+        FileInputStream queryInput = new FileInputStream(query);
+        XQPreparedExpression expr = con.prepareExpression(queryInput, ctx);
+        queryInput.close();
+        XQSequence result = expr.executeQuery();
+           
+        
+        resultado = result.getSequenceAsString(null);
+        
+        result.close();
+        expr.close();
+        con.close();
+        
+        
+        
         return resultado;
     }
+    
     
     public static String getXMLejemploDTD(){
         String ejemplo="<pedido>\n" +
@@ -280,5 +322,53 @@ public class ProcesadorXML {
             "    </xsd:complexType>\n" +
             "</xsd:schema>";
         return ejemplo;
+    }
+    
+    public static String getXMLAlumnosParaXQuery(){
+        String resultado="<clase xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"clase.xsd\">\n" +
+            "    <alumnos>\n" +
+            "        <alumno cod=\"n12344345\">\n" +
+            "            <apenom>Alcalde García, Luis</apenom>\n" +
+            "            <direc>Las Manos, 24</direc>\n" +
+            "            <pobla>Lamadrid</pobla>\n" +
+            "            <telef>942756645</telef>\n" +
+            "        </alumno>\n" +
+            "        <alumno cod=\"n43483437\">\n" +
+            "            <apenom>González Pérez, Olga</apenom>\n" +
+            "            <direc>Miraflor 28 - 3A</direc>\n" +
+            "            <pobla>Torres</pobla>\n" +
+            "            <telef>942564355</telef>\n" +
+            "        </alumno>\n" +
+            "        <alumno cod=\"n88234942\">\n" +
+            "            <apenom>Fernández Díaz, María</apenom>\n" +
+            "            <direc>Luisa Fernanda 53</direc>\n" +
+            "            <pobla>Miera</pobla>\n" +
+            "            <telef>942346945</telef>\n" +
+            "        </alumno>\n" +
+            "    </alumnos>\n" +
+            "    <asignaturas>\n" +
+            "        <asignatura cod=\"a1\" nombre=\"FH\"/>\n" +
+            "        <asignatura cod=\"a2\" nombre=\"FOL\"/>\n" +
+            "        <asignatura cod=\"a3\" nombre=\"ISO\"/>\n" +
+            "        <asignatura cod=\"a4\" nombre=\"LMSGI\"/>\n" +
+            "        <asignatura cod=\"a5\" nombre=\"PAR\"/>\n" +
+            "        <asignatura cod=\"a6\" nombre=\"GBD\"/>\n" +
+            "    </asignaturas>\n" +
+            "    <notas>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a1\" calificacion=\"4\"/>\n" +
+            "        <nota alum=\"n43483437\" asig=\"a1\" calificacion=\"5\"/>\n" +
+            "        <nota alum=\"n88234942\" asig=\"a1\" calificacion=\"8\"/>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a2\" calificacion=\"10\"/>\n" +
+            "        <nota alum=\"n43483437\" asig=\"a2\" calificacion=\"7\"/>\n" +
+            "        <nota alum=\"n88234942\" asig=\"a2\" calificacion=\"6\"/>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a3\" calificacion=\"3\"/>\n" +
+            "        <nota alum=\"n88234942\" asig=\"a3\" calificacion=\"6\"/>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a4\" calificacion=\"8\"/>\n" +
+            "        <nota alum=\"n43483437\" asig=\"a4\" calificacion=\"4\"/>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a5\" calificacion=\"6\"/>\n" +
+            "        <nota alum=\"n12344345\" asig=\"a6\" calificacion=\"9\"/>\n" +
+            "    </notas>\n" +
+            "</clase>";
+        return resultado;
     }
 }

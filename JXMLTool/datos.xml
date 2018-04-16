@@ -1,0 +1,44 @@
+<clase xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="clase.xsd">
+    <alumnos>
+        <alumno cod="n12344345">
+            <apenom>Alcalde García, Luis</apenom>
+            <direc>Las Manos, 24</direc>
+            <pobla>Lamadrid</pobla>
+            <telef>942756645</telef>
+        </alumno>
+        <alumno cod="n43483437">
+            <apenom>González Pérez, Olga</apenom>
+            <direc>Miraflor 28 - 3A</direc>
+            <pobla>Torres</pobla>
+            <telef>942564355</telef>
+        </alumno>
+        <alumno cod="n88234942">
+            <apenom>Fernández Díaz, María</apenom>
+            <direc>Luisa Fernanda 53</direc>
+            <pobla>Miera</pobla>
+            <telef>942346945</telef>
+        </alumno>
+    </alumnos>
+    <asignaturas>
+        <asignatura cod="a1" nombre="FH"/>
+        <asignatura cod="a2" nombre="FOL"/>
+        <asignatura cod="a3" nombre="ISO"/>
+        <asignatura cod="a4" nombre="LMSGI"/>
+        <asignatura cod="a5" nombre="PAR"/>
+        <asignatura cod="a6" nombre="GBD"/>
+    </asignaturas>
+    <notas>
+        <nota alum="n12344345" asig="a1" calificacion="4"/>
+        <nota alum="n43483437" asig="a1" calificacion="5"/>
+        <nota alum="n88234942" asig="a1" calificacion="8"/>
+        <nota alum="n12344345" asig="a2" calificacion="10"/>
+        <nota alum="n43483437" asig="a2" calificacion="7"/>
+        <nota alum="n88234942" asig="a2" calificacion="6"/>
+        <nota alum="n12344345" asig="a3" calificacion="3"/>
+        <nota alum="n88234942" asig="a3" calificacion="6"/>
+        <nota alum="n12344345" asig="a4" calificacion="8"/>
+        <nota alum="n43483437" asig="a4" calificacion="4"/>
+        <nota alum="n12344345" asig="a5" calificacion="6"/>
+        <nota alum="n12344345" asig="a6" calificacion="9"/>
+    </notas>
+</clase>

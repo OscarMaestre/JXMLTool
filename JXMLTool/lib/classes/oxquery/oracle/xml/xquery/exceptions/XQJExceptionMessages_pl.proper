@@ -1,0 +1,221 @@
+/
+/ $Header: wptg/xdk/src/java/xquery/resources/oracle/xml/xquery/exceptions/XQJExceptionMessages_pl.properties /generic/6 2014/04/17 05:59:46 gmolloy Exp $
+/
+/ XQMessages.txt
+/
+/ Copyright (c) Oracle Corporation 2000. All Rights Reserved.
+/
+/   NAME
+/     XQMessages.properties
+/
+/   DESCRIPTION
+/     <short description of component this file declares/defines>
+/
+/   NOTES
+/     <other useful comments, qualifications, etc.>
+/
+/   MODIFIED   (MM/DD/YY)
+/   morgiyan   04/28/11 - Fix a bug with context item not being allowed to be
+/                         rebound in immediate mode
+/   jspiegel   03/21/11 - Add debugger error message
+/   morgiyan   03/17/11 - Add error for closing resources
+/   morgiyan   02/20/11 - Add a missing error message re sequence being past
+/                         the end
+/   jspiegel   02/15/11 - Fix error message about not supporting any data
+/                         source properties
+/   morgiyan   01/21/11 - Add a new error message for XmlObjects getter
+/   morgiyan   10/01/10 - Creation
+/
+
+#---------
+# XQJ Errors (XQJ-0601 to XQJ-0900)
+XQJ-0600 = Metody XQSequence nie mo\u017Cna wywo\u0142a\u0107 w odniesieniu do nieprzewijalnych sekwencji
+XQJ-0601 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C sekwencja jest zamkni\u0119ta
+XQJ-0602 = jest wymagana instancja oracle.xml.parser.v2.XMLNode
+XQJ-0603 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C buforowana sekwencja jest zamkni\u0119ta
+XQJ-0604 = jest wymagana instancja OXQItem
+XQJ-0605 = jest wymagana instancja OXQItemType
+XQJ-0606 = przekazywany typ nie jest zgodny z oczekiwanym typem
+XQJ-0611 = kursor nie znajduje si\u0119 na elemencie
+XQJ-0612 = XQSequence: bie\u017C\u0105cy element nie jest wymaganego typu
+XQJ-0613 = XQSequence: element mo\u017Cna pobra\u0107 tylko jeden raz z nieprzewijalnej sekwencji
+XQJ-0614 = XQSequence: element nie jest w\u0119z\u0142em
+XQJ-0615 = XQItem: element nie jest wymaganego typu
+XQJ-0616 = XQItem: element nie jest w\u0119z\u0142em
+XQJ-0617 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C po\u0142\u0105czenie jest zamkni\u0119te
+XQJ-0618 = XQPreparedExpression: wyra\u017Cenie jest zamkni\u0119te
+XQJ-0619 = getStaticVariableType w XQPreparedExpression: w statycznym kontek\u015Bcie nie ma zewn\u0119trznej zmiennej o podanej nazwie
+XQJ-0620 = setQueryLanguageAndVersion w XQConnection: "{0}" nie jest obs\u0142ugiwane
+XQJ-0621 = setUpdatability w XQConnection: "{0}" nie jest obs\u0142ugiwane
+XQJ-0622 = bindItem w OXQExpression mo\u017Ce przyjmowa\u0107 tylko jedn\u0105 instancj\u0119 oracle.xquery.xqj.OXQItem
+XQJ-0623 = bindItem w OXQPreparedExpression mo\u017Ce przyjmowa\u0107 tylko jedn\u0105 instancj\u0119 oracle.xquery.xqj.OXQItem
+XQJ-0624 = problem interoperacyjno\u015Bci: OXQExpression mo\u017Ce przyjmowa\u0107 tylko jedn\u0105 instancj\u0119 oracle.xquery.xqj.OXQItem
+XQJ-0625 = bindContextItem w OXQPreparedExpression mo\u017Ce przyjmowa\u0107 tylko jedn\u0105 instancj\u0119 oracle.xquery.xqj.OXQItem
+XQJ-0626 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C przygotowane wyra\u017Cenie jest zamkni\u0119te
+XQJ-0627 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C element jest zamkni\u0119ty
+XQJ-0628 = jest wymagana instancja oracle.xquery.xqj.OXQSequenceType
+XQJ-0629 = podany typ nie jest obs\u0142ugiwany dla warto\u015Bci wej\u015Bciowej
+XQJ-0630 = jest wymagana instancja oracle.xquery.xqj.OXQItem
+XQJ-0631 = jest wymagana instancja oracle.xquery.xqj.OXQItemType
+XQJ-0632 = domy\u015Blna wsp\u00F3lna procedura obs\u0142uguje tylko typy podstawowe 
+XQJ-0633 = nie ustawiono wsp\u00F3lnej procedury obs\u0142ugi
+XQJ-0634 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C wyra\u017Cenie jest zamkni\u0119te
+XQJ-0635 = zwracana warto\u015B\u0107 jest spoza zakresu typu "byte" Javy
+XQJ-0636 = zwracana warto\u015B\u0107 jest spoza zakresu typu "short" Javy
+XQJ-0637 = zwracana warto\u015B\u0107 jest spoza zakresu typu "int" Javy
+XQJ-0638 = zwracana warto\u015B\u0107 jest spoza zakresu typu "long" Javy
+XQJ-0639 = zwracana warto\u015B\u0107 jest spoza zakresu typu "BigInteger" Javy
+XQJ-0640 = typ elementu kontekstu nie jest zgodny z oczekiwanym typem statycznego elementu kontekstu
+XQJ-0641 = nie mo\u017Cna przekaza\u0107 parametru o warto\u015Bci Null do funkcji
+XQJ-0642 = bindSequence mo\u017Ce przyjmowa\u0107 tylko jedn\u0105 instancj\u0119 oracle.xquery.xqj.OXQSequence
+XQJ-0643 = nazwa zmiennej zewn\u0119trznej nie mo\u017Ce mie\u0107 warto\u015Bci Null w metodzie bind
+XQJ-0644 = metod\u0119 mo\u017Cna wywo\u0142a\u0107 tylko z typem atomowym, nie z typem w\u0119z\u0142a
+XQJ-0645 = niepowodzenie konwersji warto\u015Bci w instancj\u0119 XDM
+XQJ-0646 = problem interoperacyjno\u015Bci: element nie jest interoperacyjny
+XQJ-0647 = problem interoperacyjno\u015Bci: typ statycznego elementu kontekstu nie jest interoperacyjny
+XQJ-0648 = typ zdefiniowany przez u\u017Cytkownika nie mo\u017Ce w tej implementacji zosta\u0107 u\u017Cyty do wi\u0105zania ani tworzenia dokumentu. Ta implementacja obs\u0142uguje tylko wbudowane typy XQuery.
+XQJ-0649 = typ podany do wi\u0105zania lub tworzenia dokumentu nie jest typem elementu "dokument" lub elementu "schemat dokumentu".
+XQJ-0650 = warto\u015B\u0107 podana w celu wi\u0105zania lub tworzenia jest warto\u015Bci\u0105 Null
+XQJ-0651 = podane zapytanie ma warto\u015B\u0107 Null
+XQJ-0652 = nie mo\u017Cna by\u0142o utworzy\u0107 b\u0105d\u017A powi\u0105za\u0107 elementu, poniewa\u017C ten konkretny obiekt \u017Ar\u00F3d\u0142o jest nieobs\u0142ugiwany. Obs\u0142ugiwane s\u0105 tylko SAXSource, StreamSource i DOMSource.
+XQJ-0653 = jeden z podanych parametr\u00F3w ma warto\u015B\u0107 Null
+XQJ-0654 = podany parametr ma warto\u015B\u0107 Null
+XQJ-0655 = podany parametr os ma warto\u015B\u0107 Null
+XQJ-0656 = podany parametr ow ma warto\u015B\u0107 Null
+XQJ-0657 = podany typ podstawowy nie jest obs\u0142ugiwany
+XQJ-0658 = podana nazwa typu odnosi si\u0119 do typu predefiniowanego i r\u00F3\u017Cni si\u0119 od typu podstawowego
+XQJ-0659 = OXQConnection: zatwierdzanie nie jest obs\u0142ugiwane
+XQJ-0660 = OXQConnection: metoda niezaimplementowana
+XQJ-0661 = ta implementacja wymaga statycznego obiektu kontekstu Oracle
+XQJ-0662 = OXQConnection: wycofywanie nie jest obs\u0142ugiwane
+XQJ-0663 = nie uda\u0142o si\u0119 ustali\u0107 typu czasu trwania
+XQJ-0664 = nie uda\u0142o si\u0119 ustali\u0107 typu kalendarza gregoria\u0144skiego (xml)
+XQJ-0665 = podany obiekt nie jest obs\u0142ugiwany
+XQJ-0666 = argument typu elementu ma warto\u015B\u0107 Null
+XQJ-0667 = b\u0142\u0105d czytnika XML podczas analizy sk\u0142adniowej
+XQJ-0668 = nie uda\u0142o si\u0119 wyekstrahowa\u0107 w\u0119z\u0142a ze \u017Ar\u00F3d\u0142a DOMSource, niepowodzenie konwersji do XDM
+XQJ-0669 = nie uda\u0142o si\u0119 wyekstrahowa\u0107 \u017Ar\u00F3d\u0142a wej\u015Bciowego lub czytnika xml ze \u017Ar\u00F3d\u0142a SAXSource, niepowodzenie konwersji do XDM
+XQJ-0670 = nie uda\u0142o si\u0119 wyekstrahowa\u0107 strumienia wej\u015Bciowego lub czytnika ze \u017Ar\u00F3d\u0142a StreamSource, niepowodzenie konwersji do XDM
+XQJ-0671 = b\u0142\u0105d w createAttributeType() z OXQDataFactory - nieobs\u0142ugiwany typ podstawowy (baseType)
+XQJ-0672 = b\u0142\u0105d w createAttributeType() z OXQDataFactory - je\u015Bli jest podany schemaURI, to trzeba tak\u017Ce poda\u0107 nazw\u0119 typu
+XQJ-0673 = b\u0142\u0105d w createSchemaAttributeType() z OXQDataFactory - nieobs\u0142ugiwany typ podstawowy (baseType)
+XQJ-0674 = B\u0142\u0105d w createSchemaAttributeType() z OXQDataFactory - nazwa w\u0119z\u0142a nie mo\u017Ce mie\u0107 warto\u015Bci Null
+XQJ-0675 = funkcja przyjmuje jako pierwszy argument bufor o warto\u015Bci Null
+XQJ-0676 = nie uda\u0142o si\u0119 uzyska\u0107 pierwszego elementu z sekwencji
+XQJ-0677 = w\u0119ze\u0142 atrybut\u00F3w nie jest obs\u0142ugiwany przy serializacji
+XQJ-0678 = przekazany parametr nie jest poprawnym typem elementu XQ (XQItemType)
+XQJ-0679 = nieznany prefiks
+XQJ-0680 = b\u0142\u0105d w createDocumentElementType() z OXQDataFactory - typ elementu (elementType) nie mo\u017Ce mie\u0107 warto\u015Bci Null
+XQJ-0681 = b\u0142\u0105d w createDocumentElementType() z OXQDataFactory - rodzaj elementu z typu elementu (elementType) jest niepoprawny
+XQJ-0682 = b\u0142\u0105d w createDocumentSchemaElementType() z OXQDataFactory - typ elementu (elementType) nie mo\u017Ce mie\u0107 warto\u015Bci Null
+XQJ-0683 = b\u0142\u0105d w createDocumentSchemaElementType() z OXQDataFactory - rodzaj elementu z typu elementu (elementType) jest niepoprawny
+XQJ-0684 = b\u0142\u0105d w createElementType() z OXQDataFactory - je\u015Bli jest podany schemaURI, to trzeba tak\u017Ce poda\u0107 nazw\u0119 typu
+XQJ-0685 = B\u0142\u0105d w createSchemaElementType() z OXQDataFactory - nazwa w\u0119z\u0142a nie mo\u017Ce mie\u0107 warto\u015Bci Null
+XQJ-0686 = b\u0142\u0105d w createSequenceType() z OXQDataFactory - element ma warto\u015B\u0107 Null i wyst\u0105pieniem nie jest XQSequenceType.OCC_EMPTY
+XQJ-0687 = b\u0142\u0105d w createSequenceType() z OXQDataFactory - element nie ma warto\u015Bci Null i wyst\u0105pieniem jest XQSequenceType.OCC_EMPTY
+XQJ-0688 = b\u0142\u0105d w createSequenceType() z OXQDataFactory - podane wyst\u0105pienie nie jest poprawne
+XQJ-0689 = b\u0142\u0105d w createNdTyp() z OXQDataFactory - nieobs\u0142ugiwany typ podstawowy (baseType)
+XQJ-0690 = XQDataSource: getConnection(conn) nie jest obs\u0142ugiwane
+XQJ-0691 = nieznana nazwa w\u0142a\u015Bciwo\u015Bci
+XQJ-0692 = warto\u015Bci podanej w\u0142a\u015Bciwo\u015Bci s\u0105 niepoprawne. Ta implementacja nie obs\u0142uguje \u017Cadnych w\u0142a\u015Bciwo\u015Bci
+XQJ-0693 = OXQExpression: executeCommand nie jest obs\u0142ugiwane
+XQJ-0694 = nie uda\u0142o si\u0119 rozpozna\u0107 obiektu zapytania
+XQJ-0695 = oracle.xml.parser.v2.XMLParseException
+XQJ-0696 = org.xml.sax.SAXException
+XQJ-0697 = nie uda\u0142o si\u0119 utworzy\u0107 fabryki typ\u00F3w danych (DatatypeFactory) lub czasu trwania (Duration)
+XQJ-0698 = nie uda\u0142o si\u0119 utworzy\u0107 fabryki typ\u00F3w danych (DatatypeFactory)
+XQJ-0699 = XQStaticContext: niepoprawny prefiks metody getNamespaceURI 
+XQJ-0700 = nieobs\u0142ugiwany typ w getObject()
+XQJ-0701 = nie mo\u017Cna ustali\u0107 relacji "instanceOf", poniewa\u017C bie\u017C\u0105cy element ma zdefiniowany przez u\u017Cytkownika typ schematu. Zdefiniowane przez u\u017Cytkownika typy schemat\u00F3w nie s\u0105 obs\u0142ugiwane przez t\u0119 implementacj\u0119
+XQJ-0702 = nie mo\u017Cna ustali\u0107 relacji "instanceOf", poniewa\u017C typ wej\u015Bciowy jest zdefiniowanym przez u\u017Cytkownika typem schematu. Zdefiniowane przez u\u017Cytkownika typy schemat\u00F3w nie s\u0105 obs\u0142ugiwane przez t\u0119 implementacj\u0119
+XQJ-0703 = XQItem: b\u0142\u0105d writeItemToSAX
+XQJ-0704 = XQItemType.getBaseType(): rodzaj elementu jest niepoprawny
+XQJ-0705 = XQItemType.getTypeName(): rodzaj elementu jest niepoprawny
+XQJ-0706 = XQItemType.getPIName(): rodzaj elementu jest niepoprawny
+XQJ-0707 = XQItemType.getNodeName(): rodzaj elementu jest niepoprawny
+XQJ-0708 = nie uda\u0142o si\u0119 uzyska\u0107 czytnika lub strumienia wej\u015Bciowego
+XQJ-0709 = XQResultSequence: b\u0142\u0105d writeSequenceToSAX
+XQJ-0710 = XQResultSequence: b\u0142\u0105d writeItemToSAX
+XQJ-0711 = podano niepoprawny typ w setConstructionMode
+XQJ-0712 = podano niepoprawny typ w setOrderingMode
+XQJ-0713 = podano niepoprawn\u0105 kolejno\u015B\u0107 w setDefaultOrderForEmptySequences
+XQJ-0714 = podano niepoprawny typ w setBoundarySpacePolicy
+XQJ-0715 = podano niepoprawny typ w setCopyNamespacesModePreserve
+XQJ-0716 = podano niepoprawny typ w setCopyNamespacesModeInherit
+XQJ-0717 = podano niepoprawny typ w setBindingMode
+XQJ-0718 = podano niepoprawny typ w setHoldability
+XQJ-0719 = niepoprawny typ j\u0119zyka w setQueryLanguageTypeAndVersion
+XQJ-0720 = niepoprawna zdolno\u015B\u0107 przewijania w setScrollability
+XQJ-0721 = drugim parametrem dla setQueryTimeout nie mo\u017Ce by\u0107 0
+XQJ-0722 = OXQUtils:printResult()
+XQJ-0723 = OXQUtils.makeOXQItemType - nieznany typ 1
+XQJ-0724 = OXQUtils.makeOXQItemType - nieznany typ 2
+XQJ-0725 = OXQUtils.makeOXQItemType - nieznany typ 3
+XQJ-0726 = OXQUtils:setContextItem - element nie jest elementem OXQItem
+XQJ-0727 = nieznany typ zdarzenia strumienia XML
+XQJ-0728 = problem w OXQUtils.cnvStreamToDOM.
+XQJ-0729 = nieznany baseItemType w OXQUtils.normalizeSequence
+XQJ-0730 = nie uda\u0142o si\u0119 utworzy\u0107 czytnika strumienia XML (XMLStreamReader)
+XQJ-0731 = problem interoperacyjno\u015Bci: typ zdefiniowany przez u\u017Cytkownika nie jest interoperacyjny
+XQJ-0732 = dokument wej\u015Bciowy bez typu nie jest, zgodnie z regu\u0142ami uzgadniania typ\u00F3w sekwencji XQuery, instancj\u0105 podanego typu
+XQJ-0733 = w\u0119ze\u0142 wej\u015Bciowy nie jest instancj\u0105 podanego typu
+XQJ-0734 = nieznany typ podstawowy
+XQJ-0735 = napotkano typ elementu XQ (XQItemType) nieobs\u0142ugiwanego rodzaju
+XQJ-0736 = dla obiektu napisowego podano nieobs\u0142ugiwany typ
+XQJ-0737 = nie mo\u017Cna uzyska\u0107 reprezentacji XQueryX zapytania wej\u015Bciowego
+XQJ-0738 = parametr nazwy ma warto\u015B\u0107 Null
+XQJ-0739 = warto\u015B\u0107 w\u0142a\u015Bciwo\u015Bci jest niepoprawna
+XQJ-0740 = b\u0142\u0105d podczas tworzenia po\u0142\u0105czenia z baz\u0105 danych - nie wszystkie potrzebne w\u0142a\u015Bciwo\u015Bci zosta\u0142y ustawione
+XQJ-0741 = nie mo\u017Cna uzyska\u0107 reprezentacji XQueryX zapytania wej\u015Bciowego
+XQJ-0742 = zmienna wi\u0105zania "{0}" jest niezdefiniowana
+XQJ-0743 = nieobs\u0142ugiwany typ wi\u0105zania
+XQJ-0744 = nieznana nazwa w\u0142a\u015Bciwo\u015Bci
+XQJ-0745 = wyst\u0105pi\u0142 b\u0142\u0105d podczas uzyskiwania dost\u0119pu do bie\u017C\u0105cego elementu
+XQJ-0746 = nie mo\u017Cna wywo\u0142a\u0107 metody, poniewa\u017C sekwencja znajduje si\u0119 po ostatnim elemencie
+XQJ-0747 = wyst\u0105pi\u0142 b\u0142\u0105d podczas pobierania elementu jako w\u0119z\u0142a DOM
+XQJ-0748 = wyst\u0105pi\u0142 b\u0142\u0105d podczas serializacji elementu
+XQJ-0749 = wyst\u0105pi\u0142 b\u0142\u0105d podczas serializacji sekwencji
+XQJ-0750 = zmienna nie jest zadeklarowana w zapytaniu jako zewn\u0119trzna albo w zapytaniu nie zosta\u0142 u\u017Cyty element kontekstu (je\u015Bli ten element jest wi\u0105zany)
+XQJ-0751 = nie wszystkie zmienne zewn\u0119trzne zosta\u0142y zwi\u0105zane
+XQJ-0752 = w zapytaniu nie ma \u017Cadnych niezwi\u0105zanych element\u00F3w kontekstu
+XQJ-0753 = sekwencja wej\u015Bciowa nie ma \u017Cadnego elementu
+XQJ-0754 = nie znaleziono podanego typu zdefiniowanego przez u\u017Cytkownika
+XQJ-0757 = dane wej\u015Bciowe maj\u0105 niepoprawn\u0105 posta\u0107 albo wyst\u0105pi\u0142 nieoczekiwany warunek przetwarzania; konwersja do XDM zako\u0144czy\u0142a si\u0119 niepowodzeniem
+XQJ-0759 = wyst\u0105pi\u0142 b\u0142\u0105d podczas uzyskiwania dost\u0119pu do typu elementu
+XQJ-0760 = wewn\u0119trzny wyj\u0105tek motoru
+XQJ-0761 = podano niepoprawny typ w setAccessorMode
+XQJ-0762 = podano niepoprawny typ w setProcessingMode
+XQJ-0763 = wyst\u0105pi\u0142 b\u0142\u0105d podczas pobierania elementu jako obiektu XML (XmlObject)
+XQJ-0764 = wej\u015Bciowe XQPrepareExpression zosta\u0142o wykonane albo s\u0105 z nim zwi\u0105zane zmienne b\u0105d\u017A jest kopi\u0105 innego XQPreparedExpression. Nowe XQPreparedExpression mo\u017Cna utworzy\u0107 tylko z niewykonanego XQPreparedExpression, kt\u00F3re nie zosta\u0142o wykonane, nie zosta\u0142o skopiowanego z innego XQPreparedExpression i nie ma \u017Cadnych zwi\u0105zanych zmiennych.
+XQJ-0765 = obiekt XQPreparedExpression musi pochodzi\u0107 z implementacji warstwy po\u015Bredniej Oracle XQJ
+XQJ-0766 = wewn\u0119trzny b\u0142\u0105d motoru podczas tworzenia nowego obiektu XQPreparedExpression z innego obiektu XQPreparedExpression
+XQJ-0767 = createsNewNodes() nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0768 = isContextItemUnbound() nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0769 = to XQPreparedExpression mia\u0142o niepoprawn\u0105 kategori\u0119 wyra\u017Cenia 
+XQJ-0770 = getExpressionCategory() nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0771 = niepowodzenie konwersji XQuery-XQueryX
+XQJ-0772 = podczas przetwarzania danych wej\u015Bciowych napotkano wyj\u0105tek we-wy Javy
+XQJ-0773 = getStaticResultType() nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0774 = getStaticVariableType() nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0775 = kopiowanie nie jest obs\u0142ugiwane dla tego XQPreparedExpression
+XQJ-0776 = wywo\u0142ywanie tej metody, gdy element ju\u017C zosta\u0142 pobrany dla sekwencji "tylko do przodu", nie jest obecnie obs\u0142ugiwane
+XQJ-0777 = wyst\u0105pi\u0142 b\u0142\u0105d podczas zamykania jednego z zamykalnych obiekt\u00F3w
+XQJ-0778 = podany zamykalny obiekt nie jest obs\u0142ugiwany dla tego g\u0142\u00F3wnego obiektu
+XQJ-0779 = podany g\u0142\u00F3wny obiekt nie mo\u017Ce mie\u0107 zamykalnych obiekt\u00F3w
+XQJ-0780 = nieznana nazwa
+XQJ-0781 = wykrywanie b\u0142\u0119d\u00F3w nie jest w\u0142\u0105czone przy tym po\u0142\u0105czeniu
+XQJ-0782 = przed ustawianiem obiektu PageManager trzeba w XQDataSource w\u0142\u0105czy\u0107 u\u017Cywanie magazynu zewn\u0119trznego
+XQJ-0783 = w XQDataSource jest w\u0142\u0105czone u\u017Cywanie magazynu zewn\u0119trznego, dlatego przed wykonaniem zapytania trzeba okre\u015Bli\u0107 obiekt PageManager
+XQJ-0784 = podano niepoprawny tryb w setUpdateMode
+XQJ-0785 = podany element musi by\u0107 w\u0119z\u0142em dokumentu
+XQJ-0786 = tryb aktualizacji mo\u017Cna ustawi\u0107 tylko wtedy, gdy trybem wi\u0105zania jest tryb odroczony
+XQJ-0787 = nie mo\u017Cna uzyska\u0107 dost\u0119pu do sekwencji po b\u0142\u0119dzie
+XQJ-0788 = wyst\u0105pi\u0142 b\u0142\u0105d podczas importowania schematu
+XQJ-0789 = niepoprawna warto\u015B\u0107 parametru: {0}
+XQJ-0790 = dla tego po\u0142\u0105czenia ju\u017C zosta\u0142 zarejestrowany typ zdefiniowany przez u\u017Cytkownika maj\u0105cy t\u0119 sam\u0105 nazw\u0119, lecz inny URI (Uniform Resource Identifier) schematu
+XQJ-0791 = podany typ podstawowy nie jest zgodny z typem podstawowym utworzonego schematu, kt\u00F3rym to typem jest: {0}
+XQJ-0792 = nie znaleziono zmiennej "{0}"
+XQJ-0793 = nie znaleziono importu dla przestrzeni nazw "{0}"
+XQJ-0794 = prefiks "{0}" jest nieznany
+XQJ-0795 = XQPreparedExpression zosta\u0107 skopiowane przy u\u017Cyciu XQConnection, kt\u00F3re je utworzy\u0142o
+XQJ-0796 = t\u0119 metod\u0119 mo\u017Cna wywo\u0142a\u0107 tylko wtedy, gdy tryb wi\u0105zania jest ustawiony na odroczone
