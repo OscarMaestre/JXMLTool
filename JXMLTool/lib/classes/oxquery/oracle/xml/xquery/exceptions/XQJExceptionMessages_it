@@ -1,0 +1,221 @@
+/
+/ $Header: wptg/xdk/src/java/xquery/resources/oracle/xml/xquery/exceptions/XQJExceptionMessages_it.properties /generic/6 2014/04/25 00:59:11 gmolloy Exp $
+/
+/ XQMessages.txt
+/
+/ Copyright (c) Oracle Corporation 2000. All Rights Reserved.
+/
+/   NAME
+/     XQMessages.properties
+/
+/   DESCRIPTION
+/     <short description of component this file declares/defines>
+/
+/   NOTES
+/     <other useful comments, qualifications, etc.>
+/
+/   MODIFIED   (MM/DD/YY)
+/   morgiyan   04/28/11 - Fix a bug with context item not being allowed to be
+/                         rebound in immediate mode
+/   jspiegel   03/21/11 - Add debugger error message
+/   morgiyan   03/17/11 - Add error for closing resources
+/   morgiyan   02/20/11 - Add a missing error message re sequence being past
+/                         the end
+/   jspiegel   02/15/11 - Fix error message about not supporting any data
+/                         source properties
+/   morgiyan   01/21/11 - Add a new error message for XmlObjects getter
+/   morgiyan   10/01/10 - Creation
+/
+
+#---------
+# XQJ Errors (XQJ-0601 to XQJ-0900)
+XQJ-0600 = Impossibile richiamare il metodo XQSequence su sequenze non a scorrimento
+XQJ-0601 = impossibile richiamare il metodo poich\u00E9 la sequenza \u00E8 chiusa
+XQJ-0602 = \u00E8 necessaria un'istanza di oracle.xml.parser.v2.XMLNode
+XQJ-0603 = impossibile richiamare il metodo poich\u00E9 la sequenza inserita nella cache \u00E8 chiusa
+XQJ-0604 = \u00E8 necessaria un'istanza di OXQItem
+XQJ-0605 = \u00E8 necessaria un'istanza di OXQItemType
+XQJ-0606 = il tipo passato non corrisponde al tipo previsto
+XQJ-0611 = il cursore non \u00E8 sull'elemento
+XQJ-0612 = XQSequence: l'elemento corrente non \u00E8 del tipo richiesto
+XQJ-0613 = XQSequence: l'elemento pu\u00F2 essere estratto una sola volta da una sequenza non a scorrimento
+XQJ-0614 = XQSequence: l'elemento non \u00E8 un nodo
+XQJ-0615 = XQItem: l'elemento non \u00E8 del tipo richiesto
+XQJ-0616 = XQItem: l'elemento non \u00E8 un nodo
+XQJ-0617 = impossibile richiamare il metodo poich\u00E9 la connessione \u00E8 chiusa
+XQJ-0618 = XQPreparedExpression: l'espressione \u00E8 chiusa
+XQJ-0619 = getStaticVariableType in XQPreparedExpression: nessuna variabile esterna del nome specificato nel contesto statico
+XQJ-0620 = setQueryLanguageAndVersion in XQConnection: ''{0}'' non supportato
+XQJ-0621 = setUpdatability in XQConnection: ''{0}'' non supportato
+XQJ-0622 = bindItem in OXQExpression pu\u00F2 accettare solo un'istanza di oracle.xquery.xqj.OXQItem
+XQJ-0623 = bindItem in OXQPreparedExpression pu\u00F2 accettare solo un'istanza di oracle.xquery.xqj.OXQItem
+XQJ-0624 = problema di interoperabilit\u00E0: OXQExpression pu\u00F2 accettare solo un'istanza di oracle.xquery.xqj.OXQItem
+XQJ-0625 = bindContextItem in OXQPreparedExpression pu\u00F2 accettare solo un'istanza di oracle.xquery.xqj.OXQItem
+XQJ-0626 = impossibile richiamare il metodo poich\u00E9 l'espressione preparata \u00E8 chiusa
+XQJ-0627 = impossibile richiamare il metodo poich\u00E9 l'elemento \u00E8 chiuso
+XQJ-0628 = \u00E8 necessaria un'istanza di oracle.xquery.xqj.OXQSequenceType
+XQJ-0629 = il tipo fornito non \u00E8 supportato per il valore di input
+XQJ-0630 = \u00E8 necessaria un'istanza di oracle.xquery.xqj.OXQItem
+XQJ-0631 = \u00E8 necessaria un'istanza di oracle.xquery.xqj.OXQItemType
+XQJ-0632 = l'handler comune predefinito supporta solo i tipi di base 
+XQJ-0633 = handler comune non impostato
+XQJ-0634 = impossibile richiamare il metodo poich\u00E9 l'espressione \u00E8 chiusa
+XQJ-0635 = il valore restituito non rientra nell'intervallo di un tipo byte Java
+XQJ-0636 = il valore restituito non rientra nell'intervallo di un tipo short Java
+XQJ-0637 = il valore restituito non rientra nell'intervallo di un tipo int Java
+XQJ-0638 = il valore restituito non rientra nell'intervallo di un tipo long Java
+XQJ-0639 = il valore restituito non rientra nell'intervallo di un tipo BigInteger Java
+XQJ-0640 = il tipo dell'elemento di contesto non corrisponde al tipo di elemento di contesto statico
+XQJ-0641 = impossibile passare parametro nullo alla funzione
+XQJ-0642 = bindSequence pu\u00F2 accettare solo un'istanza di oracle.xquery.xqj.OXQSequence
+XQJ-0643 = il nome della variabile esterna non pu\u00F2 essere nullo nel metodo di associazione
+XQJ-0644 = il metodo pu\u00F2 essere richiamato solo con un tipo atomico, non con un tipo di nodo.
+XQJ-0645 = la conversione del valore in istanza XDM non \u00E8 riuscita
+XQJ-0646 = problema di interoperabilit\u00E0: l'elemento non \u00E8 interoperativo
+XQJ-0647 = problema di interoperabilit\u00E0: il tipo di elemento di contesto statico non \u00E8 interoperativo
+XQJ-0648 = impossibile utilizzare il tipo definito dall'utente per l'associazione o la creazione di un documento in questa implementazione. Questa implementazione supporta solo i tipi XQuery built-in.
+XQJ-0649 = il tipo specificato per l'associazione o la creazione di un documento non \u00E8 un tipo di elemento documento o di schema documento.
+XQJ-0650 = il valore specificato per l'associazione o la creazione \u00E8 nullo
+XQJ-0651 = la query specificata \u00E8 nulla
+XQJ-0652 = impossibile creare o associare l'elemento, in quanto l'oggetto di origine specifico non \u00E8 supportato. Sono supportati solo gli oggetti SAXSource, StreamSource e DOMSource.
+XQJ-0653 = uno dei parametri specificati \u00E8 nullo
+XQJ-0654 = il parametro specificato \u00E8 nullo
+XQJ-0655 = il parametro del sistema operativo specificato \u00E8 nullo
+XQJ-0656 = il parametro di sovrascrittura specificato \u00E8 nullo
+XQJ-0657 = il tipo di base specificato non \u00E8 supportato
+XQJ-0658 = il nome tipo specificato fa riferimento a un tipo predefinito, tuttavia differisce dal tipo di base
+XQJ-0659 = OXQConnection: commit non supportato
+XQJ-0660 = OXQConnection: metodo non implementato
+XQJ-0661 = questa implementazione richiede un oggetto di contesto statico Oracle
+XQJ-0662 = OXQConnection: rollback non supportato
+XQJ-0663 = impossibile determinare il tipo di durata
+XQJ-0664 = impossibile determinare il tipo di calendario gregoriano xml
+XQJ-0665 = l'oggetto specificato non \u00E8 supportato
+XQJ-0666 = l'argomento tipo di elemento \u00E8 nullo
+XQJ-0667 = errore XMLReader durante l'analisi
+XQJ-0668 = impossibile estrarre il nodo da DOMSource, conversione in XDM non riuscita
+XQJ-0669 = impossibile estrarre l'origine di input o il processo di lettura xml da SAXSource, conversione in XDM non riuscita
+XQJ-0670 = impossibile estrarre il flusso di input o il processo di lettura da StreamSource, conversione in XDM non riuscita
+XQJ-0671 = errore in createAttributeType() di OXQDataFactory: baseType non supportato
+XQJ-0672 = errore in createAttributeType() di OXQDataFactory: se si specifica schemaURI \u00E8 necessario specificare anche il nome tipo
+XQJ-0673 = errore in createSchemaAttributeType() di OXQDataFactory: baseType non supportato
+XQJ-0674 = Errore in createSchemaAttributeType() di OXQDataFactory: nodename non pu\u00F2 essere nullo
+XQJ-0675 = la funzione accetta un buffer nullo come primo argomento
+XQJ-0676 = recupero del primo elemento nella sequenza non riuscito
+XQJ-0677 = il nodo dell'attributo non \u00E8 supportato nella serializzazione
+XQJ-0678 = il parametro passato non \u00E8 un XQItemType valido
+XQJ-0679 = il prefisso \u00E8 sconosciuto
+XQJ-0680 = errore in createDocumentElementType() di OXQDataFactory: elementType non pu\u00F2 essere nullo
+XQJ-0681 = errore in createDocumentElementType() di OXQDataFactory: il tipo di elemento di elementType non \u00E8 valido
+XQJ-0682 = errore in createDocumentSchemaElementType() di OXQDataFactory: elementType non pu\u00F2 essere nullo
+XQJ-0683 = errore in createDocumentSchemaElementType() di OXQDataFactory: il tipo di elemento di elementType non \u00E8 valido
+XQJ-0684 = errore in createElementType() di OXQDataFactory: se si specifica schemaURI \u00E8 necessario specificare anche il nome tipo
+XQJ-0685 = errore in createSchemaElementType() di OXQDataFactory: nodename non pu\u00F2 essere nullo
+XQJ-0686 = errore in createSequenceType() di OXQDataFactory: l'elemento \u00E8 nullo e la ricorrenza non \u00E8 XQSequenceType.OCC_EMPTY
+XQJ-0687 = errore in createSequenceType() di OXQDataFactory: l'elemento non \u00E8 nullo e la ricorrenza non \u00E8 XQSequenceType.OCC_EMPTY
+XQJ-0688 = errore in createSequenceType() di OXQDataFactory: la ricorrenza specificata non \u00E8 valida
+XQJ-0689 = errore in createNdTyp() di OXQDataFactory: baseType non supportato
+XQJ-0690 = XQDataSource: getConnection(conn) non supportato
+XQJ-0691 = nome della propriet\u00E0 non riconosciuto
+XQJ-0692 = il valore della propriet\u00E0 specificata non \u00E8 valido. Questa implementazione non supporta alcuna propriet\u00E0.
+XQJ-0693 = OXQExpression: executeCommand non supportato
+XQJ-0694 = impossibile identificare l'oggetto query
+XQJ-0695 = oracle.xml.parser.v2.XMLParseException
+XQJ-0696 = org.xml.sax.SAXException
+XQJ-0697 = impossibile creare DatatypeFactory o Duration
+XQJ-0698 = impossibile creare DatatypeFactory
+XQJ-0699 = XQStaticContext: prefisso non valido per il metodo getNamespaceURI 
+XQJ-0700 = tipo non supportato in getObject()
+XQJ-0701 = impossibile determinare la relazione instanceOf: l'elemento corrente dispone di un tipo di schema definito dall'utente. Questa implementazione non supporta i tipi di schema definiti dall'utente.
+XQJ-0702 = impossibile determinare la relazione instanceOf: il tipo di input \u00E8 un tipo di schema definito dall'utente. Questa implementazione non supporta i tipi di schema definiti dall'utente.
+XQJ-0703 = XQItem: errore writeItemToSAX
+XQJ-0704 = XQItemType.getBaseType(): il tipo di elemento non \u00E8 valido
+XQJ-0705 = XQItemType.getTypeName(): il tipo di elemento non \u00E8 valido
+XQJ-0706 = XQItemType.getPIName(): il tipo di elemento non \u00E8 valido
+XQJ-0707 = XQItemType.getNodeName(): il tipo di elemento non \u00E8 valido
+XQJ-0708 = impossibile recuperare il processo di lettura o il flusso di input
+XQJ-0709 = XQResultSequence: errore writeSequenceToSAX
+XQJ-0710 = XQResultSequence: errore writeItemToSAX
+XQJ-0711 = modalit\u00E0 non valida specificata in setConstructionMode
+XQJ-0712 = modalit\u00E0 non valida specificata in setOrderingMode
+XQJ-0713 = ordine non valido specificato in setDefaultOrderForEmptySequences
+XQJ-0714 = modalit\u00E0 non valida specificata in setBoundarySpacePolicy
+XQJ-0715 = modalit\u00E0 non valida specificata in setCopyNamespacesModePreserve
+XQJ-0716 = modalit\u00E0 non valida specificata in setCopyNamespacesModeInherit
+XQJ-0717 = modalit\u00E0 non valida specificata in setBindingMode
+XQJ-0718 = modalit\u00E0 non valida specificata in setHoldability
+XQJ-0719 = langtype non valido in setQueryLanguageTypeAndVersion
+XQJ-0720 = modalit\u00E0 di scorrimento non valida in setScrollability
+XQJ-0721 = il parametro dei secondi in setQueryTimeout non pu\u00F2 essere 0
+XQJ-0722 = OXQUtils:printResult()
+XQJ-0723 = OXQUtils.makeOXQItemType: type1 sconosciuto
+XQJ-0724 = OXQUtils.makeOXQItemType: type2 sconosciuto
+XQJ-0725 = OXQUtils.makeOXQItemType: type3 sconosciuto
+XQJ-0726 = OXQUtils:setContextItem: l'elemento non \u00E8 OXQItem
+XQJ-0727 = tipo di evento flusso XML sconosciuto
+XQJ-0728 = problema in OXQUtils.cnvStreamToDOM.
+XQJ-0729 = baseItemType sconosciuto in OXQUtils.normalizeSequence
+XQJ-0730 = impossibile creare XMLStreamReader
+XQJ-0731 = problema di interoperabilit\u00E0: il tipo definito dall'utente non \u00E8 interoperativo
+XQJ-0732 = il documento di input non specificato non \u00E8 un'istanza del tipo specificato secondo le regole di corrispondenza del tipo di sequenza XQuery
+XQJ-0733 = il nodo di input non \u00E8 un'istanza del tipo specificato
+XQJ-0734 = tipo di base sconosciuto
+XQJ-0735 = rilevato XQItemType con tipo non supportato
+XQJ-0736 = tipo non supportato specificato per lo String Object
+XQJ-0737 = Impossibile ottenere la rappresentazione XQueryX per la query di input.
+XQJ-0738 = il parametro nome \u00E8 nullo
+XQJ-0739 = il valore propriet\u00E0 non \u00E8 valido
+XQJ-0740 = errore durante la creazione di una connessione al database; non sono impostate tutte le propriet\u00E0 necessarie.
+XQJ-0741 = Impossibile ottenere la rappresentazione XQueryX per la query di input.
+XQJ-0742 = bind variable ''{0}'' non definita
+XQJ-0743 = tipo bind non supportato
+XQJ-0744 = nome della propriet\u00E0 non riconosciuto
+XQJ-0745 = errore durante l'accesso all'elemento corrente
+XQJ-0746 = impossibile richiamare il metodo poich\u00E9 la sequenza \u00E8 posizionata dopo l'ultimo elemento
+XQJ-0747 = errore durante il recupero dell'elemento come nodo DOM
+XQJ-0748 = errore durante la serializzazione dell'elemento
+XQJ-0749 = errore durante la serializzazione della sequenza
+XQJ-0750 = la variabile non \u00E8 dichiarata come esterna nella query oppure, se si sta eseguendo il binding dell'elemento di contesto, quest'ultimo non \u00E8 utilizzato nella query
+XQJ-0751 = non tutte le variabili esterne sono associate
+XQJ-0752 = la query non contiene alcun elemento di contesto non associato
+XQJ-0753 = la sequenza di input non contiene elementi
+XQJ-0754 = impossibile trovare il tipo definito dall'utente specificato
+XQJ-0757 = il formato dell'input \u00E8 errato oppure si \u00E8 verificata una condizione di elaborazione imprevista, conversione in  XDM non riuscita
+XQJ-0759 = errore durante l'accesso al tipo dell'elemento
+XQJ-0760 = eccezione del motore interna
+XQJ-0761 = modalit\u00E0 non valida specificata in setAccessorMode
+XQJ-0762 = modalit\u00E0 non valida specificata in setProcessingMode
+XQJ-0763 = errore durante il recupero dell'elemento come XmlObject
+XQJ-0764 = l'oggetto XQPreparedExpression di input \u00E8 stato eseguito, dispone di variabili associate oppure \u00E8 una copia di un altro oggetto XQPreparedExpression. Il nuovo oggetto XQPreparedExpression pu\u00F2 essere creato solo da un oggetto XQPreparedExpression che non \u00E8 stato eseguito, non \u00E8 stato copiato da un altro oggetto XQPreparedEXpression e non dispone di variabili associate.
+XQJ-0765 = l'oggetto XQPreparedExpression deve provenire da un'implementazione di livello intermedio Oracle XQJ
+XQJ-0766 = errore del motore interno durante la creazione di un nuovo oggetto XQPreparedExpression da un altro oggetto XQPreparedExpression
+XQJ-0767 = createsNewNodes() non \u00E8 supportato su questo XQPreparedExpression
+XQJ-0768 = isContextItemUnbound() non \u00E8 supportato su questo XQPreparedExpression
+XQJ-0769 = questo XQPreparedExpression ha una categoria di espressione non valida 
+XQJ-0770 = getExpressionCategory() non \u00E8 supportato su questo XQPreparedExpression
+XQJ-0771 = conversione tra XQuery e XQueryX non riuscita
+XQJ-0772 = Rilevata un'eccezione di I/O Java durante l'elaborazione dell'input
+XQJ-0773 = getStaticResultType() non \u00E8 supportato per questo XQPreparedExpression
+XQJ-0774 = getStaticVariableType() non \u00E8 supportato per questo XQPreparedExpression
+XQJ-0775 = la copia non \u00E8 supportata per questo XQPreparedExpression
+XQJ-0776 = il richiamo di questo metodo dopo che l'elemento \u00E8 gi\u00E0 stato recuperato su una sequenza forward-only attualmente non \u00E8 supportato
+XQJ-0777 = si \u00E8 verificato un errore durante la chiusura di uno degli oggetti che possono essere chiusi
+XQJ-0778 = l'oggetto fornito che pu\u00F2 essere chiuso non \u00E8 supportato per questo oggetto principale
+XQJ-0779 = l'oggetto principale fornito non pu\u00F2 avere oggetti che possono essere chiusi
+XQJ-0780 = nome sconosciuto
+XQJ-0781 = debug non abilitato su questa connessione
+XQJ-0782 = l'uso della memoria esterna deve essere abilitato su XQDataSource prima di impostare un PageManager
+XQJ-0783 = l'uso della memoria esterna \u00E8 abilitato su XQDataSource, quindi \u00E8 necessario specificare un PageManager prima di eseguire la query
+XQJ-0784 = modalit\u00E0 non valida specificata in setUpdateMode
+XQJ-0785 = l'elemento specificato deve essere un nodo di documento
+XQJ-0786 = la modalit\u00E0 di aggiornamento pu\u00F2 essere impostata solo quando la modalit\u00E0 di binding \u00E8 differita
+XQJ-0787 = impossibile accedere alla sequenza dopo un errore
+XQJ-0788 = si \u00E8 verificato un errore durante l'importazione dello schema
+XQJ-0789 = valore del parametro non valido: {0}
+XQJ-0790 = il tipo definito dall'utente con lo stesso nome, ma con URI (Uniform Resource Identifier) dello schema differente, \u00E8 gi\u00E0 stato registrato sulla connessione
+XQJ-0791 = il tipo di base fornito non corrisponde al tipo di base del tipo di schema creato, ovvero: {0}
+XQJ-0792 = variabile "{0}" non trovata
+XQJ-0793 = importazione per lo spazio di nomi "{0}" non trovata
+XQJ-0794 = il prefisso "{0}" \u00E8 sconosciuto
+XQJ-0795 = l'oggetto XQPreparedExpression deve essere copiato utilizzando l'elemento XQConnection che lo ha creato
+XQJ-0796 = questo metodo pu\u00F2 essere richiamato solo se la modalit\u00E0 di associazione \u00E8 differita

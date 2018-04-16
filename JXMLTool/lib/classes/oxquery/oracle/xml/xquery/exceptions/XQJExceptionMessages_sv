@@ -1,0 +1,221 @@
+/
+/ $Header: wptg/xdk/src/java/xquery/resources/oracle/xml/xquery/exceptions/XQJExceptionMessages_sv.properties /generic/6 2014/04/25 05:59:52 gmolloy Exp $
+/
+/ XQMessages.txt
+/
+/ Copyright (c) Oracle Corporation 2000. All Rights Reserved.
+/
+/   NAME
+/     XQMessages.properties
+/
+/   DESCRIPTION
+/     <short description of component this file declares/defines>
+/
+/   NOTES
+/     <other useful comments, qualifications, etc.>
+/
+/   MODIFIED   (MM/DD/YY)
+/   morgiyan   04/28/11 - Fix a bug with context item not being allowed to be
+/                         rebound in immediate mode
+/   jspiegel   03/21/11 - Add debugger error message
+/   morgiyan   03/17/11 - Add error for closing resources
+/   morgiyan   02/20/11 - Add a missing error message re sequence being past
+/                         the end
+/   jspiegel   02/15/11 - Fix error message about not supporting any data
+/                         source properties
+/   morgiyan   01/21/11 - Add a new error message for XmlObjects getter
+/   morgiyan   10/01/10 - Creation
+/
+
+#---------
+# XQJ Errors (XQJ-0601 to XQJ-0900)
+XQJ-0600 = Kan inte anropa metoden XQSequence f\u00F6r sekvenser som inte \u00E4r rullningsbara
+XQJ-0601 = kan inte anropa metoden eftersom sekvensen \u00E4r st\u00E4ngd
+XQJ-0602 = en instans av oracle.xml.parser.v2.XMLNode kr\u00E4vs
+XQJ-0603 = kan inte anropa metoden eftersom den cachelagrade sekvensen \u00E4r st\u00E4ngd
+XQJ-0604 = en instans av OXQItem kr\u00E4vs
+XQJ-0605 = en instans av OXQItemType kr\u00E4vs
+XQJ-0606 = den angivna typen matchar inte den f\u00F6rv\u00E4ntade typen
+XQJ-0611 = mark\u00F6ren \u00E4r inte p\u00E5 ett objekt
+XQJ-0612 = XQSequence: det aktuella objektet \u00E4r inte av den typ som kr\u00E4vs
+XQJ-0613 = XQSequence: objekt kan bara h\u00E4mtas en g\u00E5ng fr\u00E5n sekvenser som inte \u00E4r rullningsbara
+XQJ-0614 = XQSequence: objektet \u00E4r inte en nod
+XQJ-0615 = XQItem: objektet \u00E4r inte av den typ som kr\u00E4vs
+XQJ-0616 = XQItem: objektet \u00E4r inte en nod
+XQJ-0617 = kan inte anropa metoden eftersom anslutningen \u00E4r st\u00E4ngd
+XQJ-0618 = XQPreparedExpression: uttrycket \u00E4r st\u00E4ngt
+XQJ-0619 = getStaticVariableType in XQPreparedExpression: det finns ingen extern variabel med det angivna namnet i den statiska kontexten
+XQJ-0620 = setQueryLanguageAndVersion in XQConnection: st\u00F6d f\u00F6r ''{0}'' saknas
+XQJ-0621 = setUpdatability in XQConnection: st\u00F6d f\u00F6r ''{0}'' saknas
+XQJ-0622 = bindItem i OXQExpression kan bara hantera en instans av oracle.xquery.xqj.OXQItem
+XQJ-0623 = bindItem i OXQPreparedExpression kan bara hantera en instans av oracle.xquery.xqj.OXQItem
+XQJ-0624 = interoperabilitetsproblem: OXQExpression kan bara hantera en instans av oracle.xquery.xqj.OXQItem
+XQJ-0625 = bindContextItem i OXQPreparedExpression kan bara hantera en instans av oracle.xquery.xqj.OXQItem
+XQJ-0626 = kan inte anropa metoden eftersom det f\u00F6rberedda uttrycket \u00E4r st\u00E4ngt
+XQJ-0627 = kan inte anropa metoden eftersom objektet \u00E4r st\u00E4ngt
+XQJ-0628 = en instans av oracle.xquery.xqj.OXQSequenceType kr\u00E4vs
+XQJ-0629 = den tillhandah\u00E5llna typen st\u00F6ds inte f\u00F6r indatav\u00E4rdet
+XQJ-0630 = en instans av oracle.xquery.xqj.OXQItem kr\u00E4vs
+XQJ-0631 = en instans av oracle.xquery.xqj.OXQItemType kr\u00E4vs
+XQJ-0632 = standardgemensamhetshanteraren har bara st\u00F6d f\u00F6r de grundl\u00E4ggande typerna 
+XQJ-0633 = ingen gemensamhetshanterare \u00E4r angiven
+XQJ-0634 = kan inte anropa metoden eftersom uttrycket \u00E4r st\u00E4ngt
+XQJ-0635 = returv\u00E4rdet ligger inte i intervallet f\u00F6r Java-typen byte
+XQJ-0636 = returv\u00E4rdet ligger inte i intervallet f\u00F6r Java-typen short
+XQJ-0637 = returv\u00E4rdet ligger inte i intervallet f\u00F6r Java-typen int
+XQJ-0638 = returv\u00E4rdet ligger inte i intervallet f\u00F6r Java-typen long
+XQJ-0639 = returv\u00E4rdet ligger inte i intervallet f\u00F6r Java-typen BigInteger
+XQJ-0640 = typ av kontextobjekt matchar inte den statiska kontextobjekttypen
+XQJ-0641 = kan inte skicka en nullparameter till funktionen
+XQJ-0642 = bindSequence accepterar bara instanser av oracle.xquery.xqj.OXQSequence
+XQJ-0643 = namnet p\u00E5 en extern variabel f\u00E5r inte vara null i bindningsmetoden
+XQJ-0644 = metoden kan bara anropas med atom\u00E4ra typer, inte nodtyper
+XQJ-0645 = v\u00E4rdekonverteringen till en XDM-instans utf\u00F6rdes inte
+XQJ-0646 = interoperabilitetsproblem: objektet \u00E4r inte interoperativt
+XQJ-0647 = interoperabilitetsproblem: den statiska kontextobjekttypen \u00E4r inte interoperativ
+XQJ-0648 = anv\u00E4ndardefinierad typ kan inte anv\u00E4ndas till att binda eller skapa ett dokument i den h\u00E4r implementeringen. Den h\u00E4r implementeringen st\u00F6der endast inbyggda XQuery-typer.
+XQJ-0649 = typen som anges f\u00F6r att binda eller skapa ett dokument \u00E4r inte ett dokumentelement eller en dokumentschemaelementtyp.
+XQJ-0650 = det angivna v\u00E4rdet f\u00F6r att binda eller skapa \u00E4r null
+XQJ-0651 = den angivna fr\u00E5gan \u00E4r null
+XQJ-0652 = kunde inte skapa eller binda objekt eftersom k\u00E4llobjektet inte st\u00F6ds. Endast SAXSource, StreamSource och DOMSource st\u00F6ds.
+XQJ-0653 = en av de angivna parametrarna \u00E4r null
+XQJ-0654 = den angivna parametern \u00E4r null
+XQJ-0655 = den angivna os-parametern \u00E4r null
+XQJ-0656 = den angivna ow-parametern \u00E4r null
+XQJ-0657 = den angivna bastypen st\u00F6ds inte
+XQJ-0658 = det angivna typnamnet h\u00E4nvisar till en f\u00F6rdefinierad typ, men skiljer sig fr\u00E5n bastypen
+XQJ-0659 = OXQConnection: bekr\u00E4ftelse st\u00F6ds inte
+XQJ-0660 = OXQConnection: metoden har ej implementerats
+XQJ-0661 = denna implementering kr\u00E4ver ett statiskt Oracle-kontextobjekt
+XQJ-0662 = OXQConnection: \u00E5terst\u00E4llning st\u00F6ds inte
+XQJ-0663 = kunde inte fastst\u00E4lla typ av tidsl\u00E4ngd
+XQJ-0664 = kunde inte fastst\u00E4lla typ av gregoriansk xml-kalender
+XQJ-0665 = angivet objekt st\u00F6ds inte
+XQJ-0666 = objekttypargumentet \u00E4r null
+XQJ-0667 = XMLReader-fel vid tolkning
+XQJ-0668 = kunde inte extrahera nod fr\u00E5n DOMSource, konverteringen till XDM utf\u00F6rdes inte
+XQJ-0669 = kunde inte extrahera indatak\u00E4llan eller xml-l\u00E4saren fr\u00E5n SAXSource, konverteringen till XDM utf\u00F6rdes inte
+XQJ-0670 = kunde inte extrahera indatastr\u00F6m eller l\u00E4sare fr\u00E5n StreamSource, konverteringen till XDM utf\u00F6rdes inte
+XQJ-0671 = fel i createAttributeType() f\u00F6r OXQDataFactory - baseType st\u00F6ds inte
+XQJ-0672 = fel i createAttributeType() f\u00F6r OXQDataFactory - om schemaURI har angetts m\u00E5ste \u00E4ven typnamnet anges
+XQJ-0673 = fel i createSchemaAttributeType() f\u00F6r OXQDataFactory - baseType st\u00F6ds inte
+XQJ-0674 = Fel i createSchemaAttributeType() f\u00F6r OXQDataFactory - nodnamn f\u00E5r inte vara null
+XQJ-0675 = funktionen accepterar en null-buffert som f\u00F6rsta argument
+XQJ-0676 = kunde inte h\u00E4mta det f\u00F6rsta objektet i sekvensen
+XQJ-0677 = attributnod st\u00F6ds inte i serialisering
+XQJ-0678 = det angivna parametern \u00E4r inte en giltig XQItemType
+XQJ-0679 = prefixet \u00E4r ok\u00E4nt
+XQJ-0680 = fel i createDocumentElementType() f\u00F6r OXQDataFactory - elementType f\u00E5r inte vara null
+XQJ-0681 = fel i createDocumentElementType() f\u00F6r OXQDataFactory - objekttyp i elementType \u00E4r inte giltig
+XQJ-0682 = fel i createDocumentSchemaElementType() f\u00F6r OXQDataFactory - elementType f\u00E5r inte vara null
+XQJ-0683 = fel i createDocumentSchemaElementType() f\u00F6r OXQDataFactory - objekttyp f\u00F6r elementType \u00E4r inte giltig
+XQJ-0684 = fel i createElementType() f\u00F6r OXQDataFactory - om schemaURI har angetts m\u00E5ste \u00E4ven typnamnet anges
+XQJ-0685 = fel i createSchemaElementType() f\u00F6r OXQDataFactory - nodnamn f\u00E5r inte vara null
+XQJ-0686 = fel i createSequenceType() f\u00F6r OXQDataFactory - objekt \u00E4r null och f\u00F6rekomsten \u00E4r inte XQSequenceType.OCC_EMPTY
+XQJ-0687 = fel i createSequenceType() f\u00F6r OXQDataFactory - objekt \u00E4r inte null och f\u00F6rekomsten \u00E4r XQSequenceType.OCC_EMPTY
+XQJ-0688 = fel i createSequenceType() f\u00F6r OXQDataFactory - angiven f\u00F6rekomst \u00E4r inte giltig
+XQJ-0689 = fel i createNdTyp() f\u00F6r OXQDataFactory - baseType st\u00F6ds inte
+XQJ-0690 = XQDataSource: getConnection(conn) st\u00F6ds inte
+XQJ-0691 = egenskapsnamnet k\u00E4nns inte igen
+XQJ-0692 = ogiltiga v\u00E4rden f\u00F6r den angivna egenskapen. Den h\u00E4r implementeringen st\u00F6der inga egenskaper
+XQJ-0693 = OXQExpression: executeCommand st\u00F6ds inte
+XQJ-0694 = kunde inte identifiera fr\u00E5geobjektet
+XQJ-0695 = oracle.xml.parser.v2.XMLParseException
+XQJ-0696 = org.xml.sax.SAXException
+XQJ-0697 = kunde inte skapa DatatypeFactory eller Duration
+XQJ-0698 = kunde inte skapa DatatypeFactory
+XQJ-0699 = XQStaticContext: ogiltigt prefix f\u00F6r metoden getNamespaceURI 
+XQJ-0700 = ogiltig typ i getObject()
+XQJ-0701 = instanceOf-relation kan inte fastst\u00E4llas eftersom det aktuella objektet har en anv\u00E4ndardefinierad schematyp. Anv\u00E4ndardefinierade schematyper st\u00F6ds inte av den h\u00E4r implementeringen
+XQJ-0702 = instanceOf-relation kan inte fastst\u00E4llas eftersom indatatypen \u00E4r en anv\u00E4ndardefinierad schematyp. Anv\u00E4ndardefinierade schematyper st\u00F6ds inte av den h\u00E4r implementeringen
+XQJ-0703 = XQItem: writeItemToSAX-fel
+XQJ-0704 = XQItemType.getBaseType(): objekttypen \u00E4r ogiltig
+XQJ-0705 = XQItemType.getTypeName(): objekttypen \u00E4r ogiltig
+XQJ-0706 = XQItemType.getPIName(): objekttypen \u00E4r ogiltig
+XQJ-0707 = XQItemType.getNodeName(): objekttypen \u00E4r ogiltig
+XQJ-0708 = kunde inte h\u00E4mta l\u00E4sare eller indatastr\u00F6m
+XQJ-0709 = XQResultSequence: writeSequenceToSAX-fel
+XQJ-0710 = XQResultSequence: writeItemToSAX-fel
+XQJ-0711 = ogiltigt l\u00E4ge har angetts i setConstructionMode
+XQJ-0712 = ogiltigt l\u00E4ge har angetts i setOrderingMode
+XQJ-0713 = ogiltig ordning har angetts i setDefaultOrderForEmptySequences
+XQJ-0714 = ogiltigt l\u00E4ge har angetts i setBoundarySpacePolicy
+XQJ-0715 = ogiltigt l\u00E4ge har angetts i setCopyNamespacesModePreserve
+XQJ-0716 = ogiltigt l\u00E4ge har angetts i setCopyNamespacesModeInherit
+XQJ-0717 = ogiltigt l\u00E4ge har angetts i setBindingMode
+XQJ-0718 = ogiltigt l\u00E4ge har angetts i setHoldability
+XQJ-0719 = ogiltig spr\u00E5ktyp i setQueryLanguageTypeAndVersion
+XQJ-0720 = ogiltig rullningskapacitet i setScrollability
+XQJ-0721 = sekundparametern f\u00F6r setQueryTimeout f\u00E5r inte vara 0
+XQJ-0722 = OXQUtils:printResult()
+XQJ-0723 = OXQUtils.makeOXQItemType - ok\u00E4nd typ1
+XQJ-0724 = OXQUtils.makeOXQItemType - ok\u00E4nd typ2
+XQJ-0725 = OXQUtils.makeOXQItemType - ok\u00E4nd typ3
+XQJ-0726 = OXQUtils:setContextItem - objektet \u00E4r inte OXQItem
+XQJ-0727 = ok\u00E4nd XML-str\u00F6mningsh\u00E4ndelsetyp
+XQJ-0728 = problem i OXQUtils.cnvStreamToDOM.
+XQJ-0729 = ok\u00E4nd baseItemType i OXQUtils.normalizeSequence
+XQJ-0730 = kunde inte skapa XMLStreamReader
+XQJ-0731 = interoperabilitetsproblem: anv\u00E4ndardefinierad typ \u00E4r inte interoperativ
+XQJ-0732 = ospecificerat indatadokument \u00E4r inte en instans av den angivna typen, i enlighet med reglerna f\u00F6r XQuery-sekvenstypmatchning
+XQJ-0733 = indatanod \u00E4r inte en instans av den angivna typen
+XQJ-0734 = ok\u00E4nd bastyp
+XQJ-0735 = XQItemType med typ som inte st\u00F6ds p\u00E5tr\u00E4ffades
+XQJ-0736 = typ som inte st\u00F6ds angavs f\u00F6r str\u00E4ngobjektet
+XQJ-0737 = kunde inte h\u00E4mta XQueryX-representation f\u00F6r indatafr\u00E5gan
+XQJ-0738 = namnparametern \u00E4r null
+XQJ-0739 = egenskapsv\u00E4rdet \u00E4r ogiltigt
+XQJ-0740 = fel n\u00E4r en databasanslutning skulle skapas - alla obligatoriska egenskaper har inte st\u00E4llts in
+XQJ-0741 = kunde inte h\u00E4mta XQueryX-representation f\u00F6r indatafr\u00E5gan
+XQJ-0742 = bindningsvariabeln ''{0}'' har inte definierats
+XQJ-0743 = bindningstyp som inte st\u00F6ds
+XQJ-0744 = egenskapsnamnet k\u00E4nns inte igen
+XQJ-0745 = det intr\u00E4ffade ett fel vid \u00E5tkomst till det aktuella objektet
+XQJ-0746 = metoden kan inte anropas eftersom sekvensen \u00E4r placerad efter det sista objektet
+XQJ-0747 = det intr\u00E4ffade ett fel vid h\u00E4mtning av objektet som en DOM-nod
+XQJ-0748 = det intr\u00E4ffade ett fel vid serialisering av objektet
+XQJ-0749 = det intr\u00E4ffade ett fel vid serialisering av sekvensen
+XQJ-0750 = variabel \u00E4r inte deklarerad som extern i fr\u00E5gan, eller, om vi binder kontextobjektet anv\u00E4nds inte det h\u00E4r kontextobjektet i fr\u00E5gan
+XQJ-0751 = alla externa variabler \u00E4r inte bundna
+XQJ-0752 = det finns inget obundet kontextobjekt i fr\u00E5gan
+XQJ-0753 = indatasekvensen har inga objekt
+XQJ-0754 = det gick inte att hitta den angivna anv\u00E4ndardefinierade typen
+XQJ-0757 = indata \u00E4r inte utformade p\u00E5 r\u00E4tt s\u00E4tt eller s\u00E5 f\u00F6religger ett ov\u00E4ntat bearbetningsvillkor s\u00E5 att konvertering till XDM misslyckades
+XQJ-0759 = det intr\u00E4ffade ett fel vid \u00E5tkomst till objektets typ
+XQJ-0760 = internt motorundantag
+XQJ-0761 = ogiltigt l\u00E4ge har angetts i setAccessorMode
+XQJ-0762 = ogiltigt l\u00E4ge har angetts i setProcessingMode
+XQJ-0763 = det intr\u00E4ffade ett fel vid h\u00E4mtning av objektet som ett XmlObject
+XQJ-0764 = indata-XQPrepareExpression har k\u00F6rts, har bundna variabler eller \u00E4r en kopia av ett annat XQPreparedExpression. Ett nytt XQPreparedExpression kan bara skapas fr\u00E5n ett XQPreparedExpression som inte har k\u00F6rts, inte har kopierats fr\u00E5n ett annat XQPreparedEXpression och som inte har bundna variabler.
+XQJ-0765 = XQPreparedExpression-objektet m\u00E5ste vara fr\u00E5n en Oracle XQJ midtier-implementering
+XQJ-0766 = ett internt motorfel intr\u00E4ffade vid skapande av ett nytt XQPreparedExpression-objekt fr\u00E5n ett annat XQPreparedExpression-objekt
+XQJ-0767 = createsNewNodes() st\u00F6ds inte p\u00E5 detta XQPreparedExpression
+XQJ-0768 = isContextItemUnbound() st\u00F6ds inte p\u00E5 detta XQPreparedExpression
+XQJ-0769 = detta XQPreparedExpression hade en ogiltig uttryckskategori 
+XQJ-0770 = getExpressionCategory() st\u00F6ds inte p\u00E5 detta XQPreparedExpression
+XQJ-0771 = konvertering mellan XQuery och XQueryX utf\u00F6rdes inte
+XQJ-0772 = Java I/O-undantag p\u00E5tr\u00E4ffades vid bearbetning av indata
+XQJ-0773 = getStaticResultType() st\u00F6ds inte f\u00F6r detta XQPreparedExpression
+XQJ-0774 = getStaticVariableType() st\u00F6ds inte f\u00F6r detta XQPreparedExpression
+XQJ-0775 = kopiering st\u00F6ds inte f\u00F6r detta XQPreparedExpression
+XQJ-0776 = att anropa den h\u00E4r metoden sedan posten redan har h\u00E4mtats p\u00E5 en sekvens som bara \u00E4r till f\u00F6r vidarebefordran st\u00F6ds f\u00F6r n\u00E4rvarande inte
+XQJ-0777 = ett fel intr\u00E4ffade vid st\u00E4ngning av ett av de st\u00E4ngningsbara objekten
+XQJ-0778 = angivet st\u00E4ngningsbart objekt st\u00F6ds inte f\u00F6r det h\u00E4r huvudobjektet
+XQJ-0779 = angivet huvudobjekt kan inte ha st\u00E4ngningsbara objekt
+XQJ-0780 = ok\u00E4nt namn
+XQJ-0781 = fels\u00F6kning har inte aktiverats p\u00E5 den h\u00E4r anslutningen
+XQJ-0782 = anv\u00E4ndning av extern lagring m\u00E5ste aktiveras p\u00E5 XQDataSource innan en PageManager anges
+XQJ-0783 = anv\u00E4ndning av extern lagring har aktiverats p\u00E5 XQDataSource och en PageManager m\u00E5ste anges innan fr\u00E5gan k\u00F6rs
+XQJ-0784 = ogiltigt l\u00E4ge har angetts i setUpdateMode
+XQJ-0785 = det angivna objektet m\u00E5ste vara en dokumentnod
+XQJ-0786 = uppdateringsl\u00E4ge kan bara anges n\u00E4r bindningsl\u00E4get \u00E4r uppskjutet
+XQJ-0787 = kan inte f\u00E5 \u00E5tkomst till sekvensen efter ett fel
+XQJ-0788 = ett fel intr\u00E4ffade under schemaimport
+XQJ-0789 = ogiltigt parameterv\u00E4rde: {0}
+XQJ-0790 = anv\u00E4ndardefinierad typ med samma namn men annat schema-URI (Uniform Resource Identifier) har redan registrerats p\u00E5 anslutningen
+XQJ-0791 = angiven bastyp matchar inte bastypen f\u00F6r den skapade schematypen, som \u00E4r: {0}
+XQJ-0792 = variabeln "{0}" kan inte hittas
+XQJ-0793 = importen f\u00F6r namnrymden "{0}" kan inte hittas
+XQJ-0794 = prefixet "{0}" \u00E4r ok\u00E4nt
+XQJ-0795 = XQPreparedExpression m\u00E5ste kopieras med den XQConnection som skapade det
+XQJ-0796 = den h\u00E4r metoden kan bara anropas om bindningsl\u00E4get \u00E4r uppskjutet
