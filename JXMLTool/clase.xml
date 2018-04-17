@@ -1,31 +1,44 @@
-<escuela xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tarea6.xsd">
-    <alumnos>        <alumno>            <cod>n12344345</cod>            <apenom>Alcalde Garc√≠a, Luis</apenom>            <direc>Las Manos, 24</direc>             <pobla>Lamadrid</pobla>             <telef>942756645</telef>         </alumno>         
-        <alumno>              <cod>n43483437</cod>             <apenom>Gonz√°lez P√©rez, Olga</apenom>             <direc>Miraflor 28 - 3A</direc>
-            <pobla>Torres</pobla>             <telef>942564355</telef>         </alumno>        <alumno>
-            <cod>n88234942</cod>             <apenom>Fern√°ndez D√≠az, Mar√≠a</apenom>
-            <direc>Luisa Fernanda 53</direc>             <pobla>Miera</pobla>             <telef>942346945</telef>         </alumno>
-           </alumnos>     
+<clase xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="clase.xsd">
+    <alumnos>
+        <alumno cod="n12344345">
+            <apenom>Alcalde GarcÌa, Luis</apenom>
+            <direc>Las Manos, 24</direc>
+            <pobla>Lamadrid</pobla>
+            <telef>942756645</telef>
+        </alumno>
+        <alumno cod="n43483437">
+            <apenom>Gonz·lez PÈrez, Olga</apenom>
+            <direc>Miraflor 28 - 3A</direc>
+            <pobla>Torres</pobla>
+            <telef>942564355</telef>
+        </alumno>
+        <alumno cod="n88234942">
+            <apenom>Fern·ndez DÌaz, MarÌa</apenom>
+            <direc>Luisa Fernanda 53</direc>
+            <pobla>Miera</pobla>
+            <telef>942346945</telef>
+        </alumno>
+    </alumnos>
     <asignaturas>
-                <asignatura>             <cod>a1</cod>             <nombre>FH</nombre>         </asignatura>         
-        <asignatura>             <cod>a2</cod>             <nombre>FOL</nombre>         </asignatura>         
-        <asignatura>             <cod>a3</cod>             <nombre>ISO</nombre>         </asignatura>         
-        <asignatura>             <cod>a4</cod>             <nombre>LMSGI</nombre>         </asignatura>
-        <asignatura>             <cod>a5</cod>             <nombre>PAR</nombre>         </asignatura>
-        <asignatura>             <cod>a6</cod>             <nombre>GBD</nombre>         </asignatura>    </asignaturas>     
-
-<notas>
-         <nota alum="n12344345" asig="a1">   <calificacion>4</calificacion>         </nota>        <nota alum="n43483437" asig="a1">
-            <calificacion>5</calificacion>         </nota>        <nota alum="n88234942" asig="a1">
-            <calificacion>8</calificacion>         </nota>        <nota alum="n12344345" asig="a2">
-            <calificacion>10</calificacion>         </nota>        <nota alum="n43483437" asig="a2">
-            <calificacion>7</calificacion>         </nota>        <nota alum="n88234942" asig="a2">
-            <calificacion>6</calificacion>         </nota>        <nota alum="n12344345" asig="a3">
-            <calificacion>3</calificacion>         </nota><nota alum="n88234942" asig="a3">
-            <calificacion>6</calificacion>         </nota>
-        <nota alum="n12344345" asig="a4">             <calificacion>8</calificacion>
-        </nota>         <nota alum="n43483437" asig="a4">             <calificacion>4</calificacion>
-        </nota>         <nota alum="n12344345" asig="a5">             <calificacion>6</calificacion>
-        </nota>         <nota alum="n12344345" asig="a6">             <calificacion>9</calificacion>
-        </nota>
+        <asignatura cod="a1" nombre="FH"/>
+        <asignatura cod="a2" nombre="FOL"/>
+        <asignatura cod="a3" nombre="ISO"/>
+        <asignatura cod="a4" nombre="LMSGI"/>
+        <asignatura cod="a5" nombre="PAR"/>
+        <asignatura cod="a6" nombre="GBD"/>
+    </asignaturas>
+    <notas>
+        <nota alum="n12344345" asig="a1" calificacion="4"/>
+        <nota alum="n43483437" asig="a1" calificacion="5"/>
+        <nota alum="n88234942" asig="a1" calificacion="8"/>
+        <nota alum="n12344345" asig="a2" calificacion="10"/>
+        <nota alum="n43483437" asig="a2" calificacion="7"/>
+        <nota alum="n88234942" asig="a2" calificacion="6"/>
+        <nota alum="n12344345" asig="a3" calificacion="3"/>
+        <nota alum="n88234942" asig="a3" calificacion="6"/>
+        <nota alum="n12344345" asig="a4" calificacion="8"/>
+        <nota alum="n43483437" asig="a4" calificacion="4"/>
+        <nota alum="n12344345" asig="a5" calificacion="6"/>
+        <nota alum="n12344345" asig="a6" calificacion="9"/>
     </notas>
-</escuela>
+</clase>

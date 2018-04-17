@@ -97,4 +97,12 @@ public class PruebaProcesador {
         String resultado=ProcesadorXML.ejecutarXQuery(ejemploXQuery, xmlEjemplo);
         System.out.println(resultado);
     }
+    @Test
+    public void pruebaXSLTSimple() throws TransformerException{
+        String xmlInventario    =   ProcesadorXML.getXMLEjemploInventario();
+        String xsltInventario   =   ProcesadorXML.getXSLTEjemploInventario();
+        
+        String resultado        =   ProcesadorXML.transformarConXSLT(xsltInventario, xmlInventario);
+        System.out.println(resultado);
+    }
 }

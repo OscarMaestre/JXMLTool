@@ -1,3 +1,4 @@
-for $alumno in doc("clase.xml")//alumnos/alumno
-order by $alumno/apenom descending
-return <alumno>{ data($alumno/apenom),"- teléfono",data($alumno/telef) }</alumno>
+for $a in doc("datos.xml")//alumnos/alumno
+where $a/@cod union $a/../../notas/nota/@alum
+return
+<alumno>{ data($a/apenom) }</alumno>

@@ -1,8 +1,6 @@
 package io.github.oscarmaestre.jxmltool;
 
 import io.github.dheid.fontchooser.FontDialog;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,6 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -55,13 +54,13 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final int Y_CUADRO_XML      = 0;
     private static final int ANCHO_CUADRO_XML  = 5;
     private static final int ALTO_CUADRO_XML   = 8;
-    private static final double PESO_CUADRO_XML    = 0.4;
+    private static final double PESO_CUADRO_XML    = 0.3;
     
     private static final int X_CUADRO_RESTO      = 6;
     private static final int Y_CUADRO_RESTO      = 0;
     private static final int ANCHO_CUADRO_RESTO  = 5;
     private static final int ALTO_CUADRO_RESTO   = 8;
-    private static final double PESO_CUADRO_RESTO= 0.4;
+    private static final double PESO_CUADRO_RESTO= 0.3;
     
     private static final int X_CUADRO_BOTONERA      = 11;
     private static final int Y_CUADRO_BOTONERA      = 0;
@@ -74,7 +73,7 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final int Y_CUADRO_INFORMES      = 9;
     private static final int ANCHO_CUADRO_INFORMES  = 13;
     private static final int ALTO_CUADRO_INFORMES   = 4;
-    private static final double PESO_CUADRO_INFORMES= 0.2;
+    private static final double PESO_CUADRO_INFORMES= 0.3;
     
     private static final String ACCION_VALIDAR_DTD = "Validar DTD";
     private static final String ACCION_VALIDAR_ESQUEMA = "Validar esquema";
@@ -155,6 +154,7 @@ public class Interfaz implements ActionListener, MouseListener{
         txtXML=new JTextArea();
         txtXML.addMouseListener(this);
         txtXML.setWrapStyleWord(true);
+        JScrollPane scrollXML=new JScrollPane(txtXML);
         GridBagConstraints constraintsCuadroXML=new GridBagConstraints();
         constraintsCuadroXML.gridx=Interfaz.X_CUADRO_XML;
         constraintsCuadroXML.gridy=Interfaz.Y_CUADRO_XML;
@@ -165,12 +165,13 @@ public class Interfaz implements ActionListener, MouseListener{
         constraintsCuadroXML.weighty=0.8;
         constraintsCuadroXML.insets=new Insets(10, 10, 10, 10);
         txtXML.setText("Hola mundo");
-        panel.add(txtXML, constraintsCuadroXML);
+        panel.add(scrollXML, constraintsCuadroXML);
         
         
         txtResto=new JTextArea();
         txtResto.addMouseListener(this);
         txtResto.setWrapStyleWord(true);
+        JScrollPane scrollResto=new JScrollPane(txtResto);
         GridBagConstraints constraintsCuadroResto=new GridBagConstraints();
         constraintsCuadroResto.gridx=Interfaz.X_CUADRO_RESTO;
         constraintsCuadroResto.gridy=Interfaz.Y_CUADRO_RESTO;
@@ -181,7 +182,7 @@ public class Interfaz implements ActionListener, MouseListener{
         constraintsCuadroResto.weighty=0.8;
         constraintsCuadroResto.insets=new Insets(10, 10, 10, 10);
         txtResto.setText("Soy la DTD");
-        panel.add(txtResto, constraintsCuadroResto);
+        panel.add(scrollResto, constraintsCuadroResto);
         
         //Añadimos la botonera de control XML, que es bastante compleja
         //de ahi que lo metamos en un metodo separado
@@ -199,6 +200,7 @@ public class Interfaz implements ActionListener, MouseListener{
         
         
         txtInformes=new JTextArea();
+        JScrollPane scrollInformes=new JScrollPane(txtInformes);
         GridBagConstraints constraintsCuadroInformes=new GridBagConstraints();
         
         constraintsCuadroInformes.gridx=Interfaz.X_CUADRO_INFORMES;
@@ -210,7 +212,7 @@ public class Interfaz implements ActionListener, MouseListener{
         constraintsCuadroInformes.weighty=0.2;
         constraintsCuadroInformes.insets=new Insets(10, 10, 10, 10);
         txtInformes.setText("Resultados");
-        panel.add(txtInformes, constraintsCuadroInformes);
+        panel.add(scrollInformes, constraintsCuadroInformes);
         
     }
     
@@ -415,16 +417,16 @@ public class Interfaz implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         this.txtInformes.setText("");
-        if (e.getActionCommand()==Interfaz.ACCION_VALIDAR_DTD){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_VALIDAR_DTD == null : e.getActionCommand().equals(Interfaz.ACCION_VALIDAR_DTD)){
             this.validarConDTD();
         }
-        if (e.getActionCommand()==Interfaz.ACCION_VALIDAR_ESQUEMA){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_VALIDAR_ESQUEMA == null : e.getActionCommand().equals(Interfaz.ACCION_VALIDAR_ESQUEMA)){
             this.validarConEsquema();
         }
-        if (e.getActionCommand()==Interfaz.ACCION_EVALUAR_XPATH){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_EVALUAR_XPATH)){
             System.out.println("XPath");
         }
-        if (e.getActionCommand()==Interfaz.ACCION_EJECUTAR_XQUERY){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJECUTAR_XQUERY == null : e.getActionCommand().equals(Interfaz.ACCION_EJECUTAR_XQUERY)){
             String xquery=txtResto.getText();
             String xml=txtXML.getText();
             try {
@@ -436,10 +438,19 @@ public class Interfaz implements ActionListener, MouseListener{
                 txtInformes.setText(ex.toString());
             }
         }
-        if (e.getActionCommand()==Interfaz.ACCION_TRANSFORMAR_XSLT){
-            System.out.println("XSLT");
+        if (e.getActionCommand() == null ? Interfaz.ACCION_TRANSFORMAR_XSLT == null : e.getActionCommand().equals(Interfaz.ACCION_TRANSFORMAR_XSLT)){
+            try {
+                String xml          =   txtXML.getText();
+                String xslt         =   txtResto.getText();
+                String resultado    =   ProcesadorXML.transformarConXSLT(xslt, xml);
+                String resultadoEmbellecido;
+                resultadoEmbellecido=ProcesadorXML.tabularXML(xml);
+                txtInformes.setText(resultadoEmbellecido);
+            } catch (TransformerException ex) {
+                txtInformes.setText(ex.toString());
+            }
         }        
-        if (e.getActionCommand()==Interfaz.ACCION_CAMBIAR_FUENTE){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE)){
             this.cambiarFuenteCuadrosTexto();
         }
     }
@@ -451,11 +462,16 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                //i.txtXML.setText(ProcesadorXML.getXMLEjemploSchema());
-                i.txtXML.setText(ProcesadorXML.getXMLAlumnosParaXQuery());
-                i.txtResto.setText("");
+                i.cargarEjemploXSLT();
             }
         });
+    }
+    
+    public void cargarEjemploXSLT(){
+        String xmlEjemploInventario     =   ProcesadorXML.getXMLEjemploInventario();
+        String xsltEjemploInventario    =   ProcesadorXML.getXSLTEjemploInventario();
+        txtXML.setText(xmlEjemploInventario);
+        txtResto.setText(xsltEjemploInventario);
     }
 
     @Override

@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -149,8 +150,17 @@ public class ProcesadorXML {
         return esValido;
     }
     
-    public static String transformarConXSLT(String xslt, String xml){
-        String resultado="";
+    public static String transformarConXSLT(String xslt, String xml) throws TransformerConfigurationException, TransformerException{
+        TransformerFactory factory  =       TransformerFactory.newInstance();
+        Source sourceXSLT           = new   StreamSource(new StringReader(xslt));
+        Transformer transformer     =       factory.newTransformer(sourceXSLT);
+        Source text                 = new   StreamSource(new StringReader(xml));
+        StringWriter writerResultado= new   StringWriter();
+        
+        transformer.transform(text, new StreamResult(writerResultado));
+        
+        String resultado                   =       writerResultado.toString();
+        
         return resultado;
     }
     
@@ -159,6 +169,7 @@ public class ProcesadorXML {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
         //initialize StreamResult with File object to save to file
         StreamResult result = new StreamResult(new StringWriter());
         Source source = new StreamSource(new StringReader(xmlOriginal));
@@ -278,6 +289,57 @@ public class ProcesadorXML {
             "        <descripcion>Teclado</descripcion>\n" +
             "    </articulo>\n" +
             "</listaproductos>";
+        return ejemplo;
+    }
+    public static String getXMLEjemploInventario(){
+        String ejemplo="<inventario>\n" +
+            "    <producto codigo=\"P1\">\n" +
+            "        <peso unidad=\"kg\">10</peso>\n" +
+            "        <nombre>Ordenador</nombre>\n" +
+            "        <lugar edificio=\"B\">\n" +
+            "            <aula>10</aula>\n" +
+            "        </lugar>\n" +
+            "    </producto>\n" +
+            "    <producto codigo=\"P2\">\n" +
+            "        <peso unidad='g'>500</peso>\n" +
+            "        <nombre>Switch</nombre>\n" +
+            "        <lugar edificio=\"A\">\n" +
+            "            <aula>6</aula>\n" +
+            "        </lugar>\n" +
+            "    </producto>\n" +
+            "</inventario>";
+        return ejemplo;
+    }
+    public static String getXSLTEjemploInventario(){
+        String ejemplo="<xsl:stylesheet\n" +
+            " xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n" +
+            "<xsl:template match=\"/\">\n" +
+            "    <inventario>\n" +
+            "    <xsl:for-each select=\"inventario/producto\">\n" +
+            "        <xsl:if test=\"lugar/@edificio='B'\">\n" +
+            "            <producto>\n" +
+            "                <peso>\n" +
+            "                    <xsl:value-of select=\"peso\"/>\n" +
+            "                </peso>\n" +
+            "                <nombre>\n" +
+            "                    <xsl:value-of select=\"nombre\"/>\n" +
+            "                </nombre>\n" +
+            "                <lugar>\n" +
+            "                    <xsl:attribute name=\"edificio\">\n" +
+            "                        <xsl:value-of\n" +
+            "                            select=\"lugar/@edificio\"/>\n" +
+            "                    </xsl:attribute>\n" +
+            "                    <aula>\n" +
+            "                        <xsl:value-of\n" +
+            "                            select=\"lugar/aula\"/>\n" +
+            "                    </aula>\n" +
+            "                </lugar>\n" +
+            "            </producto>\n" +
+            "        </xsl:if>\n" +
+            "    </xsl:for-each>\n" +
+            "    </inventario>\n" +
+            "</xsl:template>\n" +
+            "</xsl:stylesheet>";
         return ejemplo;
     }
     public static String getSchemaEjemplo(){
