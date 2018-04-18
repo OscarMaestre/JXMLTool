@@ -1,4 +1,2 @@
-for $a in doc("datos.xml")//alumnos/alumno
-where $a/@cod union $a/../../notas/nota/@alum
-return
-<alumno>{ data($a/apenom) }</alumno>
+for $a in doc('datos.xml')/datos/proyectos/proyecto, $b in doc('datos.xml')/datos/suministros/suministra where $a/@numproyecto = $b/numproyecto and $b/cantidad < 900 return 
+<resultado>{data($a/nombreproyecto)}, {data($b/cantidad)}</resultado>

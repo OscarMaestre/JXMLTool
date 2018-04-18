@@ -308,7 +308,7 @@ public class Interfaz implements ActionListener, MouseListener{
         //Create and set up the window.
         JFrame frame = new JFrame("JXMLTool");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         crearInterfaz(frame.getContentPane());
         crearMenus(frame);
         vincularEventosMenus();
@@ -462,11 +462,15 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                i.cargarEjemploXSLT();
+                i.cargarEjemploProveedoresPartes();
             }
         });
     }
-    
+    public void cargarEjemploProveedoresPartes(){
+        String xmlProveedores           =   ProcesadorXML.getProveedoresPartes();
+        txtXML.setText(xmlProveedores);
+        txtResto.setText("");
+    }
     public void cargarEjemploXSLT(){
         String xmlEjemploInventario     =   ProcesadorXML.getXMLEjemploInventario();
         String xsltEjemploInventario    =   ProcesadorXML.getXSLTEjemploInventario();

@@ -52,7 +52,7 @@ public class ProcesadorXML {
                     NOMBRE_ARCHIVO_DTD+"."+SUFIJO_ARCHIVO_DTD;
     private static final String FICHERO_XML_CON_DTD=
             "fichero_resultado_con.dtd.xml";
-    private static final String FICHERO_DATOS_PARA_XQUERY="clase.xml";
+    private static final String FICHERO_DATOS_PARA_XQUERY="datos.xml";
     private static final String FICHERO_CONSULTA_XQUERY="consulta.xq";
     /**
      * Analiza una cadena XML para ver si es un documento
@@ -222,7 +222,246 @@ public class ProcesadorXML {
         return resultado;
     }
     
-    
+    public static String getProveedoresPartes(){
+        String xml="<datos>\n" +
+            "    <proveedores>\n" +
+            "        <proveedor numprov=\"v1\">\n" +
+            "            <nombreprov>Smith</nombreprov>\n" +
+            "            <estado>20</estado>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </proveedor>\n" +
+            "        <proveedor numprov=\"v2\">\n" +
+            "            <nombreprov>Jones</nombreprov>\n" +
+            "            <estado>10</estado>\n" +
+            "            <ciudad>Paris</ciudad>\n" +
+            "        </proveedor>\n" +
+            "        <proveedor numprov=\"v3\">\n" +
+            "            <nombreprov>Blake</nombreprov>\n" +
+            "            <estado>30</estado>\n" +
+            "            <ciudad>Paris</ciudad>\n" +
+            "        </proveedor>\n" +
+            "        <proveedor numprov=\"v4\">\n" +
+            "            <nombreprov>Clarke</nombreprov>\n" +
+            "            <estado>20</estado>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </proveedor>\n" +
+            "        <proveedor numprov=\"v5\">\n" +
+            "            <nombreprov>Adams</nombreprov>\n" +
+            "            <estado>30</estado>\n" +
+            "            <ciudad>Atenas</ciudad>\n" +
+            "        </proveedor>       \n" +
+            "    </proveedores>\n" +
+            "    <partes>\n" +
+            "        <parte numparte=\"p1\">\n" +
+            "            <nombreparte>Tuerca</nombreparte>\n" +
+            "            <color>Rojo</color>\n" +
+            "            <peso>12</peso>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </parte>\n" +
+            "        <parte numparte=\"p2\">\n" +
+            "            <nombreparte>Perno</nombreparte>\n" +
+            "            <color>Verde</color>\n" +
+            "            <peso>17</peso>\n" +
+            "            <ciudad>Paris</ciudad>\n" +
+            "        </parte>\n" +
+            "        <parte numparte=\"p3\">\n" +
+            "            <nombreparte>Tornillo</nombreparte>\n" +
+            "            <color>Azul</color>\n" +
+            "            <peso>17</peso>\n" +
+            "            <ciudad>Roma</ciudad>\n" +
+            "        </parte>\n" +
+            "        <parte numparte=\"p4\">\n" +
+            "            <nombreparte>Tornillo</nombreparte>\n" +
+            "            <color>Rojo</color>\n" +
+            "            <peso>14</peso>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </parte>\n" +
+            "        <parte numparte=\"p5\">\n" +
+            "            <nombreparte>Leva</nombreparte>\n" +
+            "            <color>Azul</color>\n" +
+            "            <peso>12</peso>\n" +
+            "            <ciudad>Paris</ciudad>\n" +
+            "        </parte>\n" +
+            "        <parte numparte=\"p6\">\n" +
+            "            <nombreparte>Engranaje</nombreparte>\n" +
+            "            <color>Rojo</color>\n" +
+            "            <peso>19</peso>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </parte>\n" +
+            "    </partes>\n" +
+            "    <proyectos>\n" +
+            "        <proyecto numproyecto=\"y1\">\n" +
+            "            <nombreproyecto>Clasificador</nombreproyecto>\n" +
+            "            <ciudad>Paris</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y2\">\n" +
+            "            <nombreproyecto>Monitor</nombreproyecto>\n" +
+            "            <ciudad>Roma</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y3\">\n" +
+            "            <nombreproyecto>OCR</nombreproyecto>\n" +
+            "            <ciudad>Atenas</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y4\">\n" +
+            "            <nombreproyecto>Consola</nombreproyecto>\n" +
+            "            <ciudad>Atenas</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y5\">\n" +
+            "            <nombreproyecto>RAID</nombreproyecto>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y6\">\n" +
+            "            <nombreproyecto>EDS</nombreproyecto>\n" +
+            "            <ciudad>Oslo</ciudad>\n" +
+            "        </proyecto>\n" +
+            "        <proyecto numproyecto=\"y7\">\n" +
+            "            <nombreproyecto>Cinta</nombreproyecto>\n" +
+            "            <ciudad>Londres</ciudad>\n" +
+            "        </proyecto>\n" +
+            "    </proyectos>\n" +
+            "    <suministros>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v1</numprov>\n" +
+            "            <numparte>p1</numparte>\n" +
+            "            <numproyecto>y1</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v1</numprov>\n" +
+            "            <numparte>p1</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>700</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y1</numproyecto>\n" +
+            "            <cantidad>400</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y2</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y3</numproyecto>\n" +
+            "            <cantidad>300</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>500</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y5</numproyecto>\n" +
+            "            <cantidad>600</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y6</numproyecto>\n" +
+            "            <cantidad>400</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y7</numproyecto>\n" +
+            "            <cantidad>600</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v2</numprov>\n" +
+            "            <numparte>p5</numparte>\n" +
+            "            <numproyecto>y2</numproyecto>\n" +
+            "            <cantidad>100</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v3</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y1</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v3</numprov>\n" +
+            "            <numparte>p4</numparte>\n" +
+            "            <numproyecto>y2</numproyecto>\n" +
+            "            <cantidad>500</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v4</numprov>\n" +
+            "            <numparte>p6</numparte>\n" +
+            "            <numproyecto>y3</numproyecto>\n" +
+            "            <cantidad>300</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v4</numprov>\n" +
+            "            <numparte>p6</numparte>\n" +
+            "            <numproyecto>y7</numproyecto>\n" +
+            "            <cantidad>300</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p2</numparte>\n" +
+            "            <numproyecto>y2</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p2</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>100</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p5</numparte>\n" +
+            "            <numproyecto>y5</numproyecto>\n" +
+            "            <cantidad>500</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p6</numparte>\n" +
+            "            <numproyecto>y2</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p1</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>100</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p3</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>200</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p4</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>800</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p5</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>400</cantidad>\n" +
+            "        </suministra>\n" +
+            "        <suministra>\n" +
+            "            <numprov>v5</numprov>\n" +
+            "            <numparte>p6</numparte>\n" +
+            "            <numproyecto>y4</numproyecto>\n" +
+            "            <cantidad>500</cantidad>\n" +
+            "        </suministra>\n" +
+            "    </suministros>\n" +
+            "</datos>";
+        return xml;
+    }
     public static String getXMLejemploDTD(){
         String ejemplo="<pedido>\n" +
         "    <tractor>\n" +
