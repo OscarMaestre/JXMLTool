@@ -48,7 +48,12 @@ public class Interfaz implements ActionListener, MouseListener{
     public javax.swing.JMenu menuEdicion;
     public javax.swing.JMenuItem menuPegar;
     public javax.swing.JMenuItem menuSalir;
-    
+    private javax.swing.JMenuItem menuEjemploAlumnos;
+    private javax.swing.JMenuItem menuEjemploBiblioteca;
+    private javax.swing.JMenuItem menuEjemploInventario;
+    private javax.swing.JMenuItem menuEjemploPedido;
+    private javax.swing.JMenuItem menuEjemploProveedoresPartes;
+    private javax.swing.JMenu menuEjemplos;
     
     private static final int X_CUADRO_XML      = 0;
     private static final int Y_CUADRO_XML      = 0;
@@ -83,6 +88,15 @@ public class Interfaz implements ActionListener, MouseListener{
     
     
     private static final String ACCION_CAMBIAR_FUENTE = "Cambiar fuente";
+    private static final String ACCION_EJEMPLO_PROVEEDORES_PARTES = 
+            "BD Proveedores y partes";
+    private static final String ACCION_EJEMPLO_INVENTARIO = 
+            "Inventario";
+    private static final String ACCION_EJEMPLO_ALUMNOS = "Alumnos";
+    private static final String ACCION_EJEMPLO_PEDIDO = "Pedido";
+    private static final String ACCION_EJEMPLO_BIBLIOTECA = "Biblioteca";
+    
+    
     
     
     private static int DESTACAR_LINEA_ACTUAL    = 0;
@@ -106,7 +120,12 @@ public class Interfaz implements ActionListener, MouseListener{
         menuPegar = new javax.swing.JMenuItem();
         menuCambiarFuente = new javax.swing.JMenuItem();
 
-
+        menuEjemplos = new javax.swing.JMenu();
+        menuEjemploInventario = new javax.swing.JMenuItem();
+        menuEjemploProveedoresPartes = new javax.swing.JMenuItem();
+        menuEjemploBiblioteca = new javax.swing.JMenuItem();
+        menuEjemploAlumnos = new javax.swing.JMenuItem();
+        menuEjemploPedido = new javax.swing.JMenuItem();
         
 
         barraMenus.setName(""); // NOI18N
@@ -143,6 +162,34 @@ public class Interfaz implements ActionListener, MouseListener{
 
         barraMenus.add(menuEdicion);
 
+        
+        menuEjemplos.setText("Ejemplos");
+        menuEjemplos.setName("menuEjemplos"); // NOI18N
+
+        menuEjemploInventario.setText("Inventario");
+        menuEjemploInventario.setName("menuEjemploInventario"); // NOI18N
+        menuEjemplos.add(menuEjemploInventario);
+
+        menuEjemploProveedoresPartes.setText("Proveedores/partes");
+        menuEjemploProveedoresPartes.setName("menuEjemploProveedoresPartes"); // NOI18N
+        menuEjemplos.add(menuEjemploProveedoresPartes);
+
+        menuEjemploBiblioteca.setText("Biblioteca");
+        menuEjemploBiblioteca.setName("menuEjemploBiblioteca"); // NOI18N
+        menuEjemplos.add(menuEjemploBiblioteca);
+
+        menuEjemploAlumnos.setText("Alumnos");
+        menuEjemplos.add(menuEjemploAlumnos);
+
+        menuEjemploPedido.setText("Pedido");
+        menuEjemplos.add(menuEjemploPedido);
+
+        menuEjemploBiblioteca.setText("Biblioteca");
+        menuEjemploBiblioteca.setName("menuEjemploBiblioteca"); // NOI18N
+        menuEjemplos.add(menuEjemploBiblioteca);
+
+        barraMenus.add(menuEjemplos);
+        
         ventana.setJMenuBar(barraMenus);
         
     }
@@ -164,7 +211,7 @@ public class Interfaz implements ActionListener, MouseListener{
         constraintsCuadroXML.weightx=Interfaz.PESO_CUADRO_XML;
         constraintsCuadroXML.weighty=0.8;
         constraintsCuadroXML.insets=new Insets(10, 10, 10, 10);
-        txtXML.setText("Hola mundo");
+        txtXML.setText("");
         panel.add(scrollXML, constraintsCuadroXML);
         
         
@@ -181,7 +228,7 @@ public class Interfaz implements ActionListener, MouseListener{
         constraintsCuadroResto.weightx=Interfaz.PESO_CUADRO_RESTO;
         constraintsCuadroResto.weighty=0.8;
         constraintsCuadroResto.insets=new Insets(10, 10, 10, 10);
-        txtResto.setText("Soy la DTD");
+        txtResto.setText("");
         panel.add(scrollResto, constraintsCuadroResto);
         
         //Añadimos la botonera de control XML, que es bastante compleja
@@ -298,6 +345,21 @@ public class Interfaz implements ActionListener, MouseListener{
     public void vincularEventosMenus(){
         this.menuCambiarFuente.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE);
         this.menuCambiarFuente.addActionListener(this);
+        
+        this.menuEjemploProveedoresPartes.setActionCommand(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES);
+        this.menuEjemploProveedoresPartes.addActionListener(this);
+        
+        this.menuEjemploInventario.setActionCommand(Interfaz.ACCION_EJEMPLO_INVENTARIO);
+        this.menuEjemploInventario.addActionListener(this);
+        
+        this.menuEjemploAlumnos.setActionCommand(Interfaz.ACCION_EJEMPLO_ALUMNOS);
+        this.menuEjemploAlumnos.addActionListener(this);
+        
+        this.menuEjemploPedido.setActionCommand(Interfaz.ACCION_EJEMPLO_PEDIDO);
+        this.menuEjemploPedido.addActionListener(this);
+        
+        this.menuEjemploBiblioteca.setActionCommand(Interfaz.ACCION_EJEMPLO_BIBLIOTECA);
+        this.menuEjemploBiblioteca.addActionListener(this);
     }
     /**
      * Create the GUI and show it.  For thread safety,
@@ -453,6 +515,29 @@ public class Interfaz implements ActionListener, MouseListener{
         if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE)){
             this.cambiarFuenteCuadrosTexto();
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES)){
+            String xmlProveedores=ProcesadorXML.getProveedoresPartes();
+            this.txtXML.setText(xmlProveedores);
+        }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_INVENTARIO == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_INVENTARIO)){
+            String xmlInventario=ProcesadorXML.getXMLEjemploInventario();
+            this.txtXML.setText(xmlInventario);
+        }
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_ALUMNOS == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_ALUMNOS)){
+            String xmlAlumnos=ProcesadorXML.getXMLAlumnosParaXQuery();
+            this.txtXML.setText(xmlAlumnos);
+        }
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_PEDIDO == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_PEDIDO)){
+            String xmlPedido=ProcesadorXML.getXMLejemploDTD();
+            this.txtXML.setText(xmlPedido);
+        }
+        if (e.getActionCommand()==Interfaz.ACCION_EJEMPLO_BIBLIOTECA){
+            String xmlBiblioteca=ProcesadorXML.getXMLEjemploBiblioteca();
+            this.txtXML.setText(xmlBiblioteca);
+        }
+        
     }
     
     public static void main(String[] args) {
@@ -462,7 +547,7 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                i.cargarEjemploProveedoresPartes();
+                //i.cargarEjemploXSLT();
             }
         });
     }
@@ -534,6 +619,7 @@ public class Interfaz implements ActionListener, MouseListener{
           Font fuenteElegida=dialog.getSelectedFont();
           txtXML.setFont(fuenteElegida);
           txtResto.setFont(fuenteElegida);
+          txtInformes.setFont(fuenteElegida);
         }       
     }
 

@@ -624,7 +624,19 @@ public class ProcesadorXML {
             "</xsd:schema>";
         return ejemplo;
     }
-    
+    public static String getXMLEjemploBiblioteca(){
+        String xml="<catalogo>\n" +
+            "        <libro>\n" +
+            "                <title>Don Quijote</title>\n" +
+            "                <autor>Cervantes</autor>\n" +
+            "        </libro>\n" +
+            "        <libro>\n" +
+            "                <title>Poeta en Nueva York</title>\n" +
+            "                <autor>Lorca</autor>\n" +
+            "        </libro>\n" +
+            "</catalogo>";
+        return xml;
+    }
     public static String getXMLAlumnosParaXQuery(){
         String resultado="<clase xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"clase.xsd\">\n" +
             "    <alumnos>\n" +

@@ -23,7 +23,7 @@
         <proveedor numprov="v5">
             <nombreprov>Adams</nombreprov>
             <estado>30</estado>
-            <ciudad>Londres</ciudad>
+            <ciudad>Atenas</ciudad>
         </proveedor>       
     </proveedores>
     <partes>
@@ -35,7 +35,7 @@
         </parte>
         <parte numparte="p2">
             <nombreparte>Perno</nombreparte>
-            <color>Rojo</color>
+            <color>Verde</color>
             <peso>17</peso>
             <ciudad>Paris</ciudad>
         </parte>
@@ -91,7 +91,7 @@
         </proyecto>
         <proyecto numproyecto="y7">
             <nombreproyecto>Cinta</nombreproyecto>
-            <ciudad>Roma</ciudad>
+            <ciudad>Londres</ciudad>
         </proyecto>
     </proyectos>
     <suministros>
@@ -111,7 +111,7 @@
             <numprov>v2</numprov>
             <numparte>p3</numparte>
             <numproyecto>y1</numproyecto>
-            <cantidad>100</cantidad>
+            <cantidad>400</cantidad>
         </suministra>
         <suministra>
             <numprov>v2</numprov>
@@ -153,7 +153,7 @@
             <numprov>v2</numprov>
             <numparte>p5</numparte>
             <numproyecto>y2</numproyecto>
-            <cantidad>700</cantidad>
+            <cantidad>100</cantidad>
         </suministra>
         <suministra>
             <numprov>v3</numprov>
@@ -177,37 +177,37 @@
             <numprov>v4</numprov>
             <numparte>p6</numparte>
             <numproyecto>y7</numproyecto>
-            <cantidad>100</cantidad>
+            <cantidad>300</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>
             <numparte>p2</numparte>
             <numproyecto>y2</numproyecto>
-            <cantidad>100</cantidad>
+            <cantidad>200</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>
             <numparte>p2</numparte>
             <numproyecto>y4</numproyecto>
-            <cantidad>600</cantidad>
+            <cantidad>100</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>
             <numparte>p5</numparte>
             <numproyecto>y5</numproyecto>
-            <cantidad>100</cantidad>
+            <cantidad>500</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>
             <numparte>p6</numparte>
             <numproyecto>y2</numproyecto>
-            <cantidad>800</cantidad>
+            <cantidad>200</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>
             <numparte>p1</numparte>
             <numproyecto>y4</numproyecto>
-            <cantidad>600</cantidad>
+            <cantidad>100</cantidad>
         </suministra>
         <suministra>
             <numprov>v5</numprov>

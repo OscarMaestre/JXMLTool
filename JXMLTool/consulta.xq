@@ -1,2 +1,0 @@
-for $a in doc('datos.xml')/datos/proyectos/proyecto, $b in doc('datos.xml')/datos/suministros/suministra where $a/@numproyecto = $b/numproyecto and $b/cantidad < 800 return 
-<resultado>{data($a/nombreproyecto)}, {data($b/cantidad)}</resultado>

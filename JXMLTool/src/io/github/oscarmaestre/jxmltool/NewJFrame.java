@@ -30,6 +30,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         barraMenus = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuCargarIzq = new javax.swing.JMenuItem();
@@ -40,12 +41,20 @@ public class NewJFrame extends javax.swing.JFrame {
         menuCopiar = new javax.swing.JMenuItem();
         menuPegar = new javax.swing.JMenuItem();
         menuCambiarFuente = new javax.swing.JMenuItem();
+        menuEjemplos = new javax.swing.JMenu();
+        menuEjemploInventario = new javax.swing.JMenuItem();
+        menuEjemploProveedoresPartes = new javax.swing.JMenuItem();
+        menuEjemploBiblioteca = new javax.swing.JMenuItem();
+        menuEjemploAlumnos = new javax.swing.JMenuItem();
+        menuEjemploPedido = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
 
         jMenuItem7.setText("jMenuItem7");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +91,29 @@ public class NewJFrame extends javax.swing.JFrame {
         menuEdicion.add(menuCambiarFuente);
 
         barraMenus.add(menuEdicion);
+
+        menuEjemplos.setText("Ejemplos");
+        menuEjemplos.setName("menuEjemplos"); // NOI18N
+
+        menuEjemploInventario.setText("Inventario");
+        menuEjemploInventario.setName("menuEjemploInventario"); // NOI18N
+        menuEjemplos.add(menuEjemploInventario);
+
+        menuEjemploProveedoresPartes.setText("Proveedores/partes");
+        menuEjemploProveedoresPartes.setName("menuEjemploProveedoresPartes"); // NOI18N
+        menuEjemplos.add(menuEjemploProveedoresPartes);
+
+        menuEjemploBiblioteca.setText("Biblioteca");
+        menuEjemploBiblioteca.setName("menuEjemploBiblioteca"); // NOI18N
+        menuEjemplos.add(menuEjemploBiblioteca);
+
+        menuEjemploAlumnos.setText("Alumnos");
+        menuEjemplos.add(menuEjemploAlumnos);
+
+        menuEjemploPedido.setText("Pedido");
+        menuEjemplos.add(menuEjemploPedido);
+
+        barraMenus.add(menuEjemplos);
 
         setJMenuBar(barraMenus);
 
@@ -138,6 +170,7 @@ public class NewJFrame extends javax.swing.JFrame {
     public javax.swing.JMenuBar barraMenus;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
     public javax.swing.JMenu menuArchivo;
     public javax.swing.JMenuItem menuCambiarFuente;
@@ -146,6 +179,12 @@ public class NewJFrame extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuCopiar;
     public javax.swing.JMenuItem menuCortar;
     public javax.swing.JMenu menuEdicion;
+    private javax.swing.JMenuItem menuEjemploAlumnos;
+    private javax.swing.JMenuItem menuEjemploBiblioteca;
+    private javax.swing.JMenuItem menuEjemploInventario;
+    private javax.swing.JMenuItem menuEjemploPedido;
+    private javax.swing.JMenuItem menuEjemploProveedoresPartes;
+    private javax.swing.JMenu menuEjemplos;
     public javax.swing.JMenuItem menuPegar;
     public javax.swing.JMenuItem menuSalir;
     // End of variables declaration//GEN-END:variables
