@@ -16,10 +16,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,6 +39,9 @@ import org.xml.sax.SAXParseException;
 
 
 public class Interfaz implements ActionListener, MouseListener{
+    
+    JFrame framePrincipal;
+            
     public JTextArea txtXML, txtResto, txtInformes;
     
     public javax.swing.JMenuBar barraMenus;
@@ -80,11 +87,14 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final int ALTO_CUADRO_INFORMES   = 4;
     private static final double PESO_CUADRO_INFORMES= 0.3;
     
-    private static final String ACCION_VALIDAR_DTD = "Validar DTD";
-    private static final String ACCION_VALIDAR_ESQUEMA = "Validar esquema";
-    private static final String ACCION_EVALUAR_XPATH = "Evaluar XPATH";
-    private static final String ACCION_TRANSFORMAR_XSLT="Transformar XSLT";
-    private static final String ACCION_EJECUTAR_XQUERY = "Ejecutar XQuery";
+    private static final String ACCION_CARGAR_IZQUIERDA = "Cargar izquierda";
+    private static final String ACCION_CARGAR_DERECHA   = "Cargar derecha";
+    
+    private static final String ACCION_VALIDAR_DTD      = "Validar DTD";
+    private static final String ACCION_VALIDAR_ESQUEMA  = "Validar esquema";
+    private static final String ACCION_EVALUAR_XPATH    = "Evaluar XPATH";
+    private static final String ACCION_TRANSFORMAR_XSLT ="Transformar XSLT";
+    private static final String ACCION_EJECUTAR_XQUERY  = "Ejecutar XQuery";
     
     
     private static final String ACCION_CAMBIAR_FUENTE = "Cambiar fuente";
@@ -360,6 +370,12 @@ public class Interfaz implements ActionListener, MouseListener{
         
         this.menuEjemploBiblioteca.setActionCommand(Interfaz.ACCION_EJEMPLO_BIBLIOTECA);
         this.menuEjemploBiblioteca.addActionListener(this);
+        
+        this.menuCargarDer.setActionCommand(Interfaz.ACCION_CARGAR_DERECHA);
+        this.menuCargarDer.addActionListener(this);
+        
+        this.menuCargarIzq.setActionCommand(Interfaz.ACCION_CARGAR_IZQUIERDA);
+        this.menuCargarIzq.addActionListener(this);
     }
     /**
      * Create the GUI and show it.  For thread safety,
@@ -368,16 +384,16 @@ public class Interfaz implements ActionListener, MouseListener{
      */
     private void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("JXMLTool");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        crearInterfaz(frame.getContentPane());
-        crearMenus(frame);
+        framePrincipal = new JFrame("JXMLTool");
+        framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        framePrincipal.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        crearInterfaz(framePrincipal.getContentPane());
+        crearMenus(framePrincipal);
         vincularEventosMenus();
         //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-        frame.setMinimumSize(new Dimension(700, 450));
+        framePrincipal.pack();
+        framePrincipal.setVisible(true);
+        framePrincipal.setMinimumSize(new Dimension(700, 450));
     }
 
     
@@ -476,6 +492,18 @@ public class Interfaz implements ActionListener, MouseListener{
         /* Si llegamos aqui todo ha ido bien*/
         txtInformes.setText("El esquema valida correctamente el XML");
     }
+    
+    private void cargarFichero(JTextArea txt) throws IOException{
+        JFileChooser dlgAbrirFichero=new JFileChooser();
+        int codigoExito;
+        codigoExito = dlgAbrirFichero.showOpenDialog(this.framePrincipal);
+        if (codigoExito == JFileChooser.APPROVE_OPTION){
+            String path=dlgAbrirFichero.getSelectedFile().getAbsolutePath();
+            byte[] encoded = Files.readAllBytes(Paths.get(path));
+            String contenidoFichero=new String(encoded, StandardCharsets.UTF_8);
+            txt.setText(contenidoFichero);
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         this.txtInformes.setText("");
@@ -533,10 +561,25 @@ public class Interfaz implements ActionListener, MouseListener{
             String xmlPedido=ProcesadorXML.getXMLejemploDTD();
             this.txtXML.setText(xmlPedido);
         }
-        if (e.getActionCommand()==Interfaz.ACCION_EJEMPLO_BIBLIOTECA){
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_BIBLIOTECA == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_BIBLIOTECA)){
             String xmlBiblioteca=ProcesadorXML.getXMLEjemploBiblioteca();
             this.txtXML.setText(xmlBiblioteca);
         }
+        if (e.getActionCommand() == null ? Interfaz.ACCION_CARGAR_IZQUIERDA == null : e.getActionCommand().equals(Interfaz.ACCION_CARGAR_IZQUIERDA)){
+            try {
+                this.cargarFichero(txtXML);
+            } catch (IOException ex) {
+                txtInformes.setText("No se ha podido leer el fichero");
+            }
+        }
+        if (e.getActionCommand() == null ? Interfaz.ACCION_CARGAR_DERECHA == null : e.getActionCommand().equals(Interfaz.ACCION_CARGAR_DERECHA)){
+            try {
+                this.cargarFichero(txtResto);
+            } catch (IOException ex) {
+                txtInformes.setText("No se ha podido leer el fichero");
+            }
+        }
+        
         
     }
     
@@ -565,7 +608,6 @@ public class Interfaz implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Raton pulsado");
          if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtResto){
             try {
                 String data = (String) Toolkit.getDefaultToolkit() 
