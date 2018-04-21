@@ -1613,35 +1613,66 @@ public class GeneradorEjercicios {
         xml = vectorFunciones.get(pos).get();
         return xml;
     }
-    public static void main(String[] args) throws XQException, IOException{
-        ArrayList<Pregunta> preguntas;
-        preguntas = getPaquetePreguntas();
+    public static String getEnunciado(){
+        String enunciado="Dada la base de datos XML que se proporciona a continuación y los enunciados\n" +
+        " indicados, crear las consultas XQuery que obtienen los datos pedidos. \n" +
+        "Observar que a modo de pista se proporcionan los resultados que deberían \n" +
+        "devolver dichas consultas (y un resultado podría ser el conjunto vacío).\n" +
+        "\n" +
+        "La distribución de la puntuación se detalla a continuación:\n" +
+        "\n" +
+        "- Consulta 1: 0,5 puntos.\n" +
+        "- Consulta 2: 0,5 puntos.\n" +
+        "- Consulta 3: 1 punto.\n" +
+        "- Consulta 4: 1 punto.\n" +
+        "- Consulta 5: 1,5 puntos.\n" +
+        "- Consulta 6: 1,5 puntos.\n" +
+        "- Consulta 7: 2 punto.\n" +
+        "- Consulta 8: 2 punto.\n" +
+        "\n" +
+        "Por favor, almacena las consultas en ficheros de texto o ficheros Word, pero  \n" +
+        "no las insertes en forma de imagen dentro de un PDF, gracias :)\n" +
+        "";
+        return enunciado;
+    }
+    public static String getEjercicio() throws XQException, IOException{
+        String textoEjercicio="";
+        textoEjercicio += getEnunciado();
+        
+        
+        textoEjercicio +="\n\n=================Fichero de base de datos XML==========\n\n";
         String xml=GeneradorEjercicios.getProveedoresPartesXMLAzar();
-        System.out.println("Para la base de datos siguiente:");
-        System.out.println();
-        System.out.println(xml);
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Resolver las siguientes preguntas. Obsérvese que");
-        System.out.println("a modo de pista se proporciona cual debe ser el resultado ");
-        System.out.println("de la consulta.");
-        int numConsulta=0;
+        textoEjercicio += xml;
+        textoEjercicio +="\n\n=================Fin del fichero de base de datos XML==========\n\n";
+        
+        int numConsulta=1;
+        ArrayList<Pregunta> preguntas = getPaquetePreguntas();
         for (Pregunta p : preguntas){
             String textoPregunta=p.pregunta;
             String xqueryPregunta=p.xquery;
-            System.out.println("Consulta "+numConsulta);
+            textoEjercicio += "Consulta "+numConsulta +"\n";
             numConsulta++;
-            System.out.println(textoPregunta);
+            textoEjercicio +=textoPregunta+"\n";
             //System.out.println(xqueryPregunta);
-            System.out.println("");
+            
             String resultadoDeseable;
             resultadoDeseable=ProcesadorXML.ejecutarXQuery(xqueryPregunta, xml);
-            System.out.println("Resultado que se debería obtener:");
-            System.out.println("----------------------------------------------");
-            System.out.println(resultadoDeseable);
-            System.out.println("----------------------------------------------");
-            System.out.println("");
-            
+            textoEjercicio +="Resultado que se debería obtener:\n";
+            textoEjercicio +="----------------------------------------------\n";
+            textoEjercicio +=resultadoDeseable;
+            textoEjercicio +="\n----------------------------------------------\n\n";       
         }
+        
+        return textoEjercicio;
+    }
+    public static void main(String[] args) throws XQException, IOException{
+        final int MAX_FICHEROS_EJERCICIOS=5;
+        for (int i=1; i<MAX_FICHEROS_EJERCICIOS; i++){
+            String nombreFichero="Ejercicios_XQuery_"+i+".txt";
+            String textoFichero=getEjercicio();
+            ProcesadorXML.volcarCadenaEnFichero(nombreFichero, textoFichero);
+        }
+        System.out.println( getEjercicio() );        
+    
     }
 }
