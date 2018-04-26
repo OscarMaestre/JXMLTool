@@ -157,6 +157,7 @@ public class ProcesadorXML {
         Source text                 = new   StreamSource(new StringReader(xml));
         StringWriter writerResultado= new   StringWriter();
         
+        transformer.setOutputProperty("{http://xml.apache.org/xalan}omit-meta-tag", "yes"); 
         transformer.setOutputProperty(OutputKeys.METHOD, "xml");
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.transform(text, new StreamResult(writerResultado));

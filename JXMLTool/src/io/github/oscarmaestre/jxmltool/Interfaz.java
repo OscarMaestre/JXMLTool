@@ -590,7 +590,7 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                //i.cargarEjemploXSLT();
+                i.cargarEjemploXSLT();
             }
         });
     }

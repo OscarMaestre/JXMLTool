@@ -1,0 +1,1 @@
+for $d in doc("datos.xml")/datos/proveedores/proveedor return $d
