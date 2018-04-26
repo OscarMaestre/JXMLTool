@@ -534,7 +534,7 @@ public class Interfaz implements ActionListener, MouseListener{
                 String xslt         =   txtResto.getText();
                 String resultado    =   ProcesadorXML.transformarConXSLT(xslt, xml);
                 String resultadoEmbellecido;
-                resultadoEmbellecido=ProcesadorXML.tabularXML(xml);
+                resultadoEmbellecido=ProcesadorXML.tabularXML(resultado);
                 txtInformes.setText(resultadoEmbellecido);
             } catch (TransformerException ex) {
                 txtInformes.setText(ex.toString());
