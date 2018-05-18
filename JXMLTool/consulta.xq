@@ -1,1 +1,1 @@
-for $d in doc("datos.xml")/datos/proveedores/proveedor return $d
+count(doc("datos.xml")/datos/suministros/suministra[cantidad>400])

@@ -1,0 +1,15 @@
+<!ELEMENT sucursales (pedido+,zona_exposicion,zona_gestion)>
+<!ELEMENT zona_exposicion (#PCDATA)>
+<!ELEMENT zona_gestion (#PCDATA)>
+<!ELEMENT pedido (nombre_trabajador,direccion_envio+,fecha,observaciones?,plazo_revision,articulo+)>
+<!ATTLIST pedido codigo CDATA #REQUIRED>
+<!ELEMENT nombre_trabajador (#PCDATA)>
+<!ELEMENT direccion_envio (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT plazo_revision (#PCDATA)>
+<!ELEMENT articulo (unidades,precio,observaciones?,plazo)>
+<!ATTLIST articulo codigo CDATA #REQUIRED>
+<!ELEMENT unidades (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+<!ELEMENT observaciones (#PCDATA)>
+<!ELEMENT plazo (#PCDATA)>

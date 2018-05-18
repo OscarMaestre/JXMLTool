@@ -41,6 +41,7 @@ import oracle.xml.xquery.OXQDataSource;
 import oracle.xml.xquery.OXQView;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -180,8 +181,17 @@ public class ProcesadorXML {
         String xmlString = result.getWriter().toString();
         return xmlString;
     }
-    public static String nodeListToString(NodeList nodos){
+    public static String nodeListToString(NodeList nodos) throws TransformerException{
         String resultado="";
+        for (int i=0; i<nodos.getLength(); i++){
+            Node elem = nodos.item(i);//Your Node
+            StringWriter buf = new StringWriter();
+            Transformer xform = TransformerFactory.newInstance().newTransformer();
+            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            xform.setOutputProperty(OutputKeys.INDENT, "yes");
+            xform.transform(new DOMSource(elem), new StreamResult(buf));
+            resultado+=buf.toString(); 
+        }
         return resultado;
     }
     public static NodeList evaluarXPath(String xpath, String xml) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException{
@@ -212,7 +222,7 @@ public class ProcesadorXML {
         XQPreparedExpression expr = con.prepareExpression(queryInput, ctx);
         queryInput.close();
         XQSequence result = expr.executeQuery();
-           
+        
         
         resultado = result.getSequenceAsString(null);
         

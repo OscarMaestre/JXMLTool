@@ -32,8 +32,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xquery.XQException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -504,6 +507,16 @@ public class Interfaz implements ActionListener, MouseListener{
             txt.setText(contenidoFichero);
         }
     }
+    
+    public String indentarXML(String xml){
+        String xmlIndentado="";
+        try {
+            xmlIndentado=ProcesadorXML.tabularXML(xml);
+        } catch (TransformerException ex) {
+            return xml;
+        }
+        return xmlIndentado;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         this.txtInformes.setText("");
@@ -514,13 +527,27 @@ public class Interfaz implements ActionListener, MouseListener{
             this.validarConEsquema();
         }
         if (e.getActionCommand() == null ? Interfaz.ACCION_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_EVALUAR_XPATH)){
-            System.out.println("XPath");
+            String xpath=txtResto.getText();
+            String xml=txtXML.getText();
+            
+            try {
+                txtInformes.setText("");
+                
+                NodeList resultados=ProcesadorXML.evaluarXPath(xpath, xml);
+                String xmlResultado=ProcesadorXML.nodeListToString(resultados);
+                
+                txtInformes.setText(xmlResultado);
+            } catch (Exception ex) {
+                txtInformes.setText(ex.toString());
+            }
+            
         }
         if (e.getActionCommand() == null ? Interfaz.ACCION_EJECUTAR_XQUERY == null : e.getActionCommand().equals(Interfaz.ACCION_EJECUTAR_XQUERY)){
             String xquery=txtResto.getText();
             String xml=txtXML.getText();
             try {
                 String resultado=ProcesadorXML.ejecutarXQuery(xquery, xml);
+                String resultadoIndentado=indentarXML(resultado);
                 txtInformes.setText(resultado);
             } catch (XQException ex) {
                 txtInformes.setText(ex.toString());
@@ -590,7 +617,7 @@ public class Interfaz implements ActionListener, MouseListener{
             public void run() {
                 Interfaz i=new Interfaz();
                 i.createAndShowGUI();
-                i.cargarEjemploXSLT();
+                //i.cargarEjemploXSLT();
             }
         });
     }
