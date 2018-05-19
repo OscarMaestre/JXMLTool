@@ -1,1 +1,3 @@
-count(doc("datos.xml")/datos/suministros/suministra[cantidad>400])
+for $p in doc("datos.xml")/inventario/producto
+return 
+<dato>{$p}</dato>

@@ -170,9 +170,10 @@ public class ProcesadorXML {
     
     
     public static String tabularXML(String xmlOriginal) throws TransformerException{
+        xmlOriginal=xmlOriginal.replaceAll(">(\\s)+", ">");
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
         //initialize StreamResult with File object to save to file
         StreamResult result = new StreamResult(new StringWriter());
@@ -190,7 +191,7 @@ public class ProcesadorXML {
             xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             xform.setOutputProperty(OutputKeys.INDENT, "yes");
             xform.transform(new DOMSource(elem), new StreamResult(buf));
-            resultado+=buf.toString(); 
+            resultado+=ProcesadorXML.tabularXML(buf.toString());
         }
         return resultado;
     }

@@ -105,4 +105,17 @@ public class PruebaProcesador {
         String resultado        =   ProcesadorXML.transformarConXSLT(xsltInventario, xmlInventario);
         System.out.println(resultado);
     }
+    
+    @Test
+    public void pruebaIndentacion() throws TransformerException{
+        String xml="<datos>            <dato>"
+                + "22</dato></datos>";
+        xml=xml.replaceAll(">(\\s)+", ">");
+        
+        String xmlTabulado=ProcesadorXML.tabularXML(xml);
+        System.out.println("----------------------------");
+        System.out.println(xmlTabulado);
+        System.out.println("----------------------------");
+        
+    }
 }

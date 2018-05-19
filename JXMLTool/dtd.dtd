@@ -1,15 +1,16 @@
-<!ELEMENT sucursales (pedido+,zona_exposicion,zona_gestion)>
-<!ELEMENT zona_exposicion (#PCDATA)>
-<!ELEMENT zona_gestion (#PCDATA)>
-<!ELEMENT pedido (nombre_trabajador,direccion_envio+,fecha,observaciones?,plazo_revision,articulo+)>
-<!ATTLIST pedido codigo CDATA #REQUIRED>
-<!ELEMENT nombre_trabajador (#PCDATA)>
-<!ELEMENT direccion_envio (#PCDATA)>
-<!ELEMENT fecha (#PCDATA)>
-<!ELEMENT plazo_revision (#PCDATA)>
-<!ELEMENT articulo (unidades,precio,observaciones?,plazo)>
-<!ATTLIST articulo codigo CDATA #REQUIRED>
-<!ELEMENT unidades (#PCDATA)>
-<!ELEMENT precio (#PCDATA)>
-<!ELEMENT observaciones (#PCDATA)>
-<!ELEMENT plazo (#PCDATA)>
+<!ELEMENT pedido     (tractor)+>
+<!ELEMENT tractor    (componente)+>
+<!ELEMENT componente (fechaentrega?, (fragil|nofragil),
+                      peso, numserie, kmmaximos?)>
+
+<!ELEMENT fechaentrega (dia?, mes, anio)>
+<!ELEMENT dia      (#PCDATA)>
+<!ELEMENT mes      (#PCDATA)>
+<!ELEMENT anio     (#PCDATA)>
+<!ELEMENT fragil   EMPTY>
+<!ELEMENT nofragil EMPTY >
+<!ELEMENT peso     (#PCDATA)>
+<!ATTLIST peso unidad CDATA #REQUIRED>
+<!ELEMENT numserie  (#PCDATA)>
+<!ELEMENT kmmaximos (#PCDATA)>
+<!ATTLIST componente nombrefabricante CDATA #REQUIRED>
