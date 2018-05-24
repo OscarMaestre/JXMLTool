@@ -34,6 +34,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xquery.XQException;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -45,8 +47,8 @@ public class Interfaz implements ActionListener, MouseListener{
     
     JFrame framePrincipal;
             
-    public JTextArea txtXML, txtResto, txtInformes;
-    
+    public JTextArea txtXMLAntiguo, txtRestoAntiguo, txtInformes;
+    public RSyntaxTextArea txtXML, txtResto;
     public javax.swing.JMenuBar barraMenus;
     
     public javax.swing.JMenu menuArchivo;
@@ -211,9 +213,12 @@ public class Interfaz implements ActionListener, MouseListener{
         panel.setLayout(gridbag);
         
         //Añadimos el cuadro para el XML
-        txtXML=new JTextArea();
+        txtXML=new RSyntaxTextArea();
+        txtXML.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
         txtXML.addMouseListener(this);
         txtXML.setWrapStyleWord(true);
+        
+        
         JScrollPane scrollXML=new JScrollPane(txtXML);
         GridBagConstraints constraintsCuadroXML=new GridBagConstraints();
         constraintsCuadroXML.gridx=Interfaz.X_CUADRO_XML;
@@ -228,7 +233,7 @@ public class Interfaz implements ActionListener, MouseListener{
         panel.add(scrollXML, constraintsCuadroXML);
         
         
-        txtResto=new JTextArea();
+        txtResto=new RSyntaxTextArea();
         txtResto.addMouseListener(this);
         txtResto.setWrapStyleWord(true);
         JScrollPane scrollResto=new JScrollPane(txtResto);
