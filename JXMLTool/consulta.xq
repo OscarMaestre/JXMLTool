@@ -1,3 +1,4 @@
-for $p in doc("datos.xml")/inventario/producto
-return 
-<dato>{$p}</dato>
+for $a in doc("datos.xml")//alumnos/alumno
+where $a/@cod union $a/../../notas/nota/@alum
+return
+<alumno>{ data($a/apenom) }</alumno>

@@ -39,6 +39,7 @@ import javax.xml.xquery.XQStaticContext;
 import oracle.xml.xquery.OXQConnection;
 import oracle.xml.xquery.OXQDataSource;
 import oracle.xml.xquery.OXQView;
+import org.w3c.dom.Attr;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -186,12 +187,22 @@ public class ProcesadorXML {
         String resultado="";
         for (int i=0; i<nodos.getLength(); i++){
             Node elem = nodos.item(i);//Your Node
-            StringWriter buf = new StringWriter();
-            Transformer xform = TransformerFactory.newInstance().newTransformer();
-            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-            xform.setOutputProperty(OutputKeys.INDENT, "yes");
-            xform.transform(new DOMSource(elem), new StreamResult(buf));
-            resultado+=ProcesadorXML.tabularXML(buf.toString());
+            if (elem.getNodeType()==Node.ELEMENT_NODE){
+                StringWriter buf = new StringWriter();
+                Transformer xform = TransformerFactory.newInstance().newTransformer();
+                xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+                xform.setOutputProperty(OutputKeys.INDENT, "yes");
+                xform.transform(new DOMSource(elem), new StreamResult(buf));
+                resultado+=ProcesadorXML.tabularXML(buf.toString());
+            }
+            if (elem.getNodeType()==Node.TEXT_NODE){
+                resultado+=elem.getTextContent();
+            }
+            if (elem.getNodeType()==Node.ATTRIBUTE_NODE){
+                Attr atributo=(Attr) elem; 
+                resultado+=atributo.getValue();
+           }
+            resultado+="\n";
         }
         return resultado;
     }

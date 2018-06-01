@@ -88,6 +88,15 @@ public class PruebaProcesador {
     }
     
     @Test
+    public void pruebaXPathConText() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException{
+        String xml=ProcesadorXML.getXMLEjemploInventario();
+        String expresion="/inventario/producto/peso/text()";
+        NodeList resultado=ProcesadorXML.evaluarXPath(expresion, xml);
+        //String xmlTabulado=ProcesadorXML.tabularXML(resultado);
+        System.out.println(resultado);
+    }
+    
+    @Test
     public void pruebaXQuerySimple() throws XQException, IOException{
         String xmlEjemplo=ProcesadorXML.getXMLAlumnosParaXQuery();
         String ejemploXQuery="for $a in doc(\"datos.xml\")//alumnos/alumno\n" +

@@ -540,7 +540,6 @@ public class Interfaz implements ActionListener, MouseListener{
                 
                 NodeList resultados=ProcesadorXML.evaluarXPath(xpath, xml);
                 String xmlResultado=ProcesadorXML.nodeListToString(resultados);
-                
                 txtInformes.setText(xmlResultado);
             } catch (Exception ex) {
                 txtInformes.setText(ex.toString());
@@ -621,8 +620,7 @@ public class Interfaz implements ActionListener, MouseListener{
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 Interfaz i=new Interfaz();
-                i.createAndShowGUI();
-                //i.cargarEjemploXSLT();
+                i.createAndShowGUI();                
             }
         });
     }
@@ -636,6 +634,7 @@ public class Interfaz implements ActionListener, MouseListener{
         String xsltEjemploInventario    =   ProcesadorXML.getXSLTEjemploInventario();
         txtXML.setText(xmlEjemploInventario);
         txtResto.setText(xsltEjemploInventario);
+        txtResto.setText("/inventario/producto/peso/text()");
     }
 
     @Override
