@@ -666,19 +666,19 @@ public class ProcesadorXML {
         String resultado="<clase xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"clase.xsd\">\n" +
             "    <alumnos>\n" +
             "        <alumno cod=\"n12344345\">\n" +
-            "            <apenom>Alcalde García, Luis</apenom>\n" +
+            "            <apenom>Alcalde Garcia, Luis</apenom>\n" +
             "            <direc>Las Manos, 24</direc>\n" +
             "            <pobla>Lamadrid</pobla>\n" +
             "            <telef>942756645</telef>\n" +
             "        </alumno>\n" +
             "        <alumno cod=\"n43483437\">\n" +
-            "            <apenom>González Pérez, Olga</apenom>\n" +
+            "            <apenom>Gonzalez Perez, Olga</apenom>\n" +
             "            <direc>Miraflor 28 - 3A</direc>\n" +
             "            <pobla>Torres</pobla>\n" +
             "            <telef>942564355</telef>\n" +
             "        </alumno>\n" +
             "        <alumno cod=\"n88234942\">\n" +
-            "            <apenom>Fernández Díaz, María</apenom>\n" +
+            "            <apenom>Fernandez Diaz, Maria</apenom>\n" +
             "            <direc>Luisa Fernanda 53</direc>\n" +
             "            <pobla>Miera</pobla>\n" +
             "            <telef>942346945</telef>\n" +
