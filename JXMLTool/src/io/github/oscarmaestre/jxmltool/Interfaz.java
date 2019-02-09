@@ -53,6 +53,7 @@ public class Interfaz implements ActionListener, MouseListener{
     
     public javax.swing.JMenu menuArchivo;
     public javax.swing.JMenuItem menuCambiarFuente;
+    public javax.swing.JMenuItem menuCambiarFuenteGrande;
     public javax.swing.JMenuItem menuCargarDer;
     public javax.swing.JMenuItem menuCargarIzq;
     public javax.swing.JMenuItem menuCopiar;
@@ -102,7 +103,8 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final String ACCION_EJECUTAR_XQUERY  = "Ejecutar XQuery";
     
     
-    private static final String ACCION_CAMBIAR_FUENTE = "Cambiar fuente";
+    private static final String ACCION_CAMBIAR_FUENTE           = "Cambiar fuente";
+    private static final String ACCION_CAMBIAR_FUENTE_GRANDE    = "Cambiar fuente grande";
     private static final String ACCION_EJEMPLO_PROVEEDORES_PARTES = 
             "BD Proveedores y partes";
     private static final String ACCION_EJEMPLO_INVENTARIO = 
@@ -124,16 +126,17 @@ public class Interfaz implements ActionListener, MouseListener{
         
          
 
-        barraMenus = new javax.swing.JMenuBar();
-        menuArchivo = new javax.swing.JMenu();
-        menuCargarIzq = new javax.swing.JMenuItem();
-        menuCargarDer = new javax.swing.JMenuItem();
-        menuSalir = new javax.swing.JMenuItem();
-        menuEdicion = new javax.swing.JMenu();
-        menuCortar = new javax.swing.JMenuItem();
-        menuCopiar = new javax.swing.JMenuItem();
-        menuPegar = new javax.swing.JMenuItem();
-        menuCambiarFuente = new javax.swing.JMenuItem();
+        barraMenus              = new javax.swing.JMenuBar();
+        menuArchivo             = new javax.swing.JMenu();
+        menuCargarIzq           = new javax.swing.JMenuItem();
+        menuCargarDer           = new javax.swing.JMenuItem();
+        menuSalir               = new javax.swing.JMenuItem();
+        menuEdicion             = new javax.swing.JMenu();
+        menuCortar              = new javax.swing.JMenuItem();
+        menuCopiar              = new javax.swing.JMenuItem();
+        menuPegar               = new javax.swing.JMenuItem();
+        menuCambiarFuente       = new javax.swing.JMenuItem();
+        menuCambiarFuenteGrande = new javax.swing.JMenuItem();
 
         menuEjemplos = new javax.swing.JMenu();
         menuEjemploInventario = new javax.swing.JMenuItem();
@@ -173,7 +176,9 @@ public class Interfaz implements ActionListener, MouseListener{
         menuEdicion.add(menuPegar);
 
         menuCambiarFuente.setText("Cambiar fuente");
+        menuCambiarFuenteGrande.setText("Cambiar fuente grande");
         menuEdicion.add(menuCambiarFuente);
+        menuEdicion.add(menuCambiarFuenteGrande);
 
         barraMenus.add(menuEdicion);
 
@@ -363,6 +368,9 @@ public class Interfaz implements ActionListener, MouseListener{
     public void vincularEventosMenus(){
         this.menuCambiarFuente.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE);
         this.menuCambiarFuente.addActionListener(this);
+        
+        this.menuCambiarFuenteGrande.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE);
+        this.menuCambiarFuenteGrande.addActionListener(this);
         
         this.menuEjemploProveedoresPartes.setActionCommand(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES);
         this.menuEjemploProveedoresPartes.addActionListener(this);
@@ -573,6 +581,16 @@ public class Interfaz implements ActionListener, MouseListener{
         }        
         if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE)){
             this.cambiarFuenteCuadrosTexto();
+        }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE)){
+            System.out.println("Cambiando a fuente grande");
+            Font fuente=this.txtXML.getFont();
+            Font nuevaFuente=fuente.deriveFont(24.0f).deriveFont(Font.BOLD);
+            this.txtXML.setFont(nuevaFuente);
+            this.txtResto.setFont(nuevaFuente);
+            this.txtInformes.setFont(nuevaFuente);
+            
         }
         
         if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES)){

@@ -41,6 +41,7 @@ public class NewJFrame extends javax.swing.JFrame {
         menuCopiar = new javax.swing.JMenuItem();
         menuPegar = new javax.swing.JMenuItem();
         menuCambiarFuente = new javax.swing.JMenuItem();
+        menuCambiarFuenteGrande = new javax.swing.JMenuItem();
         menuEjemplos = new javax.swing.JMenu();
         menuEjemploInventario = new javax.swing.JMenuItem();
         menuEjemploProveedoresPartes = new javax.swing.JMenuItem();
@@ -89,6 +90,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
         menuCambiarFuente.setText("Cambiar fuente");
         menuEdicion.add(menuCambiarFuente);
+
+        menuCambiarFuenteGrande.setText("Fuente grande");
+        menuEdicion.add(menuCambiarFuenteGrande);
 
         barraMenus.add(menuEdicion);
 
@@ -174,6 +178,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     public javax.swing.JMenu menuArchivo;
     public javax.swing.JMenuItem menuCambiarFuente;
+    public javax.swing.JMenuItem menuCambiarFuenteGrande;
     public javax.swing.JMenuItem menuCargarDer;
     public javax.swing.JMenuItem menuCargarIzq;
     public javax.swing.JMenuItem menuCopiar;
