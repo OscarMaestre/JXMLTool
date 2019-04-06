@@ -15,7 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -410,6 +413,7 @@ public class Interfaz implements ActionListener, MouseListener{
         framePrincipal.pack();
         framePrincipal.setVisible(true);
         framePrincipal.setMinimumSize(new Dimension(700, 450));
+        this.cargarEjemploXSLT();
     }
 
     
@@ -574,7 +578,9 @@ public class Interfaz implements ActionListener, MouseListener{
                 String resultado    =   ProcesadorXML.transformarConXSLT(xslt, xml);
                 String resultadoEmbellecido;
                 resultadoEmbellecido=ProcesadorXML.tabularXML(resultado);
-                txtInformes.setText(resultadoEmbellecido);
+                
+                this.almacenarResultadoTransformacion(resultadoEmbellecido);
+                txtInformes.append(resultadoEmbellecido);
             } catch (TransformerException ex) {
                 txtInformes.setText(ex.toString());
             }
@@ -712,6 +718,29 @@ public class Interfaz implements ActionListener, MouseListener{
           txtResto.setFont(fuenteElegida);
           txtInformes.setFont(fuenteElegida);
         }       
+    }
+
+    private void almacenarResultadoTransformacion(String resultado) {
+        String nombreFicheroResultado;
+        if (resultado.contains("<html>")){
+            nombreFicheroResultado="transformacion.html";
+        } else {
+            nombreFicheroResultado="transformacion.xml";
+        }
+        try {
+            File fichero=new File(nombreFicheroResultado);
+            
+            FileWriter fw=new FileWriter(fichero);
+            fw.write(resultado);
+            fw.flush();
+            fw.close();
+            
+            txtInformes.append("\n\n Se ha almacenado el resultado de esta transformacion en:"+
+                    fichero.getAbsolutePath()+"\n\n");
+        } catch (IOException ex) {
+            txtInformes.append("\n\n No se pudo almacenar el resultado de esta transformacion en:"+
+                    nombreFicheroResultado);
+        }
     }
 
 }
