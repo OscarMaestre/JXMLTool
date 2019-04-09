@@ -1,17 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE inventario SYSTEM "dtd.dtd">
-<inventario>
-    <producto codigo="P1">
-        <peso unidad="kg">10</peso>
-        <nombre>Ordenador</nombre>
-        <lugar edificio="B">
-            <aula>10</aula>
-        </lugar>
-    </producto>
-    <producto codigo="P2">
-        <peso unidad="g">500</peso>
-        <nombre>Switch</nombre>
-        <lugar edificio="A">
-            <aula>6</aula>
-        </lugar>
-    </producto>
-</inventario>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE pedido SYSTEM "dtd.dtd">
+<pedido>
+    <tractor>
+        <componente nombrefabricante="Ebro">
+            <fechaentrega>
+                <mes>2018</mes> <anio>2018</anio>
+            </fechaentrega>
+            <fragil/>
+            <peso unidad="kg">12</peso>
+            <numserie>00A</numserie>
+        </componente>
+        <componente nombrefabricante="Avia">
+            <fechaentrega>
+                <dia>12</dia><mes>1</mes><anio>2019</anio>
+            </fechaentrega>
+            <nofragil/>
+            <peso unidad="g">1450</peso>
+            <numserie>00D</numserie>
+            <kmmaximos>25000</kmmaximos>
+        </componente>
+    </tractor>
+    <tractor>
+        <componente nombrefabricante="John Deere">
+            <fragil/>
+            <peso unidad="g">770</peso>
+            <numserie>43Z</numserie>
+        </componente>
+    </tractor>
+</pedido>

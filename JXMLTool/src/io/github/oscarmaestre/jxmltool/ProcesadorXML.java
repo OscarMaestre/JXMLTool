@@ -663,50 +663,51 @@ public class ProcesadorXML {
         return xml;
     }
     public static String getXMLAlumnosParaXQuery(){
-        String resultado="<clase xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"clase.xsd\">\n" +
-            "    <alumnos>\n" +
-            "        <alumno cod=\"n12344345\">\n" +
-            "            <apenom>Alcalde Garcia, Luis</apenom>\n" +
-            "            <direc>Las Manos, 24</direc>\n" +
-            "            <pobla>Lamadrid</pobla>\n" +
-            "            <telef>942756645</telef>\n" +
-            "        </alumno>\n" +
-            "        <alumno cod=\"n43483437\">\n" +
-            "            <apenom>Gonzalez Perez, Olga</apenom>\n" +
-            "            <direc>Miraflor 28 - 3A</direc>\n" +
-            "            <pobla>Torres</pobla>\n" +
-            "            <telef>942564355</telef>\n" +
-            "        </alumno>\n" +
-            "        <alumno cod=\"n88234942\">\n" +
-            "            <apenom>Fernandez Diaz, Maria</apenom>\n" +
-            "            <direc>Luisa Fernanda 53</direc>\n" +
-            "            <pobla>Miera</pobla>\n" +
-            "            <telef>942346945</telef>\n" +
-            "        </alumno>\n" +
-            "    </alumnos>\n" +
-            "    <asignaturas>\n" +
-            "        <asignatura cod=\"a1\" nombre=\"FH\"/>\n" +
-            "        <asignatura cod=\"a2\" nombre=\"FOL\"/>\n" +
-            "        <asignatura cod=\"a3\" nombre=\"ISO\"/>\n" +
-            "        <asignatura cod=\"a4\" nombre=\"LMSGI\"/>\n" +
-            "        <asignatura cod=\"a5\" nombre=\"PAR\"/>\n" +
-            "        <asignatura cod=\"a6\" nombre=\"GBD\"/>\n" +
-            "    </asignaturas>\n" +
-            "    <notas>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a1\" calificacion=\"4\"/>\n" +
-            "        <nota alum=\"n43483437\" asig=\"a1\" calificacion=\"5\"/>\n" +
-            "        <nota alum=\"n88234942\" asig=\"a1\" calificacion=\"8\"/>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a2\" calificacion=\"10\"/>\n" +
-            "        <nota alum=\"n43483437\" asig=\"a2\" calificacion=\"7\"/>\n" +
-            "        <nota alum=\"n88234942\" asig=\"a2\" calificacion=\"6\"/>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a3\" calificacion=\"3\"/>\n" +
-            "        <nota alum=\"n88234942\" asig=\"a3\" calificacion=\"6\"/>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a4\" calificacion=\"8\"/>\n" +
-            "        <nota alum=\"n43483437\" asig=\"a4\" calificacion=\"4\"/>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a5\" calificacion=\"6\"/>\n" +
-            "        <nota alum=\"n12344345\" asig=\"a6\" calificacion=\"9\"/>\n" +
-            "    </notas>\n" +
-            "</clase>";
+        String resultado="<modulo xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+"    xs:noNamespaceSchemaLocation=\"modulo.xsd\">\n" +
+"    <alumnos>\n" +
+"        <alumno cod=\"n12344345\">\n" +
+"            <apenom>Alcalde García, Luis</apenom>\n" +
+"            <direc>Las Manos, 24</direc>\n" +
+"            <pobla>Lamadrid</pobla>\n" +
+"            <telef>942756645</telef>\n" +
+"        </alumno>\n" +
+"        <alumno cod=\"n43483437\">\n" +
+"            <apenom>González Pérez, Olga</apenom>\n" +
+"            <direc>Miraflor 28 - 3A</direc>\n" +
+"            <pobla>Torres</pobla>\n" +
+"            <telef>942564355</telef>\n" +
+"        </alumno>\n" +
+"        <alumno cod=\"n88234942\">\n" +
+"            <apenom>Fernández Díaz, María</apenom>\n" +
+"            <direc>Luisa Fernanda 53</direc>\n" +
+"            <pobla>Miera</pobla>\n" +
+"            <telef>942346945</telef>\n" +
+"        </alumno>   \n" +
+"    </alumnos>\n" +
+"    <asignaturas>\n" +
+"        <nombre cod=\"a1\">FH</nombre>\n" +
+"        <nombre cod=\"a2\">FOL</nombre>\n" +
+"        <nombre cod=\"a3\">ISO</nombre>\n" +
+"        <nombre cod=\"a4\">LMSGI</nombre>\n" +
+"        <nombre cod=\"a5\">PAR</nombre>\n" +
+"        <nombre cod=\"a6\">GBD</nombre>\n" +
+"    </asignaturas>\n" +
+"    <notas>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a1\">4</calificacion>\n" +
+"        <calificacion alum=\"n43483437\" asig=\"a1\">5</calificacion>\n" +
+"        <calificacion alum=\"n88234942\" asig=\"a1\">8</calificacion>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a2\">10</calificacion>\n" +
+"        <calificacion alum=\"n43483437\" asig=\"a2\">7</calificacion>\n" +
+"        <calificacion alum=\"n88234942\" asig=\"a2\">6</calificacion>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a3\">3</calificacion>\n" +
+"        <calificacion alum=\"n88234942\" asig=\"a3\">6</calificacion>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a4\">8</calificacion>\n" +
+"        <calificacion alum=\"n43483437\" asig=\"a4\">4</calificacion>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a5\">6</calificacion>\n" +
+"        <calificacion alum=\"n12344345\" asig=\"a6\">9</calificacion>\n" +
+"    </notas>\n" +
+"</modulo>";
         return resultado;
     }
 }
