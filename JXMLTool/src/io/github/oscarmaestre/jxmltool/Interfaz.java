@@ -413,7 +413,7 @@ public class Interfaz implements ActionListener, MouseListener{
         framePrincipal.pack();
         framePrincipal.setVisible(true);
         framePrincipal.setMinimumSize(new Dimension(700, 450));
-        this.cargarEjemploXSLT();
+        
     }
 
     
