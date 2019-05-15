@@ -566,7 +566,13 @@ public class Interfaz implements ActionListener, MouseListener{
                 String resultadoIndentado=indentarXML(resultado);
                 txtInformes.setText(resultado);
             } catch (XQException ex) {
-                txtInformes.setText(ex.toString());
+                String textoExcepcion=ex.toString();
+                String ayudaExtra="Parece que has usado un nombre de archivo que no está en el directorio actual.\n"
+                        + "Recuerda que el archivo por defecto se llama 'datos.xml' así que quizá quieras usar algo como doc(\"datos.xml\")//proveedor";
+                if (textoExcepcion.contains("java.io.FileNotFoundException")){
+                    textoExcepcion=textoExcepcion +"\n\n"+ayudaExtra;
+                }
+                txtInformes.setText(textoExcepcion);
             } catch (IOException ex) {
                 txtInformes.setText(ex.toString());
             }
@@ -590,7 +596,7 @@ public class Interfaz implements ActionListener, MouseListener{
         }
         
         if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE)){
-            System.out.println("Cambiando a fuente grande");
+            //System.out.println("Cambiando a fuente grande");
             Font fuente=this.txtXML.getFont();
             Font nuevaFuente=fuente.deriveFont(24.0f).deriveFont(Font.BOLD);
             this.txtXML.setFont(nuevaFuente);
@@ -658,9 +664,15 @@ public class Interfaz implements ActionListener, MouseListener{
         String xsltEjemploInventario    =   ProcesadorXML.getXSLTEjemploInventario();
         txtXML.setText(xmlEjemploInventario);
         txtResto.setText(xsltEjemploInventario);
-        txtResto.setText("/inventario/producto/peso/text()");
+        //txtResto.setText("/inventario/producto/peso/text()");
     }
-
+    
+    public void cargarEjemploXQuery(){
+        String XMLProveedor     =           ProcesadorXML.getProveedoresPartes();
+        String xquery           =           ProcesadorXML.getXQueryProveedores();
+        txtXML.setText(XMLProveedor);
+        txtResto.setText(xquery);
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
          if (SwingUtilities.isRightMouseButton(e) && e.getSource() == txtResto){

@@ -11,6 +11,8 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -214,6 +216,26 @@ public class ProcesadorXML {
         return resultado;
     }
     
+    
+    public static String tabularResultadoXQuery(String xml){
+        try {
+            String resultado=ProcesadorXML.tabularXML(xml);
+            return resultado;
+        } catch (TransformerException ex) {
+            try {
+                String marcaInicio="<abcxyzabc>";
+                String marcaFin=marcaInicio.replace("<", "</");
+                String nuevoXML=marcaInicio+xml+ marcaFin;
+                String resultado=ProcesadorXML.tabularXML(nuevoXML);
+                resultado=resultado.replace(marcaFin, "");
+                resultado=resultado.replace(marcaInicio, "");
+                return resultado;
+            } catch (TransformerException ex1) {
+                
+            }
+        }
+        return xml;
+    }
     public static String ejecutarXQuery(String xquery, String xml) throws XQException, IOException{
         String resultado="";
         
@@ -243,7 +265,7 @@ public class ProcesadorXML {
         con.close();
         
         
-        
+        resultado=ProcesadorXML.tabularResultadoXQuery(resultado);
         return resultado;
     }
     
@@ -709,5 +731,10 @@ public class ProcesadorXML {
 "    </notas>\n" +
 "</modulo>";
         return resultado;
+    }
+    
+    public static String getXQueryProveedores(){
+        String xquery="doc('datos.xml')//proveedor";
+        return xquery;
     }
 }

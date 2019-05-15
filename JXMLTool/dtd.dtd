@@ -1,16 +1,16 @@
-<!ELEMENT pedido     (tractor)+>
-<!ELEMENT tractor    (componente)+>
-<!ELEMENT componente (fechaentrega?, (fragil|nofragil),
-                      peso, numserie, kmmaximos?)>
+    <!ELEMENT distanza (pedido_almacen+, articulos+)>
 
-<!ELEMENT fechaentrega (dia?, mes, anio)>
-<!ELEMENT dia      (#PCDATA)>
-<!ELEMENT mes      (#PCDATA)>
-<!ELEMENT anio     (#PCDATA)>
-<!ELEMENT fragil   EMPTY>
-<!ELEMENT nofragil EMPTY >
-<!ELEMENT peso     (#PCDATA)>
-<!ATTLIST peso unidad CDATA #REQUIRED>
-<!ELEMENT numserie  (#PCDATA)>
-<!ELEMENT kmmaximos (#PCDATA)>
-<!ATTLIST componente nombrefabricante CDATA #REQUIRED>
+        <!ELEMENT pedido_almacen (cod_pedido, trabajador, fecha, observaciones, plazo_revision)>
+        <!ELEMENT cod_pedido (#PCDATA)>
+        <!ELEMENT trabajador (#PCDATA)>
+        <!ELEMENT fecha (#PCDATA)>
+        <!ELEMENT observaciones EMPTY>
+            <!ATTLIST observaciones estado (urgente|incompleto) #IMPLIED>
+        <!ELEMENT plazo_revision (#PCDATA)>
+
+
+        <!ELEMENT articulos (cod_articulo, unidades, precio_unidad, observaciones_articulo)>
+        <!ELEMENT cod_articulo (#PCDATA)>
+        <!ELEMENT unidades (#PCDATA)>
+        <!ELEMENT precio_unidad (#PCDATA)>
+        <!ELEMENT observaciones_articulo (#PCDATA)>

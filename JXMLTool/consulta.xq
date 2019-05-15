@@ -1,2 +1,1 @@
-for $p in doc("datos.xml")//proveedor
-return $p
+doc("ddd.xml")//proveedor
