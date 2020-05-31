@@ -97,7 +97,7 @@ public class ProcesadorXML {
         
     }
     
-    private static String leerFichero(String ruta) {
+    public static String leerFichero(String ruta) {
         try {
             byte[] encoded = Files.readAllBytes(Paths.get(ruta));
             String contenidoFichero=new String(encoded, "UTF-8");

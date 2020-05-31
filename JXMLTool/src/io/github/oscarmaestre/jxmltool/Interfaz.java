@@ -122,6 +122,12 @@ public class Interfaz implements ActionListener, MouseListener{
     private static int DESTACAR_LINEA_ACTUAL    = 0;
     private static int DESTACAR_LINEA_ANTERIOR  = 1;
     
+    
+    public static final int OK                                  = 0;
+    public static final int ERROR_XMLSCHEMA_NO_VALIDA_XML       =-1;
+    public static final int ERROR_FALLO_TRANSFORMACION_XSLT     =-2;
+    
+    
     public Interfaz(){
         
     }
@@ -639,14 +645,74 @@ public class Interfaz implements ActionListener, MouseListener{
             } catch (IOException ex) {
                 txtInformes.setText("No se ha podido leer el fichero");
             }
+        }        
+    } /*Fin del método*/
+    
+    public static String getDatosXML(String rutaFichero){
+        if (rutaFichero.equals("proveedores")){
+            return ProcesadorXML.getProveedoresPartes();
+        }
+        if (rutaFichero.equals("alumnos")){
+            return ProcesadorXML.getXMLAlumnosParaXQuery();
+        }
+        return ProcesadorXML.leerFichero(rutaFichero);
+        
+    }
+    public static void imprimirOpciones(){
+        System.out.println("Uso: JXMLTool.jar (dtd|xsd|xsl|xq) <datos.xml> <fichero>");
+    }
+    
+    public static void XMLSchemaValidaXML(String xmlSchema, String xmlDatos){
+        try {
+            boolean esValido = ProcesadorXML.XMLSchemaValidaXML(xmlSchema, xmlDatos);
+            if (esValido){
+                System.exit(OK);
+            } else {
+                System.exit(Interfaz.ERROR_XMLSCHEMA_NO_VALIDA_XML);
+            }
+        } catch (SAXException ex) {
+            System.exit(Interfaz.ERROR_XMLSCHEMA_NO_VALIDA_XML);
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(Interfaz.ERROR_XMLSCHEMA_NO_VALIDA_XML);
+        }
+        System.exit(OK);
+    }
+    public static void procesarArgumentos(String[] argumentos){
+        if (argumentos.length!=3) {
+            imprimirOpciones();
+            return;
+        }
+        String opcion           =   argumentos[0];
+        String ficheroDatosXML  =   argumentos[1];
+        String ficheroEjecutar  =   argumentos[2];
+        
+        /*Es posible que el fichero de datos sea alguno de los de ejemplo*/
+        String datosXML         =   getDatosXML(ficheroDatosXML);
+        String datosEjecutar    =   ProcesadorXML.leerFichero(ficheroEjecutar);
+        
+        if (opcion.equals("xsd")){
+            Interfaz.XMLSchemaValidaXML(datosEjecutar, datosXML);
         }
         
+        if (opcion.equals("xslt")){
+            try {
+                String resultado=ProcesadorXML.transformarConXSLT(datosEjecutar, datosXML);
+                System.out.println(resultado);
+                System.exit(Interfaz.OK);
+            } catch (TransformerException ex) {
+                System.exit(Interfaz.ERROR_FALLO_TRANSFORMACION_XSLT);
+            }
+        }
         
     }
     
     public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
+        if (args.length>0){
+            procesarArgumentos(args);
+            return;
+        }
+        
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 Interfaz i=new Interfaz();

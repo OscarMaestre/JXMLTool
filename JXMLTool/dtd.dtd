@@ -1,16 +1,51 @@
-    <!ELEMENT distanza (pedido_almacen+, articulos+)>
-
-        <!ELEMENT pedido_almacen (cod_pedido, trabajador, fecha, observaciones, plazo_revision)>
-        <!ELEMENT cod_pedido (#PCDATA)>
-        <!ELEMENT trabajador (#PCDATA)>
-        <!ELEMENT fecha (#PCDATA)>
-        <!ELEMENT observaciones EMPTY>
-            <!ATTLIST observaciones estado (urgente|incompleto) #IMPLIED>
-        <!ELEMENT plazo_revision (#PCDATA)>
-
-
-        <!ELEMENT articulos (cod_articulo, unidades, precio_unidad, observaciones_articulo)>
-        <!ELEMENT cod_articulo (#PCDATA)>
-        <!ELEMENT unidades (#PCDATA)>
-        <!ELEMENT precio_unidad (#PCDATA)>
-        <!ELEMENT observaciones_articulo (#PCDATA)>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> <!-- elemento raíz stylesheet -->
+    <xsl:output method="xhtml" encoding="UTF-8"/> <!-- indico que la salida va a ser un archivo xhtml -->
+    <xsl:template match="/notas"> <!-- indico el nodo al que le afecta la plantilla -->
+        <html>
+            <head>
+                <title>Ejercicio Tema 5 Dionisio Morales</title>
+            </head>
+            <body>
+                <h2>Calificaciones convocatoria junio</h2>
+                <table border="1">
+                    <tr>
+                        <!-- fusiono las dos primeras celdas con colspan -->
+                        <th colspan="3">Datos</th>
+                        <th colspan="3">Notas</th>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Tareas</th>
+                        <th>Cuestionarios</th>
+                        <th>Examen</th>
+                        <th>Final</th>
+                     </tr>
+                    <xsl:apply-templates select="./alumno"/> 
+                </table>
+            </body>     
+        </html>
+    </xsl:template>
+    <xsl:template match="//alumno">
+        <xsl:if test="./@convocatoria='Junio'"> <!-- pongo la condición -->
+            <tr>
+                <td><xsl:value-of select="nombre"/></td>
+                <td><xsl:value-of select="apellidos"/></td>
+                <td><xsl:value-of select="tareas"/></td>
+                <td><xsl:value-of select="cuestionarios"/></td>
+                <td><xsl:value-of select="examen"/></td>
+                <td>
+                    <xsl:choose> <!-- en el caso que se cumpla la condición --> 
+                        <!-- utilizo la entidad &gt mayor que -->
+                        <xsl:when test="final&gt;=9">Sobresaliente</xsl:when> 
+                        <xsl:when test="final&gt;=7">Notable</xsl:when>
+                        <xsl:when test="final&gt;=6">Bien</xsl:when>
+                        <xsl:when test="final&gt;=5">Suficiente</xsl:when>
+                        <xsl:otherwise>Suspenso</xsl:otherwise> <!-- en cualquier caso -->
+                    </xsl:choose> 
+                </td>
+            </tr>
+        </xsl:if>
+    </xsl:template>
+</xsl:stylesheet>

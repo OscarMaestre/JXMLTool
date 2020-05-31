@@ -1,16 +1,57 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE distanza SYSTEM "dtd.dtd">
-<distanza>
-    <pedido_almacen>
-        <cod_pedido>e1234567</cod_pedido>
-        <trabajador/>
-        <fecha>2018-05-18</fecha>
-        <observaciones estado="urgente"/>
-        <plazo_revision/>
-    </pedido_almacen>
-    <articulos>
-        <cod_articulo>BBM-222</cod_articulo>
-        <unidades/>
-        <precio_unidad>50</precio_unidad>
-        <observaciones_articulo/>
-    </articulos>
-</distanza>
+<?xml version="1.0" encoding="ISO-8859-1"?><?xml-stylesheet type="text/xsl" href="LMSGI05.xsl"?><!DOCTYPE notas SYSTEM "dtd.dtd">
+<notas>
+   <alumno convocatoria="Septiembre">
+      <nombre>Carlos</nombre>
+      <apellidos>Amaya Arozamena</apellidos>
+      <matricula>m019843</matricula>
+      <cuestionarios>8.0</cuestionarios>
+      <tareas>8.0</tareas>
+      <examen>6.0</examen>
+      <final>8.0</final>
+   </alumno>
+   <alumno convocatoria="Junio">
+      <nombre>Jose</nombre>
+      <apellidos>Muñoz Soto</apellidos>
+      <matricula>m019872</matricula>
+      <cuestionarios>7.0</cuestionarios>
+      <tareas>9.0</tareas>
+      <examen>7.0</examen>
+      <final>8.5</final>
+   </alumno>
+   <alumno convocatoria="Junio">
+      <nombre>Ana</nombre>
+      <apellidos>Martinez de la Fuente</apellidos>
+      <matricula>m097215</matricula>
+      <cuestionarios>8.0</cuestionarios>
+      <tareas>9.0</tareas>
+      <examen>9.0</examen>
+      <final>8.5</final>
+   </alumno>
+   <alumno convocatoria="Septiembre">
+      <nombre>Roberto</nombre>
+      <apellidos>Carrera Fernández</apellidos>
+      <matricula>m059312</matricula>
+      <cuestionarios>6.0</cuestionarios>
+      <tareas>7.0</tareas>
+      <examen>6.0</examen>
+      <final>6.5</final>
+   </alumno>
+   <alumno convocatoria="Septiembre">
+      <nombre>Concepción</nombre>
+      <apellidos>Lalinde Priego</apellidos>
+      <matricula>m034093</matricula>
+      <cuestionarios>4.0</cuestionarios>
+      <tareas>3.0</tareas>
+      <examen>2.0</examen>
+      <final>3.0</final>
+   </alumno>
+   <alumno convocatoria="Junio">
+      <nombre>Esther</nombre>
+      <apellidos>Pereda</apellidos>
+      <matricula>m938762</matricula>
+      <cuestionarios>2.0</cuestionarios>
+      <tareas>3.0</tareas>
+      <examen>2.0</examen>
+      <final>2.5</final>
+      </alumno>
+</notas>
