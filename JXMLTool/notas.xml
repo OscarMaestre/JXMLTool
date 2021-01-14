@@ -1,0 +1,43 @@
+<notas>
+    <alumnos>
+        <alumno cod="N12344345">
+            <apenom>Alcalde_Garcia,Luis</apenom>
+            <direc>LasManos,24</direc>
+            <pobla>Lamadrid</pobla>
+            <telef>942756645</telef>
+            <notas>
+                <nota asig="a1">4</nota>
+                <nota asig="a2">10</nota>
+                <nota asig="a3">3</nota>
+                <nota asig="a4">8</nota>
+                <nota asig="a5">6</nota>
+            </notas>
+        </alumno>
+        <alumno cod="N43483437">
+            <apenom>Gonzalez_Perez,Olga</apenom>
+            <direc>Miraflor,28-3A</direc>
+            <pobla>Torres</pobla>
+            <telef>942564355</telef>
+            <notas>
+                <nota asig="a1">2</nota>
+                <nota asig="a2">1</nota>
+                <nota asig="a3">5</nota>
+                <nota asig="a4">6</nota>
+                <nota asig="a5">1</nota>
+            </notas>
+        </alumno>
+        <alumno cod="N88234942">
+            <apenom>Fernandez_Diaz,Maria</apenom>
+            <direc>Luisa_Fernanda,53</direc>
+            <pobla>Miera</pobla>
+            <telef>942346945</telef>
+            <notas>
+                <nota asig="a1">8</nota>
+                <nota asig="a2">7</nota>
+                <nota asig="a3">1</nota>
+                <nota asig="a4">9</nota>
+                <nota asig="a5">6</nota>
+            </notas>
+        </alumno>
+    </alumnos>
+</notas>

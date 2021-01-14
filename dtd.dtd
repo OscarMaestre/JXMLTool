@@ -1,0 +1,30 @@
+<!ELEMENT empresa (pedido+)>
+<!ATTLIST empresa nombre CDATA #REQUIRED>
+<!ELEMENT pedido (sucursal,codigoP, direccionEnvio, nombreTrabajador, fechaPedido, observacionesP?, (articulo+))>
+
+<!ELEMENT sucursal (zonaExposicion, zonaGestion?)>
+<!ATTLIST sucursal nombreSucursal CDATA #REQUIRED>
+<!ELEMENT zonaExposicion (#PCDATA)>
+<!ELEMENT zonaGestion (albaran, pago)>
+<!ELEMENT albaran (#PCDATA)>
+<!ELEMENT pago (#PCDATA)>
+
+
+<!ELEMENT codigoP (#PCDATA)>
+<!ELEMENT direccionEnvio (#PCDATA)>
+<!ELEMENT nombreTrabajador (#PCDATA)>
+
+<!ELEMENT fechaPedido (dia?, mes, anio)>
+<!ELEMENT dia      (#PCDATA)>
+<!ELEMENT mes      (#PCDATA)>
+<!ELEMENT anio     (#PCDATA)>
+
+<!ELEMENT observacionesP (urgente | incompleto)>
+<!ELEMENT urgente (#PCDATA)>
+<!ELEMENT incompleto (#PCDATA)>
+
+<!ELEMENT articulo ((unidades+),precio, observacionesA?)>
+<!ATTLIST articulo codArticulo CDATA #REQUIRED>
+<!ELEMENT unidades (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+<!ELEMENT observacionesA (#PCDATA)>

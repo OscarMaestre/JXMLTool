@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE empresa SYSTEM "dtd.dtd">
+<empresa nombre="DistanzaSA">
+<pedido>
+	<sucursal nombreSucursal="Cuenca">
+
+		<zonaExposicion>Cuenca </zonaExposicion>
+		<zonaGestion>
+			<albaran> 33 </albaran>
+			<pago> 68 </pago>
+
+		</zonaGestion>
+
+	</sucursal>	
+	
+	<codigoP>333444BBB</codigoP>
+
+   	<direccionEnvio>Luz 16 Ciudad Real</direccionEnvio>
+ 
+	<nombreTrabajador>Pepito Perales</nombreTrabajador>
+
+	<fechaPedido>
+		<dia>9</dia><mes>1</mes><anio>2020</anio>
+	</fechaPedido> 
+
+	<observacionesP>
+    		<urgente>URGENTE</urgente>
+   	 </observacionesP>
+  
+  	<articulo codArticulo="123ABC">
+		<unidades>33</unidades>
+		<precio> 29 </precio>
+		<observacionesA> Entregar nave A </observacionesA>
+    </articulo>
+
+</pedido>
+</empresa>
