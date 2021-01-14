@@ -150,6 +150,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pedido"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEjemploPedidoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuEjemploImpresoras">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Impresoras"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEjemploImpresorasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

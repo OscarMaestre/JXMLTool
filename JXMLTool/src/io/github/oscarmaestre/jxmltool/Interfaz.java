@@ -69,6 +69,7 @@ public class Interfaz implements ActionListener, MouseListener{
     private javax.swing.JMenuItem menuEjemploInventario;
     private javax.swing.JMenuItem menuEjemploPedido;
     private javax.swing.JMenuItem menuEjemploProveedoresPartes;
+    private javax.swing.JMenuItem menuEjemploImpresoras;
     private javax.swing.JMenu menuEjemplos;
     
     private static final int X_CUADRO_XML      = 0;
@@ -112,6 +113,8 @@ public class Interfaz implements ActionListener, MouseListener{
             "BD Proveedores y partes";
     private static final String ACCION_EJEMPLO_INVENTARIO = 
             "Inventario";
+    private static final String ACCION_EJEMPLO_IMPRESORAS = 
+            "Impresoras";
     private static final String ACCION_EJEMPLO_ALUMNOS = "Alumnos";
     private static final String ACCION_EJEMPLO_PEDIDO = "Pedido";
     private static final String ACCION_EJEMPLO_BIBLIOTECA = "Biblioteca";
@@ -153,7 +156,7 @@ public class Interfaz implements ActionListener, MouseListener{
         menuEjemploBiblioteca = new javax.swing.JMenuItem();
         menuEjemploAlumnos = new javax.swing.JMenuItem();
         menuEjemploPedido = new javax.swing.JMenuItem();
-        
+        menuEjemploImpresoras = new javax.swing.JMenuItem();
 
         barraMenus.setName(""); // NOI18N
 
@@ -216,6 +219,10 @@ public class Interfaz implements ActionListener, MouseListener{
         menuEjemploBiblioteca.setText("Biblioteca");
         menuEjemploBiblioteca.setName("menuEjemploBiblioteca"); // NOI18N
         menuEjemplos.add(menuEjemploBiblioteca);
+        
+        menuEjemploImpresoras.setText("Impresoras");
+        menuEjemploImpresoras.setName("menuEjemploImpresoras"); // NOI18N
+        menuEjemplos.add(menuEjemploImpresoras);
 
         barraMenus.add(menuEjemplos);
         
@@ -395,6 +402,9 @@ public class Interfaz implements ActionListener, MouseListener{
         
         this.menuEjemploBiblioteca.setActionCommand(Interfaz.ACCION_EJEMPLO_BIBLIOTECA);
         this.menuEjemploBiblioteca.addActionListener(this);
+        
+        this.menuEjemploImpresoras.setActionCommand(Interfaz.ACCION_EJEMPLO_IMPRESORAS);
+        this.menuEjemploImpresoras.addActionListener(this);
         
         this.menuCargarDer.setActionCommand(Interfaz.ACCION_CARGAR_DERECHA);
         this.menuCargarDer.addActionListener(this);
@@ -632,6 +642,12 @@ public class Interfaz implements ActionListener, MouseListener{
             String xmlBiblioteca=ProcesadorXML.getXMLEjemploBiblioteca();
             this.txtXML.setText(xmlBiblioteca);
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_IMPRESORAS == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_IMPRESORAS)){
+            String xmlImpresoras=ProcesadorXML.getXMLEjemploImpresoras();
+            this.txtXML.setText(xmlImpresoras);
+        }
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_CARGAR_IZQUIERDA == null : e.getActionCommand().equals(Interfaz.ACCION_CARGAR_IZQUIERDA)){
             try {
                 this.cargarFichero(txtXML);

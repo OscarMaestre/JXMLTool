@@ -268,7 +268,27 @@ public class ProcesadorXML {
         resultado=ProcesadorXML.tabularResultadoXQuery(resultado);
         return resultado;
     }
-    
+    public static String getXMLEjemploImpresoras(){
+        String xml="<impresoras>\n" +
+            "  <impresora numSerie=\"i245\" tipo=\"laser\" compra=\"2010\">\n" +
+            "    <marca>Epson</marca>\n" +
+            "      <modelo>EPL300</modelo>\n" +
+            "      <peso>4.52</peso>\n" +
+            "      <tamano>A4</tamano>\n" +
+            "      <tamano>A5</tamano>\n" +
+            "      <cartucho>C-123BV</cartucho>\n" +
+            "      <enred/>\n" +
+            "  </impresora>\n" +
+            "  <impresora numSerie=\"i246\" tipo=\"matricial\">\n" +
+            "    <marca>HP</marca>\n" +
+            "    <modelo>LaserJet 2410</modelo>\n" +
+            "    <peso>3.2</peso>\n" +
+            "    <tamano>A4</tamano>\n" +
+            "    <cartucho>C-456P</cartucho>\n" +
+            "  </impresora>\n" +
+            "</impresoras>";
+        return xml;
+    }
     public static String getProveedoresPartes(){
         String xml="<datos>\n" +
             "    <proveedores>\n" +
@@ -689,19 +709,19 @@ public class ProcesadorXML {
 "    xs:noNamespaceSchemaLocation=\"modulo.xsd\">\n" +
 "    <alumnos>\n" +
 "        <alumno cod=\"n12344345\">\n" +
-"            <apenom>Alcalde García, Luis</apenom>\n" +
+"            <apenom>Alcalde Garcia, Luis</apenom>\n" +
 "            <direc>Las Manos, 24</direc>\n" +
 "            <pobla>Lamadrid</pobla>\n" +
 "            <telef>942756645</telef>\n" +
 "        </alumno>\n" +
 "        <alumno cod=\"n43483437\">\n" +
-"            <apenom>González Pérez, Olga</apenom>\n" +
+"            <apenom>Gonzalez Perez, Olga</apenom>\n" +
 "            <direc>Miraflor 28 - 3A</direc>\n" +
 "            <pobla>Torres</pobla>\n" +
 "            <telef>942564355</telef>\n" +
 "        </alumno>\n" +
 "        <alumno cod=\"n88234942\">\n" +
-"            <apenom>Fernández Díaz, María</apenom>\n" +
+"            <apenom>Fernandez Diaz, María</apenom>\n" +
 "            <direc>Luisa Fernanda 53</direc>\n" +
 "            <pobla>Miera</pobla>\n" +
 "            <telef>942346945</telef>\n" +

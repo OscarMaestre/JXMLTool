@@ -48,6 +48,7 @@ public class NewJFrame extends javax.swing.JFrame {
         menuEjemploBiblioteca = new javax.swing.JMenuItem();
         menuEjemploAlumnos = new javax.swing.JMenuItem();
         menuEjemploPedido = new javax.swing.JMenuItem();
+        menuEjemploImpresoras = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -115,7 +116,20 @@ public class NewJFrame extends javax.swing.JFrame {
         menuEjemplos.add(menuEjemploAlumnos);
 
         menuEjemploPedido.setText("Pedido");
+        menuEjemploPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEjemploPedidoActionPerformed(evt);
+            }
+        });
         menuEjemplos.add(menuEjemploPedido);
+
+        menuEjemploImpresoras.setText("Impresoras");
+        menuEjemploImpresoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEjemploImpresorasActionPerformed(evt);
+            }
+        });
+        menuEjemplos.add(menuEjemploImpresoras);
 
         barraMenus.add(menuEjemplos);
 
@@ -134,6 +148,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuEjemploImpresorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEjemploImpresorasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuEjemploImpresorasActionPerformed
+
+    private void menuEjemploPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEjemploPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuEjemploPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +208,7 @@ public class NewJFrame extends javax.swing.JFrame {
     public javax.swing.JMenu menuEdicion;
     private javax.swing.JMenuItem menuEjemploAlumnos;
     private javax.swing.JMenuItem menuEjemploBiblioteca;
+    private javax.swing.JMenuItem menuEjemploImpresoras;
     private javax.swing.JMenuItem menuEjemploInventario;
     private javax.swing.JMenuItem menuEjemploPedido;
     private javax.swing.JMenuItem menuEjemploProveedoresPartes;
