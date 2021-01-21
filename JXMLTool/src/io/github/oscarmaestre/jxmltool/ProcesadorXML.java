@@ -268,6 +268,34 @@ public class ProcesadorXML {
         resultado=ProcesadorXML.tabularResultadoXQuery(resultado);
         return resultado;
     }
+    
+    public static String getXMLEjemploTorneo(){
+        String xml="<torneo edicion=\"1998\" anteriorGanador=\"j01\">\n" +
+            "  <participante idP=\"j01\" pareja=\"j02\">\n" +
+            "    <nombre>Manuel Pérez</nombre>\n" +
+            "    <edad>23</edad>\n" +
+            "    <pais> España</pais>\n" +
+            "    <cabezaDeSerie/>\n" +
+            "  </participante>\n" +
+            "  <participante idP=\"j02\" pareja=\"j01\">\n" +
+            "    <nombre>Manuel Gómez</nombre>  \n" +
+            "    <edad>25</edad>\n" +
+            "    <pais>España</pais>\n" +
+            "  </participante>\n" +
+            "  <participante idP=\"j03\" pareja=\"j04\">\n" +
+            "    <nombre>Ana Puertas</nombre>\n" +
+            "    <edad>22</edad>\n" +
+            "    <pais> E5spaña</pais>\n" +
+            "    <cabezaDeSerie/>\n" +
+            "  </participante>\n" +
+            "  <participante idP=\"j04\" pareja=\"j03\">\n" +
+            "    <nombre>Paco Fraile</nombre>  \n" +
+            "    <edad>45</edad>\n" +
+            "    <pais>España</pais>\n" +
+            "  </participante>\n" +
+            "</torneo>";
+        return xml;
+    }
     public static String getXMLEjemploImpresoras(){
         String xml="<impresoras>\n" +
             "  <impresora numSerie=\"i245\" tipo=\"laser\" compra=\"2010\">\n" +
@@ -289,6 +317,28 @@ public class ProcesadorXML {
             "</impresoras>";
         return xml;
     }
+    public static String getXMLEjemploImpresorasConN(){
+        String xml="<impresoras>\n" +
+            "  <impresora numSerie=\"i245\" tipo=\"láser\" compra=\"2010\">\n" +
+            "    <marca>Epson</marca>\n" +
+            "      <modelo>EPL300</modelo>\n" +
+            "      <peso>4.52</peso>\n" +
+            "      <tamaño>A4</tamaño>\n" +
+            "      <tamaño>A5</tamaño>\n" +
+            "      <cartucho>C-123BV</cartucho>\n" +
+            "      <enred/>\n" +
+            "  </impresora>\n" +
+            "  <impresora numSerie=\"i246\" tipo=\"matricial\">\n" +
+            "    <marca>HP</marca>\n" +
+            "    <modelo>LaserJet 2410</modelo>\n" +
+            "    <peso>3.2</peso>\n" +
+            "    <tamaño>A4</tamaño>\n" +
+            "    <cartucho>C-456P</cartucho>\n" +
+            "  </impresora>\n" +
+            "</impresoras>";
+        return xml;
+    }
+    
     public static String getProveedoresPartes(){
         String xml="<datos>\n" +
             "    <proveedores>\n" +

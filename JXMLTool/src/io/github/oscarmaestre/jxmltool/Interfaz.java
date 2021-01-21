@@ -70,6 +70,8 @@ public class Interfaz implements ActionListener, MouseListener{
     private javax.swing.JMenuItem menuEjemploPedido;
     private javax.swing.JMenuItem menuEjemploProveedoresPartes;
     private javax.swing.JMenuItem menuEjemploImpresoras;
+    private javax.swing.JMenuItem menuEjemploImpresorasConN;
+    private javax.swing.JMenuItem menuEjemploTorneo;
     private javax.swing.JMenu menuEjemplos;
     
     private static final int X_CUADRO_XML      = 0;
@@ -115,6 +117,10 @@ public class Interfaz implements ActionListener, MouseListener{
             "Inventario";
     private static final String ACCION_EJEMPLO_IMPRESORAS = 
             "Impresoras";
+    private static final String ACCION_EJEMPLO_IMPRESORAS_CON_N = 
+            "ImpresorasConN";
+    private static final String ACCION_EJEMPLO_TORNEO = 
+            "Torneo";
     private static final String ACCION_EJEMPLO_ALUMNOS = "Alumnos";
     private static final String ACCION_EJEMPLO_PEDIDO = "Pedido";
     private static final String ACCION_EJEMPLO_BIBLIOTECA = "Biblioteca";
@@ -157,6 +163,8 @@ public class Interfaz implements ActionListener, MouseListener{
         menuEjemploAlumnos = new javax.swing.JMenuItem();
         menuEjemploPedido = new javax.swing.JMenuItem();
         menuEjemploImpresoras = new javax.swing.JMenuItem();
+        menuEjemploImpresorasConN = new javax.swing.JMenuItem();
+        menuEjemploTorneo = new javax.swing.JMenuItem();
 
         barraMenus.setName(""); // NOI18N
 
@@ -223,6 +231,15 @@ public class Interfaz implements ActionListener, MouseListener{
         menuEjemploImpresoras.setText("Impresoras");
         menuEjemploImpresoras.setName("menuEjemploImpresoras"); // NOI18N
         menuEjemplos.add(menuEjemploImpresoras);
+        
+        menuEjemploImpresorasConN.setText("ImpresorasConN");
+        menuEjemploImpresorasConN.setName("menuEjemploImpresorasConN"); // NOI18N
+        menuEjemplos.add(menuEjemploImpresorasConN);
+        
+        menuEjemploTorneo.setText("Torneo");
+        menuEjemploTorneo.setName("menuEjemploTorneo"); // NOI18N
+        menuEjemplos.add(menuEjemploTorneo);
+        
 
         barraMenus.add(menuEjemplos);
         
@@ -405,6 +422,14 @@ public class Interfaz implements ActionListener, MouseListener{
         
         this.menuEjemploImpresoras.setActionCommand(Interfaz.ACCION_EJEMPLO_IMPRESORAS);
         this.menuEjemploImpresoras.addActionListener(this);
+        
+        this.menuEjemploImpresorasConN.setActionCommand(Interfaz.ACCION_EJEMPLO_IMPRESORAS_CON_N);
+        this.menuEjemploImpresorasConN.addActionListener(this);
+        
+        this.menuEjemploTorneo.setActionCommand(Interfaz.ACCION_EJEMPLO_TORNEO);
+        this.menuEjemploTorneo.addActionListener(this);
+        
+        
         
         this.menuCargarDer.setActionCommand(Interfaz.ACCION_CARGAR_DERECHA);
         this.menuCargarDer.addActionListener(this);
@@ -647,6 +672,17 @@ public class Interfaz implements ActionListener, MouseListener{
             String xmlImpresoras=ProcesadorXML.getXMLEjemploImpresoras();
             this.txtXML.setText(xmlImpresoras);
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_IMPRESORAS_CON_N == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_IMPRESORAS_CON_N)){
+            String xmlImpresoras=ProcesadorXML.getXMLEjemploImpresorasConN();
+            this.txtXML.setText(xmlImpresoras);
+        }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_TORNEO == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_TORNEO)){
+            String xmlImpresoras=ProcesadorXML.getXMLEjemploTorneo();
+            this.txtXML.setText(xmlImpresoras);
+        }
+        
         
         if (e.getActionCommand() == null ? Interfaz.ACCION_CARGAR_IZQUIERDA == null : e.getActionCommand().equals(Interfaz.ACCION_CARGAR_IZQUIERDA)){
             try {
