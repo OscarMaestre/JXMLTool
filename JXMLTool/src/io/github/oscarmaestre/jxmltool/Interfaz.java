@@ -730,38 +730,11 @@ public class Interfaz implements ActionListener, MouseListener{
         }
         System.exit(OK);
     }
-    public static void procesarArgumentos(String[] argumentos){
-        if (argumentos.length!=3) {
-            imprimirOpciones();
-            return;
-        }
-        String opcion           =   argumentos[0];
-        String ficheroDatosXML  =   argumentos[1];
-        String ficheroEjecutar  =   argumentos[2];
-        
-        /*Es posible que el fichero de datos sea alguno de los de ejemplo*/
-        String datosXML         =   getDatosXML(ficheroDatosXML);
-        String datosEjecutar    =   ProcesadorXML.leerFichero(ficheroEjecutar);
-        
-        if (opcion.equals("xsd")){
-            Interfaz.XMLSchemaValidaXML(datosEjecutar, datosXML);
-        }
-        
-        if (opcion.equals("xslt")){
-            try {
-                String resultado=ProcesadorXML.transformarConXSLT(datosEjecutar, datosXML);
-                System.out.println(resultado);
-                System.exit(Interfaz.OK);
-            } catch (TransformerException ex) {
-                System.exit(Interfaz.ERROR_FALLO_TRANSFORMACION_XSLT);
-            }
-        }
-        
-    }
+    
     
     public static void main(String[] args) {
         if (args.length>0){
-            procesarArgumentos(args);
+            ProcesadorXMLCLI.despacharArgumentos(args);
             return;
         }
         
