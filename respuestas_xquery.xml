@@ -1,0 +1,43 @@
+<!--Por favor rellena este fichero y guardalo usando tus apellidos, luego tu nombre y la extension XML, por ejemplo DiazDiazJuan.xml-->
+
+<respuestas>
+    <alumno>
+        <nombre>
+            <!--Escribe aquí tu nombre: p.ej Pepe-->
+        </nombre>
+        <apellidos>
+        <!--Escribe aquí tus dos apellidos p.ej Diaz Diaz-->
+        </apellidos>
+    </alumno>
+    
+    <pregunta num="1">
+        <xquery>
+        <!--Escribe entre estas marcas el XQuery que usas
+        para contestar a la pregunta 1-->
+        </xquery>
+    </pregunta>
+
+    <pregunta num="2">
+        <xquery>
+        <!--Escribe entre estas marcas el XQuery que usas
+        para contestar a la pregunta 2-->
+        </xquery>
+    </pregunta>
+
+    <pregunta num="3">
+        <xquery>
+        <!--Escribe entre estas marcas el XQuery que usas
+        para contestar a la pregunta 3-->
+        </xquery>
+    </pregunta>
+
+    <pregunta num="4">
+        <xquery>
+        <!--Escribe entre estas marcas el XQuery que usas
+        para contestar a la pregunta 4-->
+        </xquery>
+    </pregunta>
+
+
+    
+</respuestas>

@@ -217,6 +217,8 @@ public class ProcesadorXML {
     }
     
     
+    
+    
     public static String tabularResultadoXQuery(String xml){
         try {
             String resultado=ProcesadorXML.tabularXML(xml);
