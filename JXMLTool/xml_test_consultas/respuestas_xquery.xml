@@ -12,15 +12,13 @@
     
     <pregunta num="1">
         <xquery>
-        <!--Escribe entre estas marcas el XQuery que usas
-        para contestar a la pregunta 1-->
+for $x in doc("datos.xml")//proveedor return $x/nombreprov
         </xquery>
     </pregunta>
 
     <pregunta num="2">
         <xquery>
-        <!--Escribe entre estas marcas el XQuery que usas
-        para contestar a la pregunta 2-->
+for $x in doc("datos.xml")//proveedor return $x/ciudad
         </xquery>
     </pregunta>
 

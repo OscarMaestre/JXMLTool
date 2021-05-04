@@ -98,13 +98,15 @@ public class PruebaProcesador {
     
     @Test
     public void pruebaXQuerySimple() throws XQException, IOException{
+        System.out.println("-------Inicio XQuery--------------");
         String xmlEjemplo=ProcesadorXML.getXMLAlumnosParaXQuery();
-        String ejemploXQuery="for $a in doc(\"datos.xml\")//alumnos/alumno\n" +
+        String ejemploXQuery="for $a in doc('datos.xml')//alumnos/alumno\n" +
             "where $a/@cod union $a/../../notas/nota/@alum\n" +
             "return\n" +
             "<alumno>{ data($a/apenom) }</alumno>";
         String resultado=ProcesadorXML.ejecutarXQuery(ejemploXQuery, xmlEjemplo);
-        System.out.println(resultado);
+        System.out.println("ResultadoXQuery:"+resultado);
+        System.out.println("-------Fin XQuery--------------");
     }
     @Test
     public void pruebaXSLTSimple() throws TransformerException{

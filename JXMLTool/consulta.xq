@@ -1,12 +1,4 @@
-for $parte in doc("datos.xml")//parte
+for $a in doc('datos.xml')//alumnos/alumno
+where $a/@cod union $a/../../notas/nota/@alum
 return
-<resultado>
-	{
-		$parte/nombreparte
-	}
-	{
-		sum (
-			doc("datos.xml")//suministra[numparte=$parte/@numparte]/cantidad
-			)
-	}
-</resultado>
+<alumno>{ data($a/apenom) }</alumno>

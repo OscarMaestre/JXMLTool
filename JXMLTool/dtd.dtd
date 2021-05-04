@@ -1,15 +1,16 @@
+<!ELEMENT pedido     (tractor)+>
+<!ELEMENT tractor    (componente)+>
+<!ELEMENT componente (fechaentrega?, (fragil|nofragil),
+                      peso, numserie, kmmaximos?)>
 
-<!-- TORNEO -->
-<!ELEMENT torneo (participante+)>
-<!ATTLIST torneo edicion CDATA #REQUIRED anteriorGanador CDATA #REQUIRED>
-<!-- EDAD -->
-<!ELEMENT edad (#PCDATA)>
-<!-- PAIS -->
-<!ELEMENT pais (#PCDATA)>
-<!--NOMBRE -->
-<!ELEMENT nombre (#PCDATA)>
-<!-- PARTICIPANTE -->
-<!ELEMENT participante (nombre, edad, pais, cabezaDeSerie?)>
-<!ATTLIST participante idP ID #REQUIRED pareja CDATA #REQUIRED>
-<!--- cabezaDeSerie -->
-<!ELEMENT cabezaDeSerie EMPTY>
+<!ELEMENT fechaentrega (dia?, mes, anio)>
+<!ELEMENT dia      (#PCDATA)>
+<!ELEMENT mes      (#PCDATA)>
+<!ELEMENT anio     (#PCDATA)>
+<!ELEMENT fragil   EMPTY>
+<!ELEMENT nofragil EMPTY >
+<!ELEMENT peso     (#PCDATA)>
+<!ATTLIST peso unidad CDATA #REQUIRED>
+<!ELEMENT numserie  (#PCDATA)>
+<!ELEMENT kmmaximos (#PCDATA)>
+<!ATTLIST componente nombrefabricante CDATA #REQUIRED>

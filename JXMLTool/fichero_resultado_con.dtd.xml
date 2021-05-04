@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE torneo SYSTEM "dtd.dtd">
-<torneo anteriorGanador="j01" edicion="1998">
-	<participante idP="j01" pareja="j02">
-		<nombre>Manuel Pérez</nombre>
-		<edad>23</edad>
-		<pais> España</pais>
-		<cabezaDeSerie/>
-	</participante>
-	<participante idP="j02" pareja="j01">
-		<nombre>Manuel Gómez</nombre>
-		<edad>25</edad>
-		<pais>España</pais>
-	</participante>
-	<participante idP="j03" pareja="j04">
-		<nombre>Ana Puertas</nombre>
-		<edad>22</edad>
-		<pais> E5spaña</pais>
-		<cabezaDeSerie/>
-	</participante>
-	<participante idP="j04" pareja="j03">
-		<nombre>Paco Fraile</nombre>
-		<edad>45</edad>
-		<pais>España</pais>
-	</participante>
-</torneo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE pedido SYSTEM "dtd.dtd">
+<pedido>
+    <tractor>
+        <componente nombrefabricante="Ebro">
+            <fechaentrega>
+                <mes>2018</mes> <anio>2018</anio>
+            </fechaentrega>
+            <fragil/>
+            <peso unidad="kg">12</peso>
+            <numserie>00A</numserie>
+        </componente>
+        <componente nombrefabricante="Avia">
+            <fechaentrega>
+                <dia>12</dia><mes>1</mes><anio>2019</anio>
+            </fechaentrega>
+            <nofragil/>
+            <peso unidad="g">1450</peso>
+            <numserie>00D</numserie>
+            <kmmaximos>25000</kmmaximos>
+        </componente>
+    </tractor>
+    <tractor>
+        <componente nombrefabricante="John Deere">
+            <fragil/>
+            <peso unidad="g">770</peso>
+            <numserie>43Z</numserie>
+        </componente>
+    </tractor>
+</pedido>

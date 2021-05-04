@@ -7,5 +7,5 @@ all:
 							-C $(CLASES_PROYECTO) . 
 							
 xquery:
-	rm $(ARCHIVO_JAR); jar -cvfe $(ARCHIVO_JAR_CONSULTAS) io.github.oscarmaestre.jxmltool.ProcesadorConsultasCLI -C $(DIRECTORIO_CLASES) . \
+	rm $(ARCHIVO_JAR_CONSULTAS); jar -cvfe $(ARCHIVO_JAR_CONSULTAS) io.github.oscarmaestre.jxmltool.resolvedorconsultas.ProcesadorConsultasCLI -C $(DIRECTORIO_CLASES) . \
 							-C $(CLASES_PROYECTO) . 
