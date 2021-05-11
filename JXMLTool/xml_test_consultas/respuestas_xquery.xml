@@ -3,10 +3,12 @@
 <respuestas>
     <alumno>
         <nombre>
-            <!--Escribe aquí tu nombre: p.ej Pepe-->
+        <!--Escribe en la siguiente línea en blanco tu nombre: p.ej Pepe-->
+            
         </nombre>
         <apellidos>
-        <!--Escribe aquí tus dos apellidos p.ej Diaz Diaz-->
+        <!--Escribe en la siguiente línea en blanco tus dos apellidos p.ej Diaz Diaz-->
+	        
         </apellidos>
     </alumno>
     

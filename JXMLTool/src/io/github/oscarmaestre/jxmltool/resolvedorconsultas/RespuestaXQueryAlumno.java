@@ -7,7 +7,7 @@ import javax.xml.xquery.XQException;
 public class RespuestaXQueryAlumno {
     RespuestaXQuery respuestaAsociada;
     String xmlBD;
-    String resultadoDeSuConsulta="Error";
+    String resultadoDeSuConsulta="Error o no hay nada escrito ";
     boolean daError=false;
     String textoXQuery;
     public RespuestaXQueryAlumno(RespuestaXQuery respuestaAsociada, String xmlBD, String textoXQuery) {
@@ -32,6 +32,10 @@ public class RespuestaXQueryAlumno {
         sb.append("El resultado oficial es:\n"+this.respuestaAsociada.getResultadoConsulta());
         sb.append("\n");
         sb.append("Su resultado es:\n"+this.resultadoDeSuConsulta);
+        sb.append("\n");
+        sb.append("El XQuery oficial es:"+this.respuestaAsociada.getTextoXQuery());
+        sb.append("\n");
+        sb.append("Su XQuery es:"+this.textoXQuery);
         return sb.toString();
     }
     

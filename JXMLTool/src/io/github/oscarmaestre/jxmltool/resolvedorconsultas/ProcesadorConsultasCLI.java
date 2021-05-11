@@ -5,7 +5,10 @@ import io.github.oscarmaestre.jxmltool.Constantes;
 import io.github.oscarmaestre.jxmltool.ProcesadorXML;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,7 +26,8 @@ public class ProcesadorConsultasCLI {
     public static void main(String[] args) throws FileNotFoundException {
         File directorioPasado=new File(args[0]);
         try {
-            recorrerFicheros(directorioPasado.listFiles());
+            ArrayList<Informe> informes = recorrerFicheros(directorioPasado.listFiles());
+            generarInforme(informes);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
@@ -34,13 +38,26 @@ public class ProcesadorConsultasCLI {
             Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    private static String getResultadoXPath(String xpath, String xml){
+        NodeList nodos;
+        String consultaAlumno = "";
+        try {
+            nodos = ProcesadorXML.evaluarXPath(
+                    xpath, xml);
+             consultaAlumno = ProcesadorConsultasCLI.getConsultaAlumno(nodos);
+             return consultaAlumno.trim();
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
+            Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "La consulta dio un error:"+xpath;
+        
+    }
     private static String getConsultaAlumno(NodeList nodos){
         if (nodos.item(0)==null){
             return "No hay nada escrito";
         }
         String text=nodos.item(0).getTextContent();
-        System.out.println("El alumno ha escrito:"+text);
+        //System.out.println("El alumno ha escrito:"+text);
         return text;
     }
     private static RespuestaXQuery[] getRespuestasOficiales(){
@@ -49,8 +66,9 @@ public class ProcesadorConsultasCLI {
             RespuestaXQuery respuesta = Constantes.consultasXQuery[i];
             respuestas[i]=respuesta;
             try {
-                System.out.println("Ejecutando:<"+respuesta.getTextoXQuery()+">" + " consulta "+i);
+                
                 String ejecutarXQuery = ProcesadorXML.ejecutarXQuery(respuesta.getTextoXQuery(), xmlBaseDedatos);
+                
                 respuesta.setResultadoConsulta(ejecutarXQuery);
             } catch (XQException ex) {
                 System.out.println("Error con:"+respuesta.getTextoXQuery());
@@ -62,10 +80,20 @@ public class ProcesadorConsultasCLI {
     }
     
     
-    private static RespuestaXQueryAlumno[] getRespuestasAlumno(String rutaFicheroRespuestas){
+    private static Informe getRespuestasAlumno(String rutaFicheroRespuestas){        
         String xmlRespuestasAlumno;
         xmlRespuestasAlumno = ProcesadorXML.leerFichero(rutaFicheroRespuestas);
         
+        
+        String consultaApellidos="//apellidos";
+        String consultaNombre   ="//nombre";
+        String nombreAlumno =ProcesadorConsultasCLI.getResultadoXPath(
+                consultaNombre, xmlRespuestasAlumno);
+        String apAlumno     =ProcesadorConsultasCLI.getResultadoXPath(
+                consultaApellidos, xmlRespuestasAlumno);
+        nombreAlumno=nombreAlumno.trim();
+        apAlumno=apAlumno.trim();
+        System.out.println("Nombre:"+nombreAlumno+" "+apAlumno);
         RespuestaXQuery[] respuestasOficiales;
         respuestasOficiales = ProcesadorConsultasCLI.getRespuestasOficiales();
         
@@ -77,42 +105,25 @@ public class ProcesadorConsultasCLI {
         for (int i=0; i<totalConsultas;i++){
             int numConsultaEnExamen=i+1;
             String consultaXPath="//pregunta[@num='"+numConsultaEnExamen+"']/xquery";
-            NodeList nodos;
-            try {
-                nodos = ProcesadorXML.evaluarXPath(
-                        consultaXPath, xmlRespuestasAlumno);
-                String consultaAlumno = ProcesadorConsultasCLI.getConsultaAlumno(nodos);
-                RespuestaXQueryAlumno r;
-                r=new RespuestaXQueryAlumno(
-                        respuestasOficiales[i], 
-                        ProcesadorConsultasCLI.xmlBaseDedatos, 
-                        consultaAlumno);
-            } catch (ParserConfigurationException ex) {
-                Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SAXException ex) {
-                Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (XPathExpressionException ex) {
-                Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             
+
+            String consultaAlumno=ProcesadorConsultasCLI.getResultadoXPath(consultaXPath, xmlRespuestasAlumno);
+            System.out.println("El alumno ha escrito:"+consultaAlumno);
+            RespuestaXQueryAlumno r;
+            r=new RespuestaXQueryAlumno(
+                    respuestasOficiales[i], 
+                    ProcesadorConsultasCLI.xmlBaseDedatos, 
+                    consultaAlumno);
+            respuestas[i]=r;
+
             
         } /*Fin del for*/
-        return respuestas;
+        Informe informe=new Informe(respuestas, nombreAlumno, apAlumno);
+        return informe;
     }
-    public static void procesarFicheroRespuestas (String ruta) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, XPathExpressionException{
-        
-        RespuestaXQueryAlumno[] respuestasAlumno;
-        respuestasAlumno = ProcesadorConsultasCLI.getRespuestasAlumno(ruta);
-        for (int i = 0; i < respuestasAlumno.length; i++) {
-            RespuestaXQueryAlumno respuestaXQueryAlumno = respuestasAlumno[i];
-            
-            String comparacion = respuestaXQueryAlumno.comparar();
-            System.out.println("Comparacion:"+comparacion);
-            
-        }
-        
+    public static Informe procesarFicheroRespuestas (String ruta) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, XPathExpressionException{
+        Informe informe  = ProcesadorConsultasCLI.getRespuestasAlumno(ruta);
+        return informe;                
         
     } /*Fin del método*/
     
@@ -122,7 +133,8 @@ public class ProcesadorConsultasCLI {
           .map(f -> f.substring(filename.lastIndexOf(".") + 1));
     }
 
-    public static void recorrerFicheros(File[] files) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, IOException, XPathExpressionException, XPathExpressionException {
+    public static ArrayList<Informe> recorrerFicheros(File[] files) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, IOException, XPathExpressionException, XPathExpressionException {
+        ArrayList<Informe> informes=new ArrayList<>();
         for (File file : files) {
             if (file.isDirectory()) {
                 recorrerFicheros(file.listFiles()); 
@@ -132,7 +144,8 @@ public class ProcesadorConsultasCLI {
                 try  {
                     Optional<String> extension = getExtensionByStringHandling(absolutePath);
                     if (extension.get().equals("xml")){
-                        procesarFicheroRespuestas(absolutePath);
+                        Informe i=procesarFicheroRespuestas(absolutePath);
+                        informes.add(i);
                     } else {
                         //System.out.println("Extension:"+extension.get());
                     }
@@ -142,5 +155,32 @@ public class ProcesadorConsultasCLI {
                 }
             }
         } //Fin del for
+        return informes;
     } //Fin del método
+
+    private static void generarInforme(ArrayList<Informe> recorrerFicheros) {
+        FileWriter fw=null;
+        try {
+            fw = new FileWriter("informe.html");
+            PrintWriter pw=new PrintWriter(fw);
+            StringBuilder sb=new StringBuilder();
+            for (int i = 0; i < recorrerFicheros.size(); i++) {
+                Informe get = recorrerFicheros.get(i);
+                sb.append(get.generarInforme());
+                
+            }
+            pw.print(sb.toString());
+            pw.flush();
+            pw.close();
+            System.out.println("Informe generado");
+        } catch (IOException ex) {
+            Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ProcesadorConsultasCLI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
