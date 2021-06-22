@@ -3,6 +3,8 @@ CLASES_PROYECTO=build/classes
 ARCHIVO_JAR=JXMLTool.jar
 ARCHIVO_JAR_CONSULTAS=ProcesadorConsultas.jar
 all:
+	make programa; make xquery
+programa:
 	rm $(ARCHIVO_JAR); jar -cvfe $(ARCHIVO_JAR) io.github.oscarmaestre.jxmltool.Interfaz -C $(DIRECTORIO_CLASES) . \
 							-C $(CLASES_PROYECTO) . 
 							

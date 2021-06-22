@@ -14,30 +14,72 @@
     
     <pregunta num="1">
         <xquery>
-for $x in doc("datos.xml")//proveedor return $x/nombreprov
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
         </xquery>
     </pregunta>
 
     <pregunta num="2">
         <xquery>
-for $x in doc("datos.xml")//proveedor return $x/ciudad
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
+
         </xquery>
     </pregunta>
 
     <pregunta num="3">
         <xquery>
-        <!--Escribe entre estas marcas el XQuery que usas
-        para contestar a la pregunta 3-->
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
+
         </xquery>
     </pregunta>
 
     <pregunta num="4">
         <xquery>
-        <!--Escribe entre estas marcas el XQuery que usas
-        para contestar a la pregunta 4-->
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
+
         </xquery>
     </pregunta>
+    
+    <pregunta num="5">
+        <xquery>
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
 
+        </xquery>
+    </pregunta>
+    
+    <pregunta num="6">
+        <xquery>
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
+
+        </xquery>
+    </pregunta>
+    
+    <pregunta num="7">
+        <xquery>
+	<!--Escribe en el hueco tu XQuery para esta pregunta-->
+	
+	
+	
+
+        </xquery>
+    </pregunta>
 
     
 </respuestas>

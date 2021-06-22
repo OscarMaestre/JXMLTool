@@ -239,6 +239,7 @@ public class ProcesadorXML {
         return xml;
     }
     public static String ejecutarXQuery(String xquery, String xml) throws XQException, IOException{
+        xquery="<resultadoconsultaxquery>{"+xquery+"}</resultadoconsultaxquery>";
         String resultado="";
         
         volcarCadenaEnFichero(ProcesadorXML.FICHERO_DATOS_PARA_XQUERY, xml);
