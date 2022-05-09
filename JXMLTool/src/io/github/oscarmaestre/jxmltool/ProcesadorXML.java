@@ -225,7 +225,7 @@ public class ProcesadorXML {
             return resultado;
         } catch (TransformerException ex) {
             try {
-                String marcaInicio="<abcxyzabc>";
+                String marcaInicio="<error_o_no_hay_resultados>";
                 String marcaFin=marcaInicio.replace("<", "</");
                 String nuevoXML=marcaInicio+xml+ marcaFin;
                 String resultado=ProcesadorXML.tabularXML(nuevoXML);
@@ -239,8 +239,8 @@ public class ProcesadorXML {
         return xml;
     }
     public static String ejecutarXQuery(String xquery, String xml) throws XQException, IOException{
-        xquery="<resultadoconsultaxquery>{"+xquery+"}</resultadoconsultaxquery>";
-        String resultado="";
+        
+        String resultado;
         
         volcarCadenaEnFichero(ProcesadorXML.FICHERO_DATOS_PARA_XQUERY, xml);
         volcarCadenaEnFichero(ProcesadorXML.FICHERO_CONSULTA_XQUERY, xquery);

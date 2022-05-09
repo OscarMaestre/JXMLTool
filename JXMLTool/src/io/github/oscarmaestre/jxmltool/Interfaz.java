@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
@@ -57,6 +58,7 @@ public class Interfaz implements ActionListener, MouseListener{
     public javax.swing.JMenu menuArchivo;
     public javax.swing.JMenuItem menuCambiarFuente;
     public javax.swing.JMenuItem menuCambiarFuenteGrande;
+    public javax.swing.JMenuItem menuCambiarFuenteMuyGrande;
     public javax.swing.JMenuItem menuCargarDer;
     public javax.swing.JMenuItem menuCargarIzq;
     public javax.swing.JMenuItem menuCopiar;
@@ -74,11 +76,11 @@ public class Interfaz implements ActionListener, MouseListener{
     private javax.swing.JMenuItem menuEjemploTorneo;
     private javax.swing.JMenu menuEjemplos;
     
-    private static final int X_CUADRO_XML      = 0;
-    private static final int Y_CUADRO_XML      = 0;
-    private static final int ANCHO_CUADRO_XML  = 5;
-    private static final int ALTO_CUADRO_XML   = 8;
-    private static final double PESO_CUADRO_XML    = 0.3;
+    private static final int X_CUADRO_XML           = 0;
+    private static final int Y_CUADRO_XML           = 0;
+    private static final int ANCHO_CUADRO_XML       = 5;
+    private static final int ALTO_CUADRO_XML        = 8;
+    private static final double PESO_CUADRO_XML     = 0.3;
     
     private static final int X_CUADRO_RESTO      = 6;
     private static final int Y_CUADRO_RESTO      = 0;
@@ -105,12 +107,18 @@ public class Interfaz implements ActionListener, MouseListener{
     private static final String ACCION_VALIDAR_DTD      = "Validar DTD";
     private static final String ACCION_VALIDAR_ESQUEMA  = "Validar esquema";
     private static final String ACCION_EVALUAR_XPATH    = "Evaluar XPATH";
-    private static final String ACCION_TRANSFORMAR_XSLT ="Transformar XSLT";
+    private static final String ACCION_TRANSFORMAR_XSLT = "Transformar XSLT";
     private static final String ACCION_EJECUTAR_XQUERY  = "Ejecutar XQuery";
     
+    private static final String ACCION_PEGAR_VALIDAR_DTD      = "Pegar + Validar DTD";
+    private static final String ACCION_PEGAR_VALIDAR_ESQUEMA  = "Pegar + Validar esquema";
+    private static final String ACCION_PEGAR_EVALUAR_XPATH    = "Pegar + Evaluar XPATH";
+    private static final String ACCION_PEGAR_TRANSFORMAR_XSLT = "Pegar + Transformar XSLT";
+    private static final String ACCION_PEGAR_EJECUTAR_XQUERY  = "Pegar + Ejecutar XQuery";
     
-    private static final String ACCION_CAMBIAR_FUENTE           = "Cambiar fuente";
-    private static final String ACCION_CAMBIAR_FUENTE_GRANDE    = "Cambiar fuente grande";
+    private static final String ACCION_CAMBIAR_FUENTE               = "Cambiar fuente";
+    private static final String ACCION_CAMBIAR_FUENTE_GRANDE        = "Cambiar fuente grande";
+    private static final String ACCION_CAMBIAR_FUENTE_MUY_GRANDE    = "Cambiar fuente muy grande";
     private static final String ACCION_EJEMPLO_PROVEEDORES_PARTES = 
             "BD Proveedores y partes";
     private static final String ACCION_EJEMPLO_INVENTARIO = 
@@ -128,8 +136,8 @@ public class Interfaz implements ActionListener, MouseListener{
     
     
     
-    private static int DESTACAR_LINEA_ACTUAL    = 0;
-    private static int DESTACAR_LINEA_ANTERIOR  = 1;
+    private static final int DESTACAR_LINEA_ACTUAL    = 0;
+    private static final int DESTACAR_LINEA_ANTERIOR  = 1;
     
     
     public static final int OK                                  = 0;
@@ -155,6 +163,7 @@ public class Interfaz implements ActionListener, MouseListener{
         menuPegar               = new javax.swing.JMenuItem();
         menuCambiarFuente       = new javax.swing.JMenuItem();
         menuCambiarFuenteGrande = new javax.swing.JMenuItem();
+        menuCambiarFuenteMuyGrande= new javax.swing.JMenuItem();
 
         menuEjemplos = new javax.swing.JMenu();
         menuEjemploInventario = new javax.swing.JMenuItem();
@@ -197,8 +206,10 @@ public class Interfaz implements ActionListener, MouseListener{
 
         menuCambiarFuente.setText("Cambiar fuente");
         menuCambiarFuenteGrande.setText("Cambiar fuente grande");
+        menuCambiarFuenteMuyGrande.setText("Cambiar fuente muy grande");
         menuEdicion.add(menuCambiarFuente);
         menuEdicion.add(menuCambiarFuenteGrande);
+        menuEdicion.add(menuCambiarFuenteMuyGrande);
 
         barraMenus.add(menuEdicion);
 
@@ -318,80 +329,39 @@ public class Interfaz implements ActionListener, MouseListener{
         panel.add(scrollInformes, constraintsCuadroInformes);
         
     }
-    
-    private JPanel getBotoneraOperacionesXML(){
-        JPanel panelBotones=new JPanel();
-        GridBagLayout layout=new GridBagLayout();
-        panelBotones.setLayout(layout);
-        
-        JButton btnValidarDTD=new JButton("Validar con DTD");
-        btnValidarDTD.setActionCommand(ACCION_VALIDAR_DTD);
-        btnValidarDTD.addActionListener(this);
+    private void anadirBotonGestionXML(JPanel panel, String texto, String ACCION, int fila, int columna){
+        JButton boton=new JButton(texto);
+        boton.setActionCommand(ACCION);
+        boton.addActionListener(this);
         //btnValidarDTD.setAlignmentX(Component.CENTER_ALIGNMENT);
         GridBagConstraints constraintsBotonDTD=new GridBagConstraints();
         constraintsBotonDTD.fill=GridBagConstraints.BOTH;
         constraintsBotonDTD.weightx=1;
         constraintsBotonDTD.weighty=1;
-        constraintsBotonDTD.gridx=0;
-        constraintsBotonDTD.gridy=0;
+        constraintsBotonDTD.gridx=columna;
+        constraintsBotonDTD.gridy=fila;
         constraintsBotonDTD.insets=new Insets(10, 10, 10, 10);
-        panelBotones.add(btnValidarDTD, constraintsBotonDTD);
+        panel.add(boton, constraintsBotonDTD);
+        
+    }
+    private JPanel getBotoneraOperacionesXML(){
+        JPanel panelBotones=new JPanel();
+        GridBagLayout layout=new GridBagLayout();
+        panelBotones.setLayout(layout);
+        
+        this.anadirBotonGestionXML(panelBotones, "Validar con DTD", ACCION_VALIDAR_DTD, 0, 0);
+        this.anadirBotonGestionXML(panelBotones, "Validar con esquema XML", ACCION_VALIDAR_ESQUEMA, 1, 0);
+        this.anadirBotonGestionXML(panelBotones, "Evaluar XPath", ACCION_EVALUAR_XPATH, 2, 0);
+        this.anadirBotonGestionXML(panelBotones, "Transformar con XSLT", ACCION_TRANSFORMAR_XSLT, 3, 0);
+        this.anadirBotonGestionXML(panelBotones, "Ejecutar XQuery", ACCION_EJECUTAR_XQUERY, 4, 0);
+        
+        this.anadirBotonGestionXML(panelBotones, "Pegar + Validar con DTD",         ACCION_PEGAR_VALIDAR_DTD,     0, 1);
+        this.anadirBotonGestionXML(panelBotones, "Pegar + Validar con esquema XML", ACCION_PEGAR_VALIDAR_ESQUEMA, 1, 1);
+        this.anadirBotonGestionXML(panelBotones, "Pegar + Evaluar XPath",           ACCION_PEGAR_EVALUAR_XPATH,   2, 1);
+        this.anadirBotonGestionXML(panelBotones, "Pegar + Transformar con XSLT",    ACCION_PEGAR_TRANSFORMAR_XSLT, 3, 1);
+        this.anadirBotonGestionXML(panelBotones, "Pegar + Ejecutar XQuery",         ACCION_PEGAR_EJECUTAR_XQUERY, 4, 1);
         
         
-        JButton btnValidarEsquema=new JButton("Validar con esquema XML");
-        btnValidarEsquema.setActionCommand(ACCION_VALIDAR_ESQUEMA);
-        btnValidarEsquema.addActionListener(this);
-        //btnValidarESQUEMA.setAlignmentX(Component.CENTER_ALIGNMENT);
-        GridBagConstraints constraintsBotonEsquema=new GridBagConstraints();
-        constraintsBotonEsquema.fill=GridBagConstraints.BOTH;
-        constraintsBotonEsquema.gridx=0;
-        constraintsBotonEsquema.gridy=1;
-        constraintsBotonEsquema.weightx=1;
-        constraintsBotonEsquema.weighty=1;
-        constraintsBotonEsquema.insets=new Insets(10, 10, 10, 10);
-        panelBotones.add(btnValidarEsquema, constraintsBotonEsquema);
-        
-        
-        JButton btnEvaluarXPath=new JButton("Evaluar XPath");
-        btnEvaluarXPath.setActionCommand(ACCION_EVALUAR_XPATH);
-        btnEvaluarXPath.addActionListener(this);
-        //btnValidarXPath.setAlignmentX(Component.CENTER_ALIGNMENT);
-        GridBagConstraints constraintsBotonXPath=new GridBagConstraints();
-        constraintsBotonXPath.fill=GridBagConstraints.BOTH;
-        constraintsBotonXPath.gridx=0;
-        constraintsBotonXPath.gridy=2;
-        constraintsBotonXPath.weightx=1;
-        constraintsBotonXPath.weighty=1;
-        constraintsBotonXPath.insets=new Insets(10, 10, 10, 10);
-        panelBotones.add(btnEvaluarXPath, constraintsBotonXPath);
-        
-        
-        JButton btnTransformarXSLT=new JButton("Transformar con XSLT");
-        btnTransformarXSLT.setActionCommand(ACCION_TRANSFORMAR_XSLT);
-        btnTransformarXSLT.addActionListener(this);
-        //btnValidarXSLT.setAlignmentX(Component.CENTER_ALIGNMENT);
-        GridBagConstraints constraintsBotonXSLT=new GridBagConstraints();
-        constraintsBotonXSLT.fill=GridBagConstraints.BOTH;
-        constraintsBotonXSLT.gridx=0;
-        constraintsBotonXSLT.gridy=3;
-        constraintsBotonXSLT.weightx=1;
-        constraintsBotonXSLT.weighty=1;
-        constraintsBotonXSLT.insets=new Insets(10, 10, 10, 10);
-        panelBotones.add(btnTransformarXSLT, constraintsBotonXSLT);
-        
-        
-        JButton btnEjecutarXQuery=new JButton("Ejecutar XQuery");
-        btnEjecutarXQuery.addActionListener(this);
-        btnEjecutarXQuery.setActionCommand(ACCION_EJECUTAR_XQUERY);
-        //btnValidarXQuery.setAlignmentX(Component.CENTER_ALIGNMENT);
-        GridBagConstraints constraintsBotonXQuery=new GridBagConstraints();
-        constraintsBotonXQuery.fill=GridBagConstraints.BOTH;
-        constraintsBotonXQuery.gridx=0;
-        constraintsBotonXQuery.gridy=4;
-        constraintsBotonXQuery.weightx=1;
-        constraintsBotonXQuery.weighty=1;
-        constraintsBotonXQuery.insets=new Insets(10, 10, 10, 10);
-        panelBotones.add(btnEjecutarXQuery, constraintsBotonXQuery);
         
         return panelBotones;
         
@@ -404,6 +374,10 @@ public class Interfaz implements ActionListener, MouseListener{
         
         this.menuCambiarFuenteGrande.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE);
         this.menuCambiarFuenteGrande.addActionListener(this);
+        
+        this.menuCambiarFuenteMuyGrande.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE_MUY_GRANDE);
+        this.menuCambiarFuenteMuyGrande.addActionListener(this);
+        
         
         this.menuEjemploProveedoresPartes.setActionCommand(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES);
         this.menuEjemploProveedoresPartes.addActionListener(this);
@@ -575,15 +549,38 @@ public class Interfaz implements ActionListener, MouseListener{
         }
         return xmlIndentado;
     }
+    
+    public void pegarTextoPortapapeles(){
+        
+    try {
+        String texto=(String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+        this.txtResto.setText(texto);
+    } catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+         this.txtResto.setText("El portapapeles no contiene ningún texto");
+    }
+}
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         this.txtInformes.setText("");
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_VALIDAR_DTD == null : e.getActionCommand().equals(Interfaz.ACCION_VALIDAR_DTD)){
             this.validarConDTD();
         }
+        if (e.getActionCommand() == null ? Interfaz.ACCION_PEGAR_VALIDAR_DTD == null : e.getActionCommand().equals(Interfaz.ACCION_PEGAR_VALIDAR_DTD)){
+            this.pegarTextoPortapapeles();
+            this.validarConDTD();
+        }
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_VALIDAR_ESQUEMA == null : e.getActionCommand().equals(Interfaz.ACCION_VALIDAR_ESQUEMA)){
             this.validarConEsquema();
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_PEGAR_VALIDAR_ESQUEMA == null : e.getActionCommand().equals(Interfaz.ACCION_PEGAR_VALIDAR_ESQUEMA)){
+            this.pegarTextoPortapapeles();
+            this.validarConEsquema();
+        }
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_EVALUAR_XPATH)){
             String xpath=txtResto.getText();
             String xml=txtXML.getText();
@@ -599,6 +596,24 @@ public class Interfaz implements ActionListener, MouseListener{
             }
             
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_EVALUAR_XPATH)){
+            String xpath=txtResto.getText();
+            String xml=txtXML.getText();
+            
+            try {
+                txtInformes.setText("");
+                
+                NodeList resultados=ProcesadorXML.evaluarXPath(xpath, xml);
+                String xmlResultado=ProcesadorXML.nodeListToString(resultados);
+                txtInformes.setText(xmlResultado);
+            } catch (Exception ex) {
+                txtInformes.setText(ex.toString());
+            }
+            
+        }
+        
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_EJECUTAR_XQUERY == null : e.getActionCommand().equals(Interfaz.ACCION_EJECUTAR_XQUERY)){
             String xquery=txtResto.getText();
             String xml=txtXML.getText();
@@ -618,6 +633,28 @@ public class Interfaz implements ActionListener, MouseListener{
                 txtInformes.setText(ex.toString());
             }
         }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_PEGAR_EJECUTAR_XQUERY == null : e.getActionCommand().equals(Interfaz.ACCION_PEGAR_EJECUTAR_XQUERY)){
+            this.pegarTextoPortapapeles();
+            String xquery=txtResto.getText();
+            String xml=txtXML.getText();
+            try {
+                String resultado=ProcesadorXML.ejecutarXQuery(xquery, xml);
+                String resultadoIndentado=indentarXML(resultado);
+                txtInformes.setText(resultado);
+            } catch (XQException ex) {
+                String textoExcepcion=ex.toString();
+                String ayudaExtra="Parece que has usado un nombre de archivo que no está en el directorio actual.\n"
+                        + "Recuerda que el archivo por defecto se llama 'datos.xml' así que quizá quieras usar algo como doc(\"datos.xml\")//proveedor";
+                if (textoExcepcion.contains("java.io.FileNotFoundException")){
+                    textoExcepcion=textoExcepcion +"\n\n"+ayudaExtra;
+                }
+                txtInformes.setText(textoExcepcion);
+            } catch (IOException ex) {
+                txtInformes.setText(ex.toString());
+            }
+        }
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_TRANSFORMAR_XSLT == null : e.getActionCommand().equals(Interfaz.ACCION_TRANSFORMAR_XSLT)){
             try {
                 String xml          =   txtXML.getText();
@@ -631,7 +668,24 @@ public class Interfaz implements ActionListener, MouseListener{
             } catch (TransformerException ex) {
                 txtInformes.setText(ex.toString());
             }
-        }        
+        }
+
+        if (e.getActionCommand() == null ? Interfaz.ACCION_PEGAR_TRANSFORMAR_XSLT == null : e.getActionCommand().equals(Interfaz.ACCION_PEGAR_TRANSFORMAR_XSLT)){
+            try {
+                this.pegarTextoPortapapeles();
+                String xml          =   txtXML.getText();
+                String xslt         =   txtResto.getText();
+                String resultado    =   ProcesadorXML.transformarConXSLT(xslt, xml);
+                String resultadoEmbellecido;
+                resultadoEmbellecido=ProcesadorXML.tabularXML(resultado);
+                
+                this.almacenarResultadoTransformacion(resultadoEmbellecido);
+                txtInformes.append(resultadoEmbellecido);
+            } catch (TransformerException ex) {
+                txtInformes.setText(ex.toString());
+            }
+        }
+        
         if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE)){
             this.cambiarFuenteCuadrosTexto();
         }
@@ -643,7 +697,15 @@ public class Interfaz implements ActionListener, MouseListener{
             this.txtXML.setFont(nuevaFuente);
             this.txtResto.setFont(nuevaFuente);
             this.txtInformes.setFont(nuevaFuente);
-            
+        }
+        
+        if (e.getActionCommand() == null ? Interfaz.ACCION_CAMBIAR_FUENTE_MUY_GRANDE == null : e.getActionCommand().equals(Interfaz.ACCION_CAMBIAR_FUENTE_MUY_GRANDE)){
+            //System.out.println("Cambiando a fuente grande");
+            Font fuente=this.txtXML.getFont();
+            Font nuevaFuente=fuente.deriveFont(32.0f).deriveFont(Font.BOLD);
+            this.txtXML.setFont(nuevaFuente);
+            this.txtResto.setFont(nuevaFuente);
+            this.txtInformes.setFont(nuevaFuente);
         }
         
         if (e.getActionCommand() == null ? Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES == null : e.getActionCommand().equals(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES)){

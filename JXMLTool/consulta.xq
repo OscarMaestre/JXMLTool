@@ -1,6 +1,7 @@
-<resultadoconsultaxquery>{for $parte in doc("datos.xml")//parte[peso>=15]
-for $proyecto in doc("datos.xml")//proyecto[ciudad=$parte/ciudad]
-return  <resultado>
-		{$parte/nombreparte}
-		{$proyecto/ciudad}
-        </resultado>}</resultadoconsultaxquery>
+for $suministra in
+  doc("datos.xml")/datos/suministros/suministra
+for $proyecto in
+  doc("datos.xml")/datos/proyectos/proyecto
+where $suministra/numproyecto = $proyecto/@numproyecto
+
+return $proyecto/nombreproyecto
