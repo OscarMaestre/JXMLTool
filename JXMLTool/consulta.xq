@@ -1,7 +1,4 @@
-for $suministra in
-  doc("datos.xml")/datos/suministros/suministra
-for $proyecto in
-  doc("datos.xml")/datos/proyectos/proyecto
-where $suministra/numproyecto = $proyecto/@numproyecto
-
-return $proyecto/nombreproyecto
+String xmlResultado=ProcesadorXML.nodeListToString(resultados);
+                txtInformes.setText(xmlResultado);
+            } catch (Exception ex) {
+                txtInformes.setText(ex.toStri

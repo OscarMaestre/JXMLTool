@@ -23,12 +23,16 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -349,11 +353,11 @@ public class Interfaz implements ActionListener, MouseListener{
         GridBagLayout layout=new GridBagLayout();
         panelBotones.setLayout(layout);
         
-        this.anadirBotonGestionXML(panelBotones, "Validar con DTD", ACCION_VALIDAR_DTD, 0, 0);
-        this.anadirBotonGestionXML(panelBotones, "Validar con esquema XML", ACCION_VALIDAR_ESQUEMA, 1, 0);
-        this.anadirBotonGestionXML(panelBotones, "Evaluar XPath", ACCION_EVALUAR_XPATH, 2, 0);
-        this.anadirBotonGestionXML(panelBotones, "Transformar con XSLT", ACCION_TRANSFORMAR_XSLT, 3, 0);
-        this.anadirBotonGestionXML(panelBotones, "Ejecutar XQuery", ACCION_EJECUTAR_XQUERY, 4, 0);
+        this.anadirBotonGestionXML(panelBotones, "Validar con DTD",             ACCION_VALIDAR_DTD, 0, 0);
+        this.anadirBotonGestionXML(panelBotones, "Validar con esquema XML",     ACCION_VALIDAR_ESQUEMA, 1, 0);
+        this.anadirBotonGestionXML(panelBotones, "Evaluar XPath",               ACCION_EVALUAR_XPATH, 2, 0);
+        this.anadirBotonGestionXML(panelBotones, "Transformar con XSLT",        ACCION_TRANSFORMAR_XSLT, 3, 0);
+        this.anadirBotonGestionXML(panelBotones, "Ejecutar XQuery",             ACCION_EJECUTAR_XQUERY, 4, 0);
         
         this.anadirBotonGestionXML(panelBotones, "Pegar + Validar con DTD",         ACCION_PEGAR_VALIDAR_DTD,     0, 1);
         this.anadirBotonGestionXML(panelBotones, "Pegar + Validar con esquema XML", ACCION_PEGAR_VALIDAR_ESQUEMA, 1, 1);
@@ -369,47 +373,33 @@ public class Interfaz implements ActionListener, MouseListener{
     
     
     public void vincularEventosMenus(){
-        this.menuCambiarFuente.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE);
-        this.menuCambiarFuente.addActionListener(this);
+        /*Si se añade algún menú, poner aquí la acción asociada a ese menú*/
+        Map<JMenuItem, String> asociacionesAcciones;
+        asociacionesAcciones = new HashMap<JMenuItem, String>();
         
-        this.menuCambiarFuenteGrande.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE);
-        this.menuCambiarFuenteGrande.addActionListener(this);
+        asociacionesAcciones.put(this.menuCambiarFuente,            Interfaz.ACCION_CAMBIAR_FUENTE);
+        asociacionesAcciones.put(this.menuCambiarFuenteGrande,      Interfaz.ACCION_CAMBIAR_FUENTE_GRANDE);
+        asociacionesAcciones.put(this.menuCambiarFuenteMuyGrande,   Interfaz.ACCION_CAMBIAR_FUENTE_MUY_GRANDE);
+        asociacionesAcciones.put(this.menuEjemploProveedoresPartes, Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES);
+        asociacionesAcciones.put(this.menuEjemploInventario,        Interfaz.ACCION_EJEMPLO_INVENTARIO);
+        asociacionesAcciones.put(this.menuEjemploAlumnos,           Interfaz.ACCION_EJEMPLO_ALUMNOS);
+        asociacionesAcciones.put(this.menuEjemploPedido,            Interfaz.ACCION_EJEMPLO_PEDIDO);
+        asociacionesAcciones.put(this.menuEjemploBiblioteca,        Interfaz.ACCION_EJEMPLO_BIBLIOTECA);
+        asociacionesAcciones.put(this.menuEjemploImpresoras,        Interfaz.ACCION_EJEMPLO_IMPRESORAS);
+        asociacionesAcciones.put(this.menuEjemploImpresorasConN,    Interfaz.ACCION_EJEMPLO_IMPRESORAS_CON_N);
+        asociacionesAcciones.put(this.menuEjemploTorneo,            Interfaz.ACCION_EJEMPLO_TORNEO);
+        asociacionesAcciones.put(this.menuCargarDer,                Interfaz.ACCION_CARGAR_DERECHA);
+        asociacionesAcciones.put(this.menuCargarIzq,                Interfaz.ACCION_CARGAR_IZQUIERDA);
+
+        Iterator it=asociacionesAcciones.keySet().iterator();
+        /*Recorremos el mapa asociando a cada menu su accion y haciendo que cuando
+        sean pulsados se procese el evento en esta clase */
+        while (it.hasNext()){
+            JMenuItem menu=(JMenuItem) it.next();
+            menu.setActionCommand(asociacionesAcciones.get(menu));
+            menu.addActionListener(this);
+        }
         
-        this.menuCambiarFuenteMuyGrande.setActionCommand(Interfaz.ACCION_CAMBIAR_FUENTE_MUY_GRANDE);
-        this.menuCambiarFuenteMuyGrande.addActionListener(this);
-        
-        
-        this.menuEjemploProveedoresPartes.setActionCommand(Interfaz.ACCION_EJEMPLO_PROVEEDORES_PARTES);
-        this.menuEjemploProveedoresPartes.addActionListener(this);
-        
-        this.menuEjemploInventario.setActionCommand(Interfaz.ACCION_EJEMPLO_INVENTARIO);
-        this.menuEjemploInventario.addActionListener(this);
-        
-        this.menuEjemploAlumnos.setActionCommand(Interfaz.ACCION_EJEMPLO_ALUMNOS);
-        this.menuEjemploAlumnos.addActionListener(this);
-        
-        this.menuEjemploPedido.setActionCommand(Interfaz.ACCION_EJEMPLO_PEDIDO);
-        this.menuEjemploPedido.addActionListener(this);
-        
-        this.menuEjemploBiblioteca.setActionCommand(Interfaz.ACCION_EJEMPLO_BIBLIOTECA);
-        this.menuEjemploBiblioteca.addActionListener(this);
-        
-        this.menuEjemploImpresoras.setActionCommand(Interfaz.ACCION_EJEMPLO_IMPRESORAS);
-        this.menuEjemploImpresoras.addActionListener(this);
-        
-        this.menuEjemploImpresorasConN.setActionCommand(Interfaz.ACCION_EJEMPLO_IMPRESORAS_CON_N);
-        this.menuEjemploImpresorasConN.addActionListener(this);
-        
-        this.menuEjemploTorneo.setActionCommand(Interfaz.ACCION_EJEMPLO_TORNEO);
-        this.menuEjemploTorneo.addActionListener(this);
-        
-        
-        
-        this.menuCargarDer.setActionCommand(Interfaz.ACCION_CARGAR_DERECHA);
-        this.menuCargarDer.addActionListener(this);
-        
-        this.menuCargarIzq.setActionCommand(Interfaz.ACCION_CARGAR_IZQUIERDA);
-        this.menuCargarIzq.addActionListener(this);
     }
     /**
      * Create the GUI and show it.  For thread safety,
@@ -597,10 +587,11 @@ public class Interfaz implements ActionListener, MouseListener{
             
         }
         
-        if (e.getActionCommand() == null ? Interfaz.ACCION_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_EVALUAR_XPATH)){
-            String xpath=txtResto.getText();
+        if (e.getActionCommand() == null ? Interfaz.ACCION_PEGAR_EVALUAR_XPATH == null : e.getActionCommand().equals(Interfaz.ACCION_PEGAR_EVALUAR_XPATH)){
+            this.pegarTextoPortapapeles();
+            System.out.println("Pegado el XPath...");
             String xml=txtXML.getText();
-            
+            String xpath=txtResto.getText();
             try {
                 txtInformes.setText("");
                 
