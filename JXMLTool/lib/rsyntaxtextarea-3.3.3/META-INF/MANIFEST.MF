@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.fife.RSyntaxTextArea
+Bnd-LastModified: 1679607728774
+Bundle-License: BSD-3-Clause
+Bundle-ManifestVersion: 2
+Bundle-Name: rsyntaxtextarea
+Bundle-SymbolicName: rsyntaxtextarea
+Bundle-Version: 3.3.3
+Created-By: 1.8.0_20 (Oracle Corporation)
+Implementation-Title: org.fife.ui
+Implementation-Version: 3.3.3
+Import-Package: javax.imageio,javax.swing,javax.swing.border,javax.swi
+ ng.event,javax.swing.plaf,javax.swing.plaf.basic,javax.swing.text,jav
+ ax.swing.text.html,javax.swing.undo,javax.xml.parsers,javax.xml.trans
+ form,javax.xml.transform.dom,javax.xml.transform.stream,org.w3c.dom,o
+ rg.xml.sax,org.xml.sax.helpers
+Private-Package: org.fife.io,org.fife.print,org.fife.ui.rsyntaxtextare
+ a,org.fife.ui.rsyntaxtextarea.focusabletip,org.fife.ui.rsyntaxtextare
+ a.folding,org.fife.ui.rsyntaxtextarea.modes,org.fife.ui.rsyntaxtextar
+ ea.parser,org.fife.ui.rsyntaxtextarea.templates,org.fife.ui.rsyntaxte
+ xtarea.themes,org.fife.ui.rtextarea,org.fife.util
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: RSyntaxTextArea
+Specification-Version: 3.3.3
+Tool: Bnd-6.4.0.202211291949
+
